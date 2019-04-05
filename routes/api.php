@@ -13,11 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
 Route::group(['prefix' => 'auth'], function ($router) {
 
     Route::post('login', 'AuthController@login');
@@ -25,4 +20,20 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
+});
+
+
+
+Route::group(['middleware' => 'jwt.auth'], function ($router) {
+    # 1.1 robot routes
+    // List robot
+    Route::get('robots', 'RobotController@index');
+    // List single robot
+    Route::get('robot/{id}', 'RobotController@show');
+    // Create new robot
+    Route::post('robot', 'RobotController@store');
+    // Update robot
+    Route::put('robot', 'RobotController@store');
+    // Delete robot
+    Route::delete('robot/{id}', 'RobotController@destroy');
 });

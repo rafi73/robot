@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class robot extends Model
+class Robot extends Model
 {
     //
 }
