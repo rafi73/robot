@@ -36,4 +36,6 @@ Route::group(['middleware' => 'jwt.auth'], function ($router) {
     Route::put('robot/{id}', 'RobotController@update');
     // Delete robot
     Route::delete('robot/{id}', 'RobotController@delete');
+    // Create new robot
+    Route::post('robot-bulk', 'RobotController@storeBulk');
 });

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\RobotService;
 use App\Http\Resources\RobotResource;
+use App\Http\Requests\RobotRequest;
+use App\Http\Requests\RobotBulkRequest;
+
 
 class RobotController extends Controller
 {
@@ -44,11 +47,11 @@ class RobotController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function store(Request $request)
+    public function store(RobotRequest $request)
     {
         //$this->robots->create($request->all());
         $robotService = new RobotService();
-        $robot = $robotService->create($request->all());
+        $robot = $robotService->create($request->all()); 
         return new RobotResource($robot);
     }
 
@@ -62,7 +65,7 @@ class RobotController extends Controller
     public function show($id)
     {
         //$robot = $this->robots->find($id);
-        $robotService = new RobotService();
+        $robotService = new RobotService(); 
         $robot = $robotService->find($id);
         return new RobotResource($robot);
     }
@@ -74,7 +77,7 @@ class RobotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RobotRequest $request, $id)
     {
         //$this->robots->update($request->all(), $id);
         $robotService = new RobotService();
@@ -95,5 +98,23 @@ class RobotController extends Controller
         $robotService = new RobotService();
         if($robotService->delete($id))
             return response()->json(null, 204);
+    }
+
+    /**
+     * Create a new robot.
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function storeBulk(Request $request)
+    {
+        //$this->robots->create($request->all());
+        $robotService = new RobotService();
+        if($robotService->createBulk($request))
+        {
+            $robots = $robotService->getAll();
+            return RobotResource::collection($robots);
+        }
     }
 }
