@@ -19,7 +19,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-
+    Route::post('register', 'AuthController@register');
 });
 
 
@@ -33,7 +33,7 @@ Route::group(['middleware' => 'jwt.auth'], function ($router) {
     // Create new robot
     Route::post('robot', 'RobotController@store');
     // Update robot
-    Route::put('robot', 'RobotController@store');
+    Route::put('robot/{id}', 'RobotController@update');
     // Delete robot
-    Route::delete('robot/{id}', 'RobotController@destroy');
+    Route::delete('robot/{id}', 'RobotController@delete');
 });

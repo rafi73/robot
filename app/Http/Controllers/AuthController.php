@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\User;
+use Hash;
+use JWTAuth;
 
 class AuthController extends Controller
 {
@@ -13,7 +16,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -25,7 +28,8 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth('api')->attempt($credentials)) {
+        if (! $token = auth('api')->attempt($credentials)) 
+        {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -84,5 +88,29 @@ class AuthController extends Controller
     public function guard()
     {
         return Auth::Guard('api');
+    }
+
+    /**
+     * Register user
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function register(Request $request)
+    {
+        //Validate fields
+        $this->validate($request,[
+            'email' => 'required|email|max:255|unique:users',
+            'name' => 'required|max:255',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        //Create user, generate token and return
+        $user =  User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+        $token = JWTAuth::fromUser($user);
+        return response()->json(compact('token'));
     }
 }

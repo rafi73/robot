@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\RobotService;
+use App\Http\Resources\RobotResource;
 
 class RobotController extends Controller
 {
       /**
-     * The author repository instance.
+     * The robot Service instance.
      *
-     * @var RobotRepository
+     * @var RobotService
      */
     protected $robots;
 
@@ -20,7 +22,7 @@ class RobotController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -30,67 +32,43 @@ class RobotController extends Controller
      */
     public function index()
     {
-        $robots = $this->robots->getAll();
-
-        return view('robots.index', compact('robots'));
+        $robotService = new RobotService();
+        $robots = $robotService->getAll();
+        return RobotResource::collection($robots);
     }
 
     /**
-     * Display a form to create a new author.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('robots.create');
-    }
-
-    /**
-     * Create a new author.
+     * Create a new robot.
      *
      * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
     public function store(Request $request)
     {
-        $this->robots->create($request->all());
-
-        return redirect('/robots');
+        //$this->robots->create($request->all());
+        $robotService = new RobotService();
+        $robot = $robotService->create($request->all());
+        return new RobotResource($robot);
     }
 
     /**
-     * Display an author.
+     * Display an robot.
      *
      * @param type $id
      *
-     * @return type
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
     public function show($id)
     {
-        $robot = $this->robots->find($id);
-
-        return view('robots.show', compact('author'));
+        //$robot = $this->robots->find($id);
+        $robotService = new RobotService();
+        $robot = $robotService->find($id);
+        return new RobotResource($robot);
     }
 
     /**
-     * Display a form to edit an author.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return $id;
-
-        $robot = $this->robots->find($id);
-
-        return view('robots.edit', compact('author'));
-    }
-
-    /**
-     * Update an author.
+     * Update an robot.
      *
      * @param Request $request
      *
@@ -98,22 +76,24 @@ class RobotController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->robots->update($request->all(), $id);
-
-        return redirect('/robots');
+        //$this->robots->update($request->all(), $id);
+        $robotService = new RobotService();
+        $robot = $robotService->update($request->all(), $id);
+        return new RobotResource($robot);
     }
 
     /**
-     * Delete an author.
+     * Delete an robot.
      *
      * @param type $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function destory($id)
+    public function delete($id)
     {
-        $this->robots->delete($id);
-
-        return redirect('/robots');
+        //$this->robots->delete($id);
+        $robotService = new RobotService();
+        if($robotService->delete($id))
+            return response()->json(null, 204);
     }
 }
