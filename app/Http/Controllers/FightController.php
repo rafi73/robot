@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\FightService;
 use App\Http\Resources\FightResource;
 use App\Http\Resources\FightPageResource;
+use Illuminate\Support\Facades\Auth;
 
 class FightController extends Controller
 {
@@ -32,6 +33,7 @@ class FightController extends Controller
      */
     public function startFight(Request $request)
     {
+        $user = Auth::user();   
         $fightService = new FightService();
         $robotsForFight = $fightService->startFight($request->all());
         

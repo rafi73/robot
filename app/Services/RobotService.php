@@ -5,13 +5,14 @@ namespace App\Services;
 use App\Contracts\RepositoryInterface;
 use App\Robot;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class RobotService implements RepositoryInterface
 {
     /**
      * Get all robots.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAll()
     {
@@ -80,6 +81,10 @@ class RobotService implements RepositoryInterface
     {
         if($request->hasFile('file'))
         {
+            $file = $request->file('file');
+            Storage::disk('local')->putFileAs('', $file, $file->getClientOriginalName());
+
+            
             $lines = explode("\r\n", file_get_contents($request->file('file')));
             $head = str_getcsv(array_shift($lines));
             $robots = [];
