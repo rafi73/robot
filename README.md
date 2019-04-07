@@ -1,71 +1,195 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Dillinger
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
-## About Laravel
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  - Type some Markdown on the left
+  - See HTML in the right
+  - Magic
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# New Features!
 
-## Learning Laravel
+  - Import a HTML file and watch it magically convert to Markdown
+  - Drag and drop images (requires your Dropbox account be linked)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+# Development
 
-## Laravel Sponsors
+Want to contribute? Great!
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Dillinger uses Gulp + Webpack for fast developing.
+Make a change in your file and instantanously see your updates!
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
+For testing using POSTMAN application, please use the following settings,
+Header: 
+| KEY | VALUE |
+| ------ | ------ |
+| X-Requested-With | XMLHttpRequest |
+| Content-Type | application/json |
+| Accept | application/json |
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Register 
+Request Type : [POST] 
+URL : http://robot.work/api/auth/register
 
-## Security Vulnerabilities
+Please use the following info into `body` -> `raw` and select `JSON (application/json)` section in postman
+```sh
+{
+	"name": "Golam Mahmud Rafi",
+	"email": "test@gmail.com",
+	"password": "123456",
+	"password_confirmation": "123456"
+}
+```
+After registration, system will return a `token` like following : 
+```sh
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZ2lzdGVyIiwiaWF0IjoxNTU0NjQ2NDk1LCJleHAiOjE1NTQ2NTM2OTUsIm5iZiI6MTU1NDY0NjQ5NSwianRpIjoidk9uSkg3cFV2cjF0eGZ3RSIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.fW09NpK-yQM5cjX8dXwcOx3s_jcGPZJBfoD-UyxndvA"
+}
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If someone try to use any of the routes where authentication is needed, they will get this as response
+```sh
+{
+    "message": "Token not provided",
+    "exception": "Symfony\\Component\\HttpKernel\\Exception\\UnauthorizedHttpException"
+}
+```
+`Token` has a validity, currently it's set to 120 min and can be changed. If 120 min passed since generation of `token`, the user will be logged out. `refresh token api` is available if user wants to continue the smooth operation.
 
-## License
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```sh
+{
+    "message": "Token has expired",
+    "exception": "Symfony\\Component\\HttpKernel\\Exception\\UnauthorizedHttpException"
+}
+```
+# Login 
+Request Type : [POST] 
+URL : http://robot.work/api/auth/login
+
+To Login into the system, simple use the following info into `body` -> `raw` and select `JSON (application/json)` section in postman or you can use `form-data` as well:
+For production release:
+```sh
+{
+	"email": "test@gmail.com",
+	"password": "123456"
+}
+```
+If the login credentials are correct, you will get the following response:
+```sh
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNTU0NjQ3MzA4LCJleHAiOjE1NTQ2NTQ1MDgsIm5iZiI6MTU1NDY0NzMwOCwianRpIjoiQVc3RVJzQXlRNkprVDFBTyIsInN1YiI6MiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.5VnGmwXjtH9j5m64h126gOjMuIhs8IVizU_B51DCfA8",
+    "user": {
+        "id": 2,
+        "name": "Golam Mahmud Rafi",
+        "email": "test@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2019-04-07 23:27:58",
+        "updated_at": "2019-04-07 23:27:58"
+    },
+    "token_type": "bearer",
+    "expires_in": 7200
+}
+```
+
+Please set the `token` in `Authorization` of postman. It's needed on every API request that requires auth.
+
+# Robot 
+Robot has the following routes to manage the robot. 
+    
+
+##### Create new Robot
+Request type :[POST]
+URL : `http://robot.work/api/v1/robot`
+Simply use the following info into `body` -> `raw` and select `JSON (application/json)` section in postman or you can use `form-data` as well:
+```sh
+{
+    "name": "Nick",
+    "speed": 5,
+    "weight": 6,
+    "power": 7,
+}
+```
+
+##### Edit existing Robot
+Request type :[PUT]
+URL : http://robot.work/api/v1/robot/{robotId}
+Simply use the following info into `body` -> `raw` and select `JSON (application/json)` section in postman or you can use `form-data` as well:
+```sh
+{
+    "name": "Karl",
+    "speed": 9,
+    "weight": 5,
+    "power": 5,
+}
+```
+
+### Docker
+Dillinger is very easy to install and deploy in a Docker container.
+
+By default, the Docker will expose port 8080, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
+
+```sh
+cd dillinger
+docker build -t joemccann/dillinger:${package.json.version} .
+```
+This will create the dillinger image and pull in the necessary dependencies. Be sure to swap out `${package.json.version}` with the actual version of Dillinger.
+
+Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 8000 of the host to port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
+
+```sh
+docker run -d -p 8000:8080 --restart="always" <youruser>/dillinger:${package.json.version}
+```
+
+Verify the deployment by navigating to your server address in your preferred browser.
+
+```sh
+127.0.0.1:8000
+```
+
+#### Kubernetes + Google Cloud
+
+See [KUBERNETES.md](https://github.com/joemccann/dillinger/blob/master/KUBERNETES.md)
+
+
+### Todos
+
+ - Write MORE Tests
+ - Add Night Mode
+
+License
+----
+
+MIT
+
+
+**Free Software, Hell Yeah!**
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+
+   [dill]: <https://github.com/joemccann/dillinger>
+   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
+   [john gruber]: <http://daringfireball.net>
+   [df1]: <http://daringfireball.net/projects/markdown/>
+   [markdown-it]: <https://github.com/markdown-it/markdown-it>
+   [Ace Editor]: <http://ace.ajax.org>
+   [node.js]: <http://nodejs.org>
+   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
+   [jQuery]: <http://jquery.com>
+   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
+   [express]: <http://expressjs.com>
+   [AngularJS]: <http://angularjs.org>
+   [Gulp]: <http://gulpjs.com>
+
+   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
+   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
+   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
+   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
+   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
+   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
