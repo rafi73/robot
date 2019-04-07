@@ -16,10 +16,9 @@ class LatestFightResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'contestant_robot_name' => $this->contestantRobot->name,
-            'opponent_robot_name' => $this->opponentRobot->name,
-            'winner_robot_name' => $this->winnerRobot->name,
-            'date' => $this->date,
+            'robot_1_name' => $this->fightDetail[0]->robot->name,
+            'robot_2_name' => $this->fightDetail[1]->robot->name,
+            'winner_robot_name' =>  $this->fightDetail[0]->robot->result == 1 ? $this->fightDetail[0]->robot->name : $this->fightDetail[1]->robot->name,
         ];
     }
     

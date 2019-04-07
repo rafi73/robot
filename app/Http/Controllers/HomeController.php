@@ -12,7 +12,6 @@ class HomeController extends Controller
     public function getHomeData()
     {
         $homeService = new HomeService();
-        $homeService->getTopRobots();
 
         return response()->json(['latest' => LatestFightResource::collection($homeService->getLatestFightResult()), 
                                     'top' => TopFightResource::collection($homeService->getTopRobots())]);

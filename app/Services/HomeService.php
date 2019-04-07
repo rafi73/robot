@@ -6,27 +6,34 @@ use App\Contracts\RepositoryInterface;
 use App\Robot;
 use Carbon\Carbon;
 use App\Fight;
+use App\FightDetail;
 
 
 class HomeService 
 {
     /**
-     * Get Latest Robot fight results.
+     * Get Latest Robot's fight results
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getLatestFightResult()
     {
-        return Fight::with('contestantRobot')->with('opponentRobot')->with('winnerRobot')->latest()->take(5)->get();
+        return Fight::with('fightDetail.robot')->latest()->take(5)->get();
     }
 
-     /**
-     * Get Top Robots.
+    /**
+     * Get Top Robot's fight results
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getTopRobots()
     {
-        return Fight::with('winnerRobot')->groupBy('winner_robot_id')->selectRaw('count(*) as total, winner_robot_id')->orderBy('total', 'desc')->take(10)->get();
+        return FightDetail::with('robot')
+                        ->groupBy('robot_id')
+                        ->selectRaw('SUM(result) AS wins, COUNT(fight_id) AS fights, robot_id')
+                        ->orderBy('fights', 'desc')
+                        ->orderBy('wins', 'desc')
+                        ->take(10)
+                        ->get();
     }
 }

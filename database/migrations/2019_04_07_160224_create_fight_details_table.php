@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFightsTable extends Migration
+class CreateFightDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateFightsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fights', function (Blueprint $table) {
+        Schema::create('fight_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->integer('fight_id');
+            $table->integer('robot_id');
+            $table->boolean('result');
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateFightsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fights');
+        Schema::dropIfExists('fight_details');
     }
 }

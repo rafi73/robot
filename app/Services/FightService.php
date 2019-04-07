@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Robot;
 use App\Fight;
+use App\FightDetail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
@@ -10,7 +11,7 @@ use DB;
 class FightService
 {
     const MAX_DAILY_FIGHT_LIMIT = 5;
-
+    private $errorMessages = [];
     /**
      * Start Robot fight.
      *
@@ -20,28 +21,24 @@ class FightService
      */
     public function startFight($request)
     {
-        $errorMessages = [];
         if($request['contestant_robot_id'] == $request['opponent_robot_id'])
-            $errorMessages[] = 'Wrong Input!, Robot can not fight to it self';
+            $this->errorMessages[] = 'Wrong Input!, Robot can not fight to it self';
 
-        if($this->checkDailyOpponent($request['contestant_robot_id'], $request['opponent_robot_id']))
-            $errorMessages[] =  'These robots already fought today';
-        
-        if(!$this->checkDailyMaxAbility($request['contestant_robot_id']))
-            $errorMessages[] = 'Daily Max fight limit for robot '.$request['contestant_robot_id'].' exceed';
-        
-        if(!$this->checkDailyMaxAbility($request['opponent_robot_id']))
-            $errorMessages[] = 'Daily Max fight limit for robot '.$request['opponent_robot_id'].' exceed';
+        $this->checkDailyOpponent($request['contestant_robot_id'], $request['opponent_robot_id']);
+        $this->checkDailyMaxAbility($request['contestant_robot_id'], $request['opponent_robot_id']);
 
-        if(count($errorMessages))
-            return $errorMessages;
+        if(count($this->errorMessages))
+            return $this->errorMessages;
         
         $fightingScore = $this->calculateFightResult($request['contestant_robot_id'], $request['opponent_robot_id']);
-        $request['contestant_robot_score'] = $fightingScore['contestantRobotScore'];
-        $request['opponent_robot_score'] = $fightingScore['opponentRobotScore'];
-        $request['winner_robot_id'] = $fightingScore['winnerRobotId'];
-        $request['date'] = today();
-        return Fight::create($request);
+        $fight = Fight::create($request);
+
+        FightDetail::insert([
+            ['fight_id' => $fight->id, 'robot_id' => $request['contestant_robot_id'], 'result' => $request['contestant_robot_id'] == $fightingScore['winnerRobotId'] ? 1 : 0, 'date' => today()],
+            ['fight_id' => $fight->id, 'robot_id' => $request['opponent_robot_id'], 'result' => $request['opponent_robot_id'] == $fightingScore['winnerRobotId'] ? 1 : 0, 'date' => today()]
+        ]);
+
+        return $fight;
     }
 
     /**
@@ -52,13 +49,16 @@ class FightService
      *
      * @return bool
      */
-    public function checkDailyOpponent(int $contestantId, int $opponentId) : bool
+    public function checkDailyOpponent(int $contestantId, int $opponentId) 
     {
-        return Fight::whereIn('contestant_robot_id', [$contestantId, $opponentId])
-                    ->whereIn('opponent_robot_id', [$contestantId, $opponentId])
-                    ->where('date', today())
-                    ->exists();
-        
+        $data = FightDetail::where('date', today()) 
+                            ->whereIn('robot_id' , [$contestantId, $opponentId])
+                            ->groupBy('fight_id')
+                            ->selectRaw('COUNT(*) as duplicate')
+                            ->havingRaw('duplicate = 2')
+                            ->exists();
+        if($data)
+            $this->errorMessages[] =  'These robots already fought today';
     }
 
     /**
@@ -68,18 +68,19 @@ class FightService
      *
      * @return bool
      */
-    public function checkDailyMaxAbility(int $robotId) : int
+    public function checkDailyMaxAbility(int $contestantId, int $opponentId)
     {
-        $result = true;
-        $count = Fight::where('contestant_robot_id', $robotId)
-                    ->orWhere('opponent_robot_id', $robotId)
-                    ->where('date', today())
-                    ->count();
-        
-        if($count >= self::MAX_DAILY_FIGHT_LIMIT)
-            $result = false;
-        
-        return $result;
+        $data = FightDetail::where('date', today())
+                                ->whereIn('robot_id' , [$contestantId, $opponentId])
+                                ->groupBy('robot_id')
+                                ->selectRaw('COUNT(*) as fights, robot_id')
+                                ->havingRaw('fights >= 5')
+                                ->get();
+
+        if(count($data) == 1)
+            $this->errorMessages[] = 'Daily Max fight limit for robot '.$data[0]['robot_id'].' exceed';
+        if(count($data) > 1)
+            $this->errorMessages[] = 'Daily Max fight limit for both robots exceed';
     }
 
     /**
@@ -102,7 +103,7 @@ class FightService
         return [
             'contestantRobotScore' => $ownRobot['point'], 
             'opponentRobotScore' => $otherRobot['point'], 
-            'winnerRobotId' => ($ownRobot['point'] > $otherRobot['point'] ? $contestantRobotId : $opponentRobotId) 
+            'winnerRobotId' => ($ownRobot['point'] > $otherRobot['point'] ? $contestantRobotId : $opponentRobotId)
         ];
     }
 
