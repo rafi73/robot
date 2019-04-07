@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Services;
+
+use DB;
 use App\Robot;
 use App\Fight;
 use App\FightDetail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use DB;
+
+use App\Exceptions\FightService\RobotFightConflictException;
 
 class FightService
 {
@@ -22,7 +25,8 @@ class FightService
     public function startFight($request)
     {
         if($request['contestant_robot_id'] == $request['opponent_robot_id'])
-            $this->errorMessages[] = 'Wrong Input!, Robot can not fight to it self';
+            throw new RobotFightConflictException('Wrong Input!, Robot can not fight to it self');
+            //$this->errorMessages[] = 'Wrong Input!, Robot can not fight to it self';
 
         $this->checkDailyOpponent($request['contestant_robot_id'], $request['opponent_robot_id']);
         $this->checkDailyMaxAbility($request['contestant_robot_id'], $request['opponent_robot_id']);
@@ -47,9 +51,10 @@ class FightService
      * @param int $contestantId
      * @param int $opponentId
      *
-     * @return bool
+     * @throws RobotFightConflictException
+     * @return 
      */
-    public function checkDailyOpponent(int $contestantId, int $opponentId) 
+    public function checkDailyOpponent(int $contestantId, int $opponentId) : bool
     {
         $data = FightDetail::where('date', today()) 
                             ->whereIn('robot_id' , [$contestantId, $opponentId])
@@ -59,6 +64,8 @@ class FightService
                             ->exists();
         if($data)
             $this->errorMessages[] =  'These robots already fought today';
+
+        return $data;
     }
 
     /**
@@ -92,12 +99,21 @@ class FightService
      */
     public function calculateFightResult(int $contestantRobotId, int $opponentRobotId) : array
     {
-        $ownRobot = Robot::findOrFail($contestantRobotId)->toArray();
-        $otherRobot = Robot::findOrFail($opponentRobotId)->toArray();
+        $ownRobot = Robot::find($contestantRobotId)->toArray();
+        if(!$ownRobot)
+        {
+            throw new \Exception('Robot not found', 404);
+        }
+
+        $otherRobot = Robot::find($opponentRobotId)->toArray();
+        if(!$otherRobot)
+        {
+            throw new \Exception('Robot not found', 404);
+        }
 
         $ownRobot['point'] = $otherRobot['point'] = 0;
-        $ownRobot['power'] > $otherRobot['power'] ? $ownRobot['point']++ : $otherRobot['point']++;
-        $ownRobot['speed'] > $otherRobot['speed'] ? $ownRobot['point']++ : $otherRobot['point']++;
+        $ownRobot['power'] > $otherRobot['power'] ? $ownRobot['point'] = $ownRobot['power'] * 10 :  $otherRobot['point'] = $otherRobot['power'] * 10;
+        $ownRobot['speed'] > $otherRobot['speed'] ? $ownRobot['point'] = $ownRobot['speed'] * 7 : $otherRobot['point'] = $otherRobot['speed'] * 7;
         $ownRobot['weight'] > $otherRobot['weight'] ? $ownRobot['point']-- : $otherRobot['point']--;
 
         return [

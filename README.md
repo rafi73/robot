@@ -106,6 +106,7 @@ Robot has the following routes to manage the robot.
 ##### Create new Robot
 Request type :[POST]
 URL : `http://robot.work/api/v1/robot`
+Response Code : `201`
 Simply use the following info into `body` -> `raw` and select `JSON (application/json)` section in postman or you can use `form-data` as well:
 ```sh
 {
@@ -119,6 +120,7 @@ Simply use the following info into `body` -> `raw` and select `JSON (application
 ##### Edit existing Robot
 Request type :[PUT]
 URL : http://robot.work/api/v1/robot/{robotId}
+Response Code : `200`
 Simply use the following info into `body` -> `raw` and select `JSON (application/json)` section in postman or you can use `form-data` as well:
 ```sh
 {
@@ -129,14 +131,86 @@ Simply use the following info into `body` -> `raw` and select `JSON (application
 }
 ```
 
-### Docker
-Dillinger is very easy to install and deploy in a Docker container.
+##### Delete Robot
+Request type :[DELETE]
+URL : http://robot.work/api/v1/robot/{robotId}
+Response Code : `204`
 
-By default, the Docker will expose port 8080, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
+##### Import Robot from CSV
+Request type :[POST]
+URL : http://robot.work/api/v1/robot-bulk
+Response Code : `200`
+Simply  use the `form-data` and fill up the key as `file` and you will see a option `text/file` as value. Please choose `file` and `browse` your desired `csv` file. Postman should looks like the following:
+| KEY | VALUE |
+| ------ | ------ |
+| file | robot.csv |
 
+#### CSV file structure
+
+| Name | Weight | Power | Speed |
+| ------ | ------ | ------ | ------ |
+| Tom | 89 | 50 | 45 |
+| Jack | 87 | 98 | 47 |
+| Harry | 87 | 95 | 85 |
+| David | 34 | 35 | 23 |
+
+After successfull upload, as of now you will get the following data pattern as response:
 ```sh
-cd dillinger
-docker build -t joemccann/dillinger:${package.json.version} .
+{
+    "data": [
+        {
+            "id": 2,
+            "name": "Jack",
+            "speed": 47,
+            "weight": 87,
+            "power": 98,
+            "created_by": 2,
+            "updated_by": 2
+        },
+        {
+            "id": 3,
+            "name": "Harry",
+            "speed": 85,
+            "weight": 87,
+            "power": 95,
+            "created_by": 2,
+            "updated_by": 2
+        },
+        {
+            "id": 4,
+            "name": "Brad",
+            "speed": 39,
+            "weight": 75,
+            "power": 37,
+            "created_by": 2,
+            "updated_by": 2
+        },
+        {
+            "id": 5,
+            "name": "David",
+            "speed": 30,
+            "weight": 73,
+            "power": 94,
+            "created_by": 2,
+            "updated_by": 2
+        }
+    ],
+    "links": {
+        "first": "http://robot.work/api/v1/robot-bulk?page=1",
+        "last": "http://robot.work/api/v1/robot-bulk?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://robot.work/api/v1/robot-bulk",
+        "per_page": 10,
+        "to": 4,
+        "total": 4
+    }
+}
 ```
 This will create the dillinger image and pull in the necessary dependencies. Be sure to swap out `${package.json.version}` with the actual version of Dillinger.
 

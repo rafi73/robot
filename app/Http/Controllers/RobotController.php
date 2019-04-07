@@ -23,9 +23,9 @@ class RobotController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RobotService $robots = null)
     {
-        //$this->middleware('auth');
+        $this->robots = $robots;
     }
 
     /**
@@ -35,8 +35,7 @@ class RobotController extends Controller
      */
     public function index()
     {
-        $robotService = new RobotService();
-        $robots = $robotService->getAll();
+        $robots = $this->robots->getAll();
         return RobotResource::collection($robots);
     }
 
@@ -50,8 +49,7 @@ class RobotController extends Controller
     public function store(RobotRequest $request)
     {
         //$this->robots->create($request->all());
-        $robotService = new RobotService();
-        $robot = $robotService->create($request->all()); 
+        $robot = $this->robots->create($request->all()); 
         return new RobotResource($robot);
     }
 
@@ -64,9 +62,8 @@ class RobotController extends Controller
      */
     public function show($id)
     {
-        //$robot = $this->robots->find($id);
-        $robotService = new RobotService(); 
-        $robot = $robotService->find($id);
+        //$robot = $this->robots->find($id); 
+        $robot = $this->robots->find($id);
         return new RobotResource($robot);
     }
 
@@ -80,8 +77,7 @@ class RobotController extends Controller
     public function update(RobotRequest $request, $id)
     {
         //$this->robots->update($request->all(), $id);
-        $robotService = new RobotService();
-        $robot = $robotService->update($request->all(), $id);
+        $robot = $this->robots->update($request->all(), $id);
         return new RobotResource($robot);
     }
 
@@ -95,8 +91,7 @@ class RobotController extends Controller
     public function delete($id)
     {
         //$this->robots->delete($id);
-        $robotService = new RobotService();
-        if($robotService->delete($id))
+        if($this->robots->delete($id))
             return response()->json(null, 204);
     }
 
@@ -110,11 +105,11 @@ class RobotController extends Controller
     public function storeBulk(Request $request)
     {
         //$this->robots->create($request->all());
-        $robotService = new RobotService();
-        if($robotService->createBulk($request))
+        if($this->robots->createBulk($request))
         {
-            $robots = $robotService->getAll();
-            return RobotResource::collection($robots);
+            //$robots = $this->robots->getAll();
+            //return RobotResource::collection($robots);
+            return response()->json(['CSV uploaded'], 200);
         }
     }
 }
