@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RobotResource extends JsonResource
+class FightResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,14 +16,13 @@ class RobotResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'speed' => $this->speed,
-            'weight' => $this->weight,
-            'power' => $this->power,
+            'contestant_robot_id' => $this->contestant_robot_id,
+            'opponent_robot_id' => $this->opponent_robot_id,
+            'contestant_robot_score' => $this->contestant_robot_score,
+            'opponent_robot_score' => $this->opponent_robot_score,
+            'date' => $this->date,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
     

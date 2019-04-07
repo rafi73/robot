@@ -24,7 +24,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
 
 
 
-Route::group(['middleware' => 'jwt.auth'], function ($router) {
+Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function ($router) {
     # 1.1 robot routes
     // List robot
     Route::get('robots', 'RobotController@index');
@@ -38,4 +38,18 @@ Route::group(['middleware' => 'jwt.auth'], function ($router) {
     Route::delete('robot/{id}', 'RobotController@delete');
     // Create new robot
     Route::post('robot-bulk', 'RobotController@storeBulk');
+
+     # 1.2 robot routes
+    // List robot
+    Route::get('fight/{userId}', 'FightController@getRobots');
+    // List single robot
+    // Route::get('robot/{id}', 'RobotController@show');
+    // // Create new robot
+    Route::post('start-fight', 'FightController@startFight');
+    // // Update robot
+    // Route::put('robot/{id}', 'RobotController@update');
+    // // Delete robot
+    // Route::delete('robot/{id}', 'RobotController@delete');
+    // // Create new robot
+    // Route::post('robot-bulk', 'RobotController@storeBulk');
 });

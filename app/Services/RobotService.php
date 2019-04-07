@@ -4,24 +4,52 @@ namespace App\Services;
 
 use App\Contracts\RepositoryInterface;
 use App\Robot;
+use Carbon\Carbon;
 
 class RobotService implements RepositoryInterface
 {
+    /**
+     * Get all robots.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function getAll()
     {
         return Robot::paginate(10);
     }
 
+    /**
+     * Create & store a new robot.
+     *
+     * @param $request
+     *
+     * @return static
+     */
     public function create($request)
     {
         return Robot::create($request);
     }
 
+    /**
+     * Delete a robot by id.
+     *
+     * @param $id
+     *
+     * @return int
+     */
     public function delete($id)
     {
         return Robot::destroy($id);
     }
 
+    /**
+     * Update a robot.
+     *
+     * @param $request
+     * @param $id
+     *
+     * @return mixed
+     */
     public function update($request, $id)
     {
         //return Robot::where('id', $id)->update($request);
@@ -29,11 +57,25 @@ class RobotService implements RepositoryInterface
         return tap(Robot::findOrFail($id))->update($request)->fresh();
     }
 
+    /**
+     * Find a robot by id.
+     *
+     * @param $id
+     *
+     * @return mixed
+     */
     public function find($id)
     {
         return Robot::find($id);
     }
 
+    /**
+     * Create & store robots from CSV.
+     *
+     * @param $request
+     *
+     * @return bool
+     */
     public function createBulk($request)
     {
         if($request->hasFile('file'))

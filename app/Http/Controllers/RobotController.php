@@ -11,7 +11,7 @@ use App\Http\Requests\RobotBulkRequest;
 
 class RobotController extends Controller
 {
-      /**
+    /**
      * The robot Service instance.
      *
      * @var RobotService
