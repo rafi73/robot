@@ -20,6 +20,7 @@ class FightResource extends JsonResource
             'opponent_robot_id' => $this->opponent_robot_id,
             'contestant_robot_score' => $this->contestant_robot_score,
             'opponent_robot_score' => $this->opponent_robot_score,
+            'winner_robot_id' => $this->winner_robot_id,
             'date' => $this->date,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,

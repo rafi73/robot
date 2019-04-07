@@ -19,6 +19,7 @@ class CreateFightsTable extends Migration
             $table->integer('opponent_robot_id');
             $table->float('contestant_robot_score', 8, 2);
             $table->float('opponent_robot_score', 8, 2);
+            $table->integer('winner_robot_id');
             $table->date('date');
             $table->integer('created_by');
             $table->integer('updated_by');

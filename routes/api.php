@@ -39,17 +39,20 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function ($router) 
     // Create new robot
     Route::post('robot-bulk', 'RobotController@storeBulk');
 
-     # 1.2 robot routes
+    # 1.2 fight routes
     // List robot
     Route::get('fight/{userId}', 'FightController@getRobots');
-    // List single robot
-    // Route::get('robot/{id}', 'RobotController@show');
     // // Create new robot
     Route::post('start-fight', 'FightController@startFight');
-    // // Update robot
-    // Route::put('robot/{id}', 'RobotController@update');
-    // // Delete robot
-    // Route::delete('robot/{id}', 'RobotController@delete');
-    // // Create new robot
-    // Route::post('robot-bulk', 'RobotController@storeBulk');
+
+    # 1.3 home routes
+    // List robot
+    Route::get('fight/{userId}', 'HomeController@getRobots');
+});
+
+
+Route::group(['prefix' => 'v1'], function ($router) {
+    # 1.3 home routes
+    // List robot
+    Route::get('home', 'HomeController@getHomeData');
 });

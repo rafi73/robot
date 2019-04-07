@@ -39,6 +39,7 @@ class FightService
         $fightingScore = $this->calculateFightResult($request['contestant_robot_id'], $request['opponent_robot_id']);
         $request['contestant_robot_score'] = $fightingScore['contestantRobotScore'];
         $request['opponent_robot_score'] = $fightingScore['opponentRobotScore'];
+        $request['winner_robot_id'] = $fightingScore['winnerRobotId'];
         $request['date'] = today();
         return Fight::create($request);
     }
@@ -98,7 +99,16 @@ class FightService
         $ownRobot['speed'] > $otherRobot['speed'] ? $ownRobot['point']++ : $otherRobot['point']++;
         $ownRobot['weight'] > $otherRobot['weight'] ? $ownRobot['point']-- : $otherRobot['point']--;
 
-        return ['contestantRobotScore' => $ownRobot['point'], 'opponentRobotScore' =>$otherRobot['point']];
+        return [
+            'contestantRobotScore' => $ownRobot['point'], 
+            'opponentRobotScore' => $otherRobot['point'], 
+            'winnerRobotId' => ($ownRobot['point'] > $otherRobot['point'] ? $contestantRobotId : $opponentRobotId) 
+        ];
+    }
+
+    private function checkGreater()
+    {
+
     }
 
     /**
