@@ -19,6 +19,7 @@ class CreateRobotsTable extends Migration
             $table->float('speed', 8, 2);
             $table->float('weight', 8, 2);
             $table->float('power', 8, 2);
+            $table->integer('user_id');
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();

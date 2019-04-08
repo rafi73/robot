@@ -27,19 +27,20 @@ class RobotRequest extends FormRequest
             'name' => 'required|string|max:50',
             'speed' => 'required|numeric|between:0,9999.99',
             'weight' => 'required|numeric|between:0,9999.99',
-            'power' => 'required|numeric|between:0,9999.99',
-            'created_by' => 'required|integer',
-            'updated_by' => 'required|integer'
+            'power' => 'required|numeric|between:0,9999.99'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Email is required!',
-            'speed.required' => 'Name is required!',
-            'weight.required' => 'Password is required!',
-            'power.required' => 'Password is required!'
+            // 'name.required' => __('robot.invalid_name'),
+            // 'speed.required' => __('robot.invalid_speed'),
+            // 'weight.required' => __('robot.invalid_weight'),
+            // 'power.required|numeric|between:0,9999.99' => __('robot.invalid_power'),
+            // 'speed.numeric' => __('robot.numeric_speed'),
+            // 'weight.numeric' => __('robot.numeric_weight'),
+            // 'power.numeric' => __('robot.numeric_power'),
         ];
     }
 }

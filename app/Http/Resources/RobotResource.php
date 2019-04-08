@@ -20,8 +20,7 @@ class RobotResource extends JsonResource
             'speed' => $this->speed,
             'weight' => $this->weight,
             'power' => $this->power,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by
+            'user_id' => $this->user_id
         ];
     }
     

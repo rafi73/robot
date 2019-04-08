@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\RobotService;
-use App\Http\Resources\RobotResource;
 use App\Http\Requests\RobotRequest;
+use App\Http\Resources\RobotResource;
 use App\Http\Requests\RobotBulkRequest;
 
 
@@ -42,13 +42,12 @@ class RobotController extends Controller
     /**
      * Create a new robot.
      *
-     * @param Request $request
+     * @param RobotRequest $request
      *
      * @return \Illuminate\Http\Resources\Json\JsonResource
      */
     public function store(RobotRequest $request)
     {
-        //$this->robots->create($request->all());
         $robot = $this->robots->create($request->all()); 
         return new RobotResource($robot);
     }
@@ -56,19 +55,18 @@ class RobotController extends Controller
     /**
      * Display an robot.
      *
-     * @param type $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Resources\Json\JsonResource
      */
     public function show($id)
     {
-        //$robot = $this->robots->find($id); 
         $robot = $this->robots->find($id);
         return new RobotResource($robot);
     }
 
     /**
-     * Update an robot.
+     * Update an Robot.
      *
      * @param Request $request
      *
@@ -76,13 +74,12 @@ class RobotController extends Controller
      */
     public function update(RobotRequest $request, $id)
     {
-        //$this->robots->update($request->all(), $id);
         $robot = $this->robots->update($request->all(), $id);
         return new RobotResource($robot);
     }
 
     /**
-     * Delete an robot.
+     * Delete an Robot.
      *
      * @param type $id
      *
@@ -90,26 +87,24 @@ class RobotController extends Controller
      */
     public function delete($id)
     {
-        //$this->robots->delete($id);
         if($this->robots->delete($id))
+        {
             return response()->json(null, 204);
+        }   
     }
 
     /**
-     * Create a new robot.
+     * Import Robots from CSV file.
      *
-     * @param Request $request
+     * @param RobotBulkRequest $request
      *
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return \Illuminate\Http\Response
      */
-    public function storeBulk(Request $request)
+    public function storeBulk(RobotBulkRequest $request)
     {
-        //$this->robots->create($request->all());
         if($this->robots->createBulk($request))
         {
-            //$robots = $this->robots->getAll();
-            //return RobotResource::collection($robots);
-            return response()->json(['CSV uploaded'], 200);
+            return response()->json([__('robot.message_csv_uploaded')], 200);
         }
     }
 }

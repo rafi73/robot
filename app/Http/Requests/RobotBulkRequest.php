@@ -24,7 +24,7 @@ class RobotBulkRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:csv'
+            'file' => 'required|file|mimes:csv,txt'
         ];
     }
 }
