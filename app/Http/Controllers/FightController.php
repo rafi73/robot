@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\FightService;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\RobotResource;
 use App\Http\Resources\FightResource;
 use App\Http\Resources\FightPageResource;
-use Illuminate\Support\Facades\Auth;
+
 
 class FightController extends Controller
 {
@@ -23,7 +25,7 @@ class FightController extends Controller
      */
     public function __construct(FightService $fights = null)
     {
-        $this->$fights = $fights;
+        $this->fights = $fights;
     }
 
     /**
@@ -34,8 +36,9 @@ class FightController extends Controller
      */
     public function getRobots($userId)
     {
-        $robotsForFight = $this->fightService->getRobots($userId);
-        return new FightPageResource($robotsForFight['ownedRobots'], $robotsForFight['otherRobots']);
+        $ownRobots = $this->fights->getOwnRobots($userId);
+        $otherRobots = $this->fights->getOtherRobots($userId);
+        return response()->json(['ownedRobots' => RobotResource::collection($ownRobots), 'otherRobots' => RobotResource::collection($otherRobots)]);
     }
 
     /**
@@ -48,11 +51,7 @@ class FightController extends Controller
     public function startFight(Request $request)
     {
         $user = Auth::user();   
-        $robotsForFight = $this->fightService->startFight($request->all());
-        
-        // if(is_array($robotsForFight))
-        //     return response()->json(['Error' => $robotsForFight], 422);
-        
-        return new FightResource($robotsForFight, 201);
+        $robotsForFight = $this->fights->startFight($request->all());
+        return new FightResource($robotsForFight);
     }
 }

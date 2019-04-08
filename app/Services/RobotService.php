@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 use App\Robot;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;

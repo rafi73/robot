@@ -44,10 +44,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function ($router) 
     Route::get('fight/{userId}', 'FightController@getRobots');
     // // Create new robot
     Route::post('start-fight', 'FightController@startFight');
-
-    # 1.3 home routes
-    // List robot
-    Route::get('fight/{userId}', 'HomeController@getRobots');
 });
 
 

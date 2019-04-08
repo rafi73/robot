@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fight extends Model
 {
-    protected $fillable = ['created_by', 'updated_by']; 
+    protected $fillable = ['user_id', 'created_by', 'updated_by']; 
 
     public function fightDetail()
     {

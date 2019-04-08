@@ -15,6 +15,7 @@ class CreateFightsTable extends Migration
     {
         Schema::create('fights', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();

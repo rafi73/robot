@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\User;
+
 use Hash;
 use JWTAuth;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -92,25 +94,17 @@ class AuthController extends Controller
 
     /**
      * Register user
-     * @param Request $request
+     * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        //Validate fields
-        $this->validate($request,[
-            'email' => 'required|email|max:255|unique:users',
-            'name' => 'required|max:255',
-            'password' => 'required|min:6|confirmed',
-        ]);
-        //Create user, generate token and return
         $user =  User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
         ]);
-        $token = JWTAuth::fromUser($user);
-        return response()->json(compact('token'));
+        return response()->json(['Registration successful!'], 201);
     }
 }
