@@ -2,12 +2,9 @@
 
 namespace App\Services;
 
-use App\Contracts\RepositoryInterface;
-use App\Robot;
-use Carbon\Carbon;
 use App\Fight;
 use App\FightDetail;
-
+use Illuminate\Database\Eloquent\Collection;
 
 class HomeService 
 {
@@ -16,7 +13,7 @@ class HomeService
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getLatestFightResult()
+    public function getLatestFightResult() : Collection
     {
         return Fight::with('fightDetail.robot')->latest()->take(5)->get();
     }
@@ -26,7 +23,7 @@ class HomeService
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getTopRobots()
+    public function getTopRobots() : Collection
     {
         return FightDetail::with('robot')
                         ->groupBy('robot_id')

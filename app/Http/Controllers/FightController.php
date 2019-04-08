@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\FightService;
+use App\Http\Requests\FightRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\RobotResource;
 use App\Http\Resources\FightResource;
@@ -17,15 +18,15 @@ class FightController extends Controller
      *
      * @var FightService
      */
-    protected $fights;
+    protected $fightService;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(FightService $fights = null)
+    public function __construct(FightService $fightService = null)
     {
-        $this->fights = $fights;
+        $this->fightService = $fightService;
     }
 
     /**
@@ -36,22 +37,22 @@ class FightController extends Controller
      */
     public function getRobots($userId)
     {
-        $ownRobots = $this->fights->getOwnRobots($userId);
-        $otherRobots = $this->fights->getOtherRobots($userId);
-        return response()->json(['ownedRobots' => RobotResource::collection($ownRobots), 'otherRobots' => RobotResource::collection($otherRobots)]);
+        $ownRobots = $this->fightService->getOwnRobots($userId);
+        $otherRobots = $this->fightService->getOtherRobots($userId);
+        return response()->json(['ownedRobots' => RobotResource::collection($ownRobots), 'otherRobots' => RobotResource::collection($otherRobots), 200]);
     }
 
     /**
      * Checking for daily fight status between contestant and opponent
      *
-     * @param $request
+     * @param FightRequest $request
      *
-     * @return json
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function startFight(Request $request)
+    public function startFight(FightRequest $request)
     {
         $user = Auth::user();   
-        $robotsForFight = $this->fights->startFight($request->all());
+        $robotsForFight = $this->fightService->startFight($request->all());
         return new FightResource($robotsForFight);
     }
 }

@@ -16,16 +16,16 @@ class RobotController extends Controller
      *
      * @var RobotService
      */
-    protected $robots;
+    protected $robotService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(RobotService $robots = null)
+    public function __construct(RobotService $robotService = null)
     {
-        $this->robots = $robots;
+        $this->robotService = $robotService;
     }
 
     /**
@@ -35,7 +35,7 @@ class RobotController extends Controller
      */
     public function index()
     {
-        $robots = $this->robots->getAll();
+        $robots = $this->robotService->getAll();
         return RobotResource::collection($robots);
     }
 
@@ -48,7 +48,7 @@ class RobotController extends Controller
      */
     public function store(RobotRequest $request)
     {
-        $robot = $this->robots->create($request->all()); 
+        $robot = $this->robotService->create($request->all()); 
         return new RobotResource($robot);
     }
 
@@ -61,7 +61,7 @@ class RobotController extends Controller
      */
     public function show($id)
     {
-        $robot = $this->robots->find($id);
+        $robot = $this->robotService->find($id);
         return new RobotResource($robot);
     }
 
@@ -74,7 +74,7 @@ class RobotController extends Controller
      */
     public function update(RobotRequest $request, $id)
     {
-        $robot = $this->robots->update($request->all(), $id);
+        $robot = $this->robotService->update($request->all(), $id);
         return new RobotResource($robot);
     }
 
@@ -87,7 +87,7 @@ class RobotController extends Controller
      */
     public function delete($id)
     {
-        if($this->robots->delete($id))
+        if($this->robotService->delete($id))
         {
             return response()->json(null, 204);
         }   
@@ -102,7 +102,7 @@ class RobotController extends Controller
      */
     public function storeBulk(RobotBulkRequest $request)
     {
-        if($this->robots->createBulk($request))
+        if($this->robotService->createBulk($request))
         {
             return response()->json([__('robot.message_csv_uploaded')], 200);
         }
