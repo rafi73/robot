@@ -119,11 +119,10 @@ class RobotService implements RepositoryInterface
         $head = str_getcsv(array_shift($lines));
         sort($head);
 
-        $head !== $requiredStructure ? throw new RobotBulkStructureException() : 5;
-        // if($head !== $requiredStructure)
-        // {
-        //     throw new RobotBulkStructureException();
-        // }
+        if($head !== $requiredStructure)
+        {
+            throw new RobotBulkStructureException();
+        }
 
         $robots = [];
         for ($i = 0; $i < count($lines); $i++) 

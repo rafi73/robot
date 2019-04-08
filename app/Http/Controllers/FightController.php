@@ -11,6 +11,22 @@ use Illuminate\Support\Facades\Auth;
 class FightController extends Controller
 {
     /**
+     * The Fight Service instance.
+     *
+     * @var FightService
+     */
+    protected $fights;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(FightService $fights = null)
+    {
+        $this->$fights = $fights;
+    }
+
+    /**
      * Display list of self owned and others Robots accourding to User
      * @param $userId
      *
@@ -18,9 +34,7 @@ class FightController extends Controller
      */
     public function getRobots($userId)
     {
-        $fightService = new FightService();
-        $robotsForFight = $fightService->getRobots($userId);
-
+        $robotsForFight = $this->fightService->getRobots($userId);
         return new FightPageResource($robotsForFight['ownedRobots'], $robotsForFight['otherRobots']);
     }
 
@@ -34,11 +48,10 @@ class FightController extends Controller
     public function startFight(Request $request)
     {
         $user = Auth::user();   
-        $fightService = new FightService();
-        $robotsForFight = $fightService->startFight($request->all());
+        $robotsForFight = $this->fightService->startFight($request->all());
         
-        if(is_array($robotsForFight))
-            return response()->json(['Error' => $robotsForFight], 422);
+        // if(is_array($robotsForFight))
+        //     return response()->json(['Error' => $robotsForFight], 422);
         
         return new FightResource($robotsForFight, 201);
     }

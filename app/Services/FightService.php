@@ -8,7 +8,7 @@ use App\Fight;
 use App\FightDetail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use App\Exceptions\RobotService\RobotNotFoundException;
 use App\Exceptions\FightService\RobotFightConflictException;
 
 class FightService
@@ -25,14 +25,13 @@ class FightService
     public function startFight($request)
     {
         if($request['contestant_robot_id'] == $request['opponent_robot_id'])
+        {
             throw new RobotFightConflictException('Wrong Input!, Robot can not fight to it self');
-            //$this->errorMessages[] = 'Wrong Input!, Robot can not fight to it self';
+        }
 
         $this->checkDailyOpponent($request['contestant_robot_id'], $request['opponent_robot_id']);
         $this->checkDailyMaxAbility($request['contestant_robot_id'], $request['opponent_robot_id']);
 
-        if(count($this->errorMessages))
-            return $this->errorMessages;
         
         $fightingScore = $this->calculateFightResult($request['contestant_robot_id'], $request['opponent_robot_id']);
         $fight = Fight::create($request);
@@ -56,16 +55,18 @@ class FightService
      */
     public function checkDailyOpponent(int $contestantId, int $opponentId) : bool
     {
-        $data = FightDetail::where('date', today()) 
-                            ->whereIn('robot_id' , [$contestantId, $opponentId])
-                            ->groupBy('fight_id')
-                            ->selectRaw('COUNT(*) as duplicate')
-                            ->havingRaw('duplicate = 2')
-                            ->exists();
-        if($data)
-            $this->errorMessages[] =  'These robots already fought today';
+        $fightDetails = FightDetail::where('date', today()) 
+                                ->whereIn('robot_id' , [$contestantId, $opponentId])
+                                ->groupBy('fight_id')
+                                ->selectRaw('COUNT(*) as duplicate')
+                                ->havingRaw('duplicate = 2')
+                                ->exists();
+        if($fightDetails)
+        {
+            throw new RobotFightConflictException('These robots already fought today');
+        }
 
-        return $data;
+        return true;
     }
 
     /**
@@ -77,17 +78,22 @@ class FightService
      */
     public function checkDailyMaxAbility(int $contestantId, int $opponentId)
     {
-        $data = FightDetail::where('date', today())
+        $fightDetails = FightDetail::where('date', today())
                                 ->whereIn('robot_id' , [$contestantId, $opponentId])
                                 ->groupBy('robot_id')
                                 ->selectRaw('COUNT(*) as fights, robot_id')
                                 ->havingRaw('fights >= 5')
                                 ->get();
 
-        if(count($data) == 1)
-            $this->errorMessages[] = 'Daily Max fight limit for robot '.$data[0]['robot_id'].' exceed';
-        if(count($data) > 1)
-            $this->errorMessages[] = 'Daily Max fight limit for both robots exceed';
+        if(count($fightDetails) == 1)
+        {
+            throw new RobotFightConflictException('Daily Max fight limit for robot '.$data[0]['robot_id'].' exceed');
+        }
+            
+        if(count($fightDetails) > 1)
+        {
+            throw new RobotFightConflictException('Daily Max fight limit for both robots exceed');
+        }
     }
 
     /**
@@ -102,13 +108,18 @@ class FightService
         $ownRobot = Robot::find($contestantRobotId)->toArray();
         if(!$ownRobot)
         {
-            throw new \Exception('Robot not found', 404);
+            throw new RobotNotFoundException();
         }
 
         $otherRobot = Robot::find($opponentRobotId)->toArray();
         if(!$otherRobot)
         {
-            throw new \Exception('Robot not found', 404);
+            throw new RobotNotFoundException();
+        }
+
+        if($ownRobot['user_id'] == $ownRobot['user_id'])
+        {
+            throw new RobotFightConflictException('Wrong Input!, Robot can not fight to it self');
         }
 
         $ownRobot['point'] = $otherRobot['point'] = 0;
