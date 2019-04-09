@@ -26,7 +26,7 @@ class AuthTest extends TestCase
         //Assert it was successful
         $response->assertStatus(200);
         //Assert we received a token
-        $this->assertArrayHasKey('token',$response->json());
+        $this->assertArrayHasKey('token', $response->json());
         //Delete data
         User::where('email','test@gmail.com')->delete();
     }

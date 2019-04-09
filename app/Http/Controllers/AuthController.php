@@ -102,9 +102,11 @@ class AuthController extends Controller
     {
         $user =  User::create([
             'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            'email' => strtolower($request->input('email')),
             'password' => Hash::make($request->input('password')),
         ]);
-        return response()->json(['Registration successful!'], 201);
+
+        $token = JWTAuth::fromUser($user);
+        return response()->json(compact('token'));
     }
 }

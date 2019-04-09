@@ -36,6 +36,7 @@ class RobotService implements RepositoryInterface
      */
     public function create($request) : Robot
     {
+        $user = Auth::user();
         $request['created_by'] = $request['updated_by'] = $request['user_id'] = Auth::user()->id;
         return Robot::create($request); 
     }
@@ -113,7 +114,7 @@ class RobotService implements RepositoryInterface
     {
         $requiredStructure = ['name', 'power', 'speed', 'weight'];
         $file = $request->file('file');
-        Storage::disk('local')->putFileAs('', $file, $file->getClientOriginalName());
+        //Storage::disk('local')->putFileAs('', $file, $file->getClientOriginalName());
         
         $lines = explode("\n", file_get_contents($file));
         $head = str_getcsv(array_shift($lines));
@@ -127,7 +128,7 @@ class RobotService implements RepositoryInterface
         $robots = [];
         for ($i = 0; $i < count($lines); $i++) 
         { 
-            if($i == 0 || !strlen($lines[$i])) continue;
+            if(!strlen($lines[$i])) continue;
             $check = array_combine($head, str_getcsv($lines[$i]));
             $check['created_by'] = $check['updated_by'] = $check['user_id'] = Auth::id();
             $check['created_at'] = $check['updated_at'] = now();

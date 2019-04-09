@@ -2,12 +2,17 @@
 
 namespace Tests\Feature;
 
+use App\User;
+use App\Robot;
 use Tests\TestCase;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Robot;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
+
 
 class RobotTest extends TestCase
 {
@@ -18,135 +23,128 @@ class RobotTest extends TestCase
      */
 
     use RefreshDatabase;
+    protected $user;
 
+    /**
+     * Create user and get token
+     * @return string
+     */
+    protected function authenticate(){
+        $user = User::create([
+            'name' => 'test',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('secret1234'),
+        ]);
+        $this->user = $user;
+        $token = JWTAuth::fromUser($user);
+        return $token;
+    }
+
+    /**
+     * @test
+     * Create a Robot
+     */
     public function test_can_create_robot()
     {
-        $token = parent::authenticate();
-        $robot = factory(Robot::class)->make()->toArray();
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/v1/robot', $robot);
+        $token = $this->authenticate();
+        $robot = factory(Robot::class)->make(['user_id' => $this->user->id])->toArray();
 
-        $response->assertStatus(201)
-            ->assertJsonStructure([
-                'data' => [
-                    'id',
-                    'name',
-                    'speed',
-                    'weight',
-                    'power',
-                    'created_by',
-                    'updated_by'
-                ],
-                'version',
-            ])
-            ->assertJson(['data' => $robot, 'version' => '1.0.0']);
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/v1/robot', $robot);
+        $response->assertStatus(201);
+
+        $count = $this->user->robots()->count();
+        $this->assertEquals(1, $count);
     }
 
+     /**
+     * @test
+     * Update a Robot
+     */
     public function test_can_update_robot()
     {
-        $token = parent::authenticate();
-        $robot = factory(robot::class)->create()->toArray();
-        $robot['name'] = $this->faker->name;
+        $token = $this->authenticate();
+        $robot = factory(robot::class)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id])->toArray();
+
+        $nameToUpdate = $this->faker->name;
+        $robot['name'] = $nameToUpdate;
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('PUT', '/api/v1/robot/' . $robot['id'] , $robot);
 
-        unset($robot['created_at']);
-        unset($robot['updated_at']);
-
-        $response->assertStatus(200)
-            ->assertJsonStructure([
-                'data' => [
-                    'id',
-                    'name',
-                    'speed',
-                    'weight',
-                    'power',
-                    'created_by',
-                    'updated_by'
-                ],
-                'version',
-            ])
-            ->assertJson(['data' => $robot, 'version' => '1.0.0']);
+        $response->assertStatus(200);
+        $this->assertEquals($nameToUpdate, $this->user->robots()->first()->name);
     }
 
+    /**
+     * @test
+     * Fetch Robots
+     */
     public function test_can_show_robot()
     {
-        $token = parent::authenticate();
-        $robot = factory(robot::class)->create()->toArray();
+        $token =  $this->authenticate();
+        $robot = factory(robot::class)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id])->toArray();
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/robot/' . $robot['id']);
 
-        unset($robot['created_at']);
-        unset($robot['updated_at']);
-
-        $response->assertStatus(200)
-            ->assertJsonStructure([
-                'data' => [
-                    'id',
-                    'name',
-                    'speed',
-                    'weight',
-                    'power',
-                    'created_by',
-                    'updated_by'
-                ],
-                'version',
-            ])
-            ->assertJson(['data' => $robot, 'version' => '1.0.0']);
+        $response->assertStatus(200);
+        $this->assertEquals($robot['name'], $response->json()['data']['name']);
     }
 
+    /**
+     * @test
+     * Delete Robots
+     */
     public function test_can_delete_robot()
     {
-        $token = parent::authenticate();
-        $robot = factory(robot::class)->create()->toArray();
+        $token = $this->authenticate();
+        $robot = factory(robot::class)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id])->toArray();
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('DELETE', '/api/v1/robot/' . $robot['id']);
 
         $response->assertStatus(204);
+        $this->assertEquals(0, $this->user->robots()->count());
     }
 
+    /**
+     * @test
+     * Get Robots
+     */
     public function test_can_get_robots()
     {
-        $token = parent::authenticate();
-        $robots = factory(robot::class, 10)->create();
+        $token = $this->authenticate();
+        $robots = factory(robot::class, 10)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id]);
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/robots');
 
-        $response->assertStatus(200)
-            ->assertJsonStructure([
-                'data' => [[
-                    'id',
-                    'name',
-                    'speed',
-                    'weight',
-                    'power',
-                    'created_by',
-                    'updated_by'
-                ]],
-                'links' => [
-                    'first',
-                    'last',
-                    'prev',
-                    'next',
-                ],
-                'meta' => [
-                    'current_page',
-                    'from',
-                    'last_page',
-                    'path',
-                    'per_page',
-                    'to',
-                    'total',
-                ],
-            ])
-            ->assertJsonCount(count($robots), 'data');
+        $response->assertStatus(200);
+        $this->assertEquals(10, $this->user->robots()->count());
     }
 
+    /**
+     * @test
+     * Importing Robots from CSV file
+     */
     public function test_can_upload_robots_csv_file()
     {
-        $token = parent::authenticate();
-        Storage::fake('local');
-
-        $filePath= __DIR__ . '/robot.csv';
+        $filePath = storage_path('app/robot.csv');
+        $token = $this->authenticate();
         $this->withHeaders(['Authorization' => 'Bearer ' . $token])
-                        ->postJson('/api/v1/robot-bulk', ['file' => new UploadedFile($filePath,'robot.csv', null, null, null, true)])
+                        ->postJson('/api/v1/robot-bulk', ['file' => new UploadedFile($filePath, basename($filePath), null, null, null, true)])
                         ->assertStatus(200);
 
-        Storage::disk('local')->assertExists('robot.csv');
+        $this->assertEquals(count(file($filePath)), $this->user->robots()->count() + 1);
+    }
+
+    /**
+     * @test
+     * Get Own and other Robots
+     */
+    public function test_can_get_fight_robots()
+    {
+        $token = $this->authenticate();
+        $otherUser = factory(User::class)->create();
+        
+        $ownRobots = factory(robot::class, 10)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id]);
+        $otherRobots = factory(robot::class, 15)->create(['user_id' => $otherUser->id, 'created_by' => $otherUser->id, 'updated_by' => $otherUser->id]);
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/robots')
+                        ->assertStatus(200);
+
+        $this->assertEquals(count($ownRobots), $this->user->robots()->count());
+        $this->assertEquals(count($otherRobots), $otherUser->robots()->count());
     }
 }

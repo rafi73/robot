@@ -2,12 +2,14 @@
 
 namespace Tests;
 
+
+use App\User;
 use Faker\Factory;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use App\User;
-use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 abstract class TestCase extends BaseTestCase
 {
