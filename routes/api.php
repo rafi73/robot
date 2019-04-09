@@ -38,10 +38,10 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function ($router) 
     Route::delete('robot/{id}', 'RobotController@delete');
     // Create new robot
     Route::post('robot-bulk', 'RobotController@storeBulk');
+     // List robot
+    Route::get('fight-robots', 'RobotController@getFightRobots');
 
     # 1.2 fight routes
-    // List robot
-    Route::get('fight/{userId}', 'FightController@getRobots');
     // // Create new robot
     Route::post('start-fight', 'FightController@startFight');
 });

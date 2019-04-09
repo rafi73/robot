@@ -107,4 +107,17 @@ class RobotController extends Controller
             return response()->json([__('robot.message_csv_uploaded')], 200);
         }
     }
+
+    /**
+     * Display list of self owned and others Robots accourding to User
+     * 
+     *
+     * @return  Illuminate\Http\Resources
+     */
+    public function getFightRobots()
+    {
+        $ownRobots = $this->robotService->getOwnRobots();
+        $otherRobots = $this->robotService->getOtherRobots();
+        return response()->json(['ownedRobots' => RobotResource::collection($ownRobots), 'otherRobots' => RobotResource::collection($otherRobots)], 200);
+    }
 }

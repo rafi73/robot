@@ -7,7 +7,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Contracts\RepositoryInterface;
 use Illuminate\Support\Facades\Storage;
-use \Illuminate\Database\QueryException;
+use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\Collection;
 use App\Exceptions\RobotService\RobotNotFoundException;
 use App\Exceptions\RobotService\RobotBulkStructureException;
 use App\Exceptions\RobotService\RobotOwnerMismatchedException;
@@ -108,7 +109,7 @@ class RobotService implements RepositoryInterface
      *
      * @return bool
      */
-    public function createBulk($request)
+    public function createBulk($request) : bool
     {
         $requiredStructure = ['name', 'power', 'speed', 'weight'];
         $file = $request->file('file');
@@ -142,5 +143,27 @@ class RobotService implements RepositoryInterface
             throw new RobotBulkDataErrorException();
         }
         return true;
+    }
+
+    /**
+     * Getting own Robots.
+     *
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function getOwnRobots() : Collection
+    {
+        return Auth::user()->robots;
+    }
+
+    /**
+     * Getting others Robots.
+     *
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function getOtherRobots() : Collection
+    {
+        return Robot::where('user_id', '<>', Auth::id())->get();
     }
 }

@@ -154,29 +154,4 @@ class FightService
 
         return $ownRobot->point > $otherRobot->point ? $ownRobot->id : $otherRobot->id;
     }
-
-    /**
-     * Getting own Robots.
-     *
-     * @param int userId
-     *
-     * @return Illuminate\Database\Eloquent\Collection
-     */
-    public function getOwnRobots(int $userId) : Collection
-    {
-        return Robot::where('user_id', $userId)->get();
-    }
-
-    /**
-     * Getting others Robots.
-     *
-     * @param int userId
-     *
-     * @return Illuminate\Database\Eloquent\Collection
-     */
-    public function getOtherRobots(int $userId) : Collection
-    {
-        return Robot::where('user_id', '<>', $userId)->get();
-    }
-
 }
