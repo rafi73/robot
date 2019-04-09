@@ -5,8 +5,8 @@ namespace Tests\Feature;
 use App\User;
 use App\Robot;
 use Tests\TestCase;
-use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Http\UploadedFile;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -42,7 +42,7 @@ class RobotTest extends TestCase
 
     /**
      * @test
-     * Create a Robot
+     * Test create a Robot
      */
     public function test_can_create_robot()
     {
@@ -58,12 +58,12 @@ class RobotTest extends TestCase
 
      /**
      * @test
-     * Update a Robot
+     * Test update a Robot
      */
     public function test_can_update_robot()
     {
         $token = $this->authenticate();
-        $robot = factory(robot::class)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id])->toArray();
+        $robot = factory(Robot::class)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id])->toArray();
 
         $nameToUpdate = $this->faker->name;
         $robot['name'] = $nameToUpdate;
@@ -75,7 +75,7 @@ class RobotTest extends TestCase
 
     /**
      * @test
-     * Fetch Robots
+     * Test fetch Robots
      */
     public function test_can_show_robot()
     {
@@ -89,7 +89,7 @@ class RobotTest extends TestCase
 
     /**
      * @test
-     * Delete Robots
+     * Test delete Robots
      */
     public function test_can_delete_robot()
     {
@@ -103,7 +103,7 @@ class RobotTest extends TestCase
 
     /**
      * @test
-     * Get Robots
+     * Test get Robots
      */
     public function test_can_get_robots()
     {
@@ -117,7 +117,7 @@ class RobotTest extends TestCase
 
     /**
      * @test
-     * Importing Robots from CSV file
+     * Test importing Robots from CSV file
      */
     public function test_can_upload_robots_csv_file()
     {
@@ -132,7 +132,7 @@ class RobotTest extends TestCase
 
     /**
      * @test
-     * Get Own and other Robots
+     * Test get own and other Robots to start fight
      */
     public function test_can_get_fight_robots()
     {
@@ -141,8 +141,7 @@ class RobotTest extends TestCase
         
         $ownRobots = factory(robot::class, 10)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id]);
         $otherRobots = factory(robot::class, 15)->create(['user_id' => $otherUser->id, 'created_by' => $otherUser->id, 'updated_by' => $otherUser->id]);
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/robots')
-                        ->assertStatus(200);
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/robots')->assertStatus(200);
 
         $this->assertEquals(count($ownRobots), $this->user->robots()->count());
         $this->assertEquals(count($otherRobots), $otherUser->robots()->count());
