@@ -22,7 +22,7 @@ class RobotService implements RepositoryInterface
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getAll()
+    public function getAll() 
     {
         return Robot::paginate(10);
     }
@@ -48,7 +48,7 @@ class RobotService implements RepositoryInterface
      *
      * @return int
      */
-    public function delete($id)
+    public function delete($id) : bool
     {
         $robot = Robot::find($id);
         if(!$robot)
@@ -71,7 +71,7 @@ class RobotService implements RepositoryInterface
      *
      * @return mixed
      */
-    public function update($request, $id) 
+    public function update($request, $id) : Robot
     {
         $robot = Robot::find($id);
         if(!$robot)
@@ -93,7 +93,7 @@ class RobotService implements RepositoryInterface
      *
      * @return mixed
      */
-    public function find($id)
+    public function find($id) : Robot
     {
         $robot = Robot::find($id);
         if(!$robot)
@@ -114,8 +114,6 @@ class RobotService implements RepositoryInterface
     {
         $requiredStructure = ['name', 'power', 'speed', 'weight'];
         $file = $request->file('file');
-        //Storage::disk('local')->putFileAs('', $file, $file->getClientOriginalName());
-        
         $lines = explode("\n", file_get_contents($file));
         $head = str_getcsv(array_shift($lines));
         sort($head);

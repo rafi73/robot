@@ -30,11 +30,49 @@ class FightController extends Controller
     }
 
     /**
-     * Checking for daily fight status between contestant and opponent
+     * Start fight between self and other Robot
      *
      * @param FightRequest $request
      *
      * @return \Illuminate\Http\Resources\Json\JsonResource
+     * 
+     * @authenticated
+     * @response 201 {
+     *  "data": {
+     *   "id": 1,
+     *   "user_id": 2,
+     *   "fight_detail": [
+     *       {
+     *           "fight_id": 1,
+     *           "robot_id": "2",
+     *           "result": 0,
+     *           "date": "2019-04-09T15:00:00.000000Z"
+     *       },
+     *       {
+     *           "fight_id": 1,
+     *           "robot_id": "17",
+     *           "result": 1,
+     *           "date": "2019-04-09T15:00:00.000000Z"
+     *       }
+     *   ]
+     *  },
+     *  "version": "1.0.0"
+     * }
+     * @response 422 {
+     *    "message": "The given data was invalid"
+     * }
+     * @response 500 {
+     *    "message": "Wrong Input!, Robot not found with id 20"
+     * }
+     * @response 500 {
+     *    "message": "Wrong Input!, You dont own any of these Robots"
+     * }
+     * @response 401 {
+     *    "message": "Token not provided"
+     * }
+     * @response 401 {
+     *    "message": "Token has Expired"
+     * }
      */
     public function startFight(FightRequest $request)
     {   

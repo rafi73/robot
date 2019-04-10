@@ -32,6 +32,53 @@ class RobotController extends Controller
      * Display a list of all Robots
      *
      * @return \Illuminate\Http\Response
+     * 
+     * @authenticated
+     * @queryParam id required Robot id
+     * @response 200 {
+     *  "data": [
+     *   {
+     *       "id": 1,
+     *       "name": "CYOtmiDYgHqMGbvl",
+     *       "speed": 45,
+     *       "weight": 65,
+     *       "power": 678,
+     *       "user_id": 1
+     *   },
+     *   {
+     *       "id": 2,
+     *       "name": "ERgdfsgsgsgs",
+     *       "speed": 45,
+     *       "weight": 65,
+     *       "power": 678,
+     *       "user_id": 1
+     *   }
+     *  ],
+     *  "links": {
+     *   "first": "http://robot.work/api/v1/robots?page=1",
+     *   "last": "http://robot.work/api/v1/robots?page=1",
+     *   "prev": null,
+     *   "next": null
+     *  },
+     *  "meta": {
+     *   "current_page": 1,
+     *   "from": 1,
+     *   "last_page": 1,
+     *   "path": "http://robot.work/api/v1/robots",
+     *   "per_page": 10,
+     *   "to": 2,
+     *   "total": 2
+     *  }
+     * }
+     * @response 401 {
+     *    "message": "Token not provided"
+     * }
+     * @response 401 {
+     *    "message": "Token has Expired"
+     * }
+     * @response 401 {
+     *    "message": "User not found"
+     * }
      */
     public function index()
     {
@@ -67,6 +114,9 @@ class RobotController extends Controller
      * @response 401 {
      *    "message": "Token has Expired"
      * }
+     * @response 401 {
+     *    "message": ""User not found"
+     * }
      */
     public function store(RobotRequest $request)
     {
@@ -100,6 +150,9 @@ class RobotController extends Controller
      * }
      * @response 401 {
      *  "message": "Token has Expired"
+     * }
+     * @response 401 {
+     *    "message": ""User not found"
      * }
      */
     public function show($id)
@@ -140,6 +193,9 @@ class RobotController extends Controller
      * @response 401 {
      *    "message": "Token has Expired"
      * }
+     * @response 401 {
+     *    "message": ""User not found"
+     * }
      */
     public function update(RobotRequest $request, $id)
     {
@@ -167,6 +223,9 @@ class RobotController extends Controller
      * }
      * @response 401 {
      *    "message": "Token has Expired"
+     * }
+     * @response 401 {
+     *    "message": ""User not found"
      * }
      */
     public function delete($id)
@@ -199,6 +258,9 @@ class RobotController extends Controller
      * }
      * @response 401 {
      *    "message": "Token has Expired"
+     * }
+     * @response 401 {
+     *    "message": ""User not found"
      * }
      */
     public function storeBulk(RobotBulkRequest $request)
@@ -255,6 +317,9 @@ class RobotController extends Controller
      * }
      * @response 401 {
      *    "message": "Token has Expired"
+     * }
+     * @response 401 {
+     *    "message": ""User not found"
      * }
      */
     public function getFightRobots()

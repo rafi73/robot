@@ -28,10 +28,34 @@ class HomeController extends Controller
     }
     
     /**
-     * Display Home Data.
-     *
+     * Display Home Data
      *
      * @return \Illuminate\Http\Response
+     * 
+     * @response 200 {
+     *  "latest": [
+     *   {
+     *       "id": 1,
+     *       "robot_1_name": "Yertwtwt",
+     *       "robot_2_name": "Sfgssfgsfg",
+     *       "winner_robot_name": "Sfgssfgsfg"
+     *   }
+     * ],
+     * "top": [
+     *   {
+     *       "fights": 1,
+     *       "wins": "1",
+     *       "looses": 0,
+     *       "robot_name": "Sfgssfgsfg"
+     *   },
+     *   {
+     *       "fights": 1,
+     *       "wins": "0",
+     *       "looses": 1,
+     *       "robot_name": "Yertwtwt"
+     *   }
+     *  ]
+     * }
      */
     public function getHomeData()
     {
