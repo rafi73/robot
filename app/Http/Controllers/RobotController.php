@@ -244,6 +244,9 @@ class RobotController extends Controller
      * @return \Illuminate\Http\Response
      * 
      * @authenticated
+     * @response 200 {
+     *    "File uploaded seccessfully"
+     * }
      * @response 422 {
      *    "message": "The given data was invalid"
      * }

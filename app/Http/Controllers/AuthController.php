@@ -149,7 +149,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Register user
+     * Register a User
      * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
