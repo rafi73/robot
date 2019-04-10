@@ -4,6 +4,9 @@
 ##### Detailed documentation is available @ http://robot.uh-oh.jp/docs 
 ##### POSTMAN Collection is available @ http://robot.uh-oh.jp/docs/collection.json
 
+
+###### * To use, Open Postman > File > Import > Import From Link > use "http://robot.uh-oh.jp/docs/collection.json" > Import
+
 ### Available Endpoints
 1. Guest registration system based on JWT
 
@@ -27,6 +30,7 @@
     | Delete | http://robot.uh-oh.jp/api/v1/robot/{id}|
 
 3. User can add rotots can be added through CSV file
+
     | Name | Endpoint|
     |--------------|----------------------------------------|
     | Import CSV | http://robot.uh-oh.jp/api/v1/robot-bulk|
@@ -70,8 +74,8 @@ $ cp .env.example .env
 $ php artisan key:generate
 $ php artisan jwt:secret
 $ mysql -u [USER] -p
-$ create database [DATABASE]
-$ php artisan migrate
+$ create database [DATABASE];
+$ exit
 $ vendor/bin/phpunit
 ```
 
