@@ -42,6 +42,18 @@ class AuthController extends Controller
      * Get the authenticated User.
      *
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * @response 200 {
+     *  "id": 1,
+     *  "name": "Antoher Person",
+     *  "email": "rafi.aust1@live.com",
+     *  "email_verified_at": null,
+     *  "created_at": "2019-04-10 19:10:39",
+     *  "updated_at": "2019-04-10 19:10:39"
+     * }
+     * @response 401 {
+     *    "message": "Unauthenticated"
+     * }
      */
     public function me()
     {
@@ -52,6 +64,13 @@ class AuthController extends Controller
      * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * @response 200 {
+     *  "message": "Successfully logged out"
+     * }
+     * @response 422 {
+     *    "message": "Unauthenticated"
+     * }
      */
     public function logout()
     {
@@ -64,6 +83,23 @@ class AuthController extends Controller
      * Refresh a token.
      *
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * @response 200 {
+     *    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
+     *  "user": {
+     *  "id": 1,
+     *   "name": "Antoher Person",
+     *   "email": "rafi.aust1@live.com",
+     *   "email_verified_at": null,
+     *   "created_at": "2019-04-10 19:10:39",
+     *   "updated_at": "2019-04-10 19:10:39"
+     * },
+     * "token_type": "bearer",
+     * "expires_in": 216000
+     * }
+     * @response 401 {
+     *    "message": "The given data was invalid"
+     * }
      */
     public function refresh()
     {
@@ -97,6 +133,13 @@ class AuthController extends Controller
      * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @response 200 {
+     *  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZ2lzdGVyIiwiaWF0Ij..."
+     * }
+     * @response 422 {
+     *    "message": "The given data was invalid"
+     * }
      */
     public function register(RegisterRequest $request)
     {

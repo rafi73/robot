@@ -1822,6 +1822,20 @@ fetch(url, {
     .then(json => console.log(json));
 ```
 
+> Example response (200):
+
+```json
+{
+    "message": "Successfully logged out"
+}
+```
+> Example response (422):
+
+```json
+{
+    "message": "Unauthenticated"
+}
+```
 
 ### HTTP Request
 `POST api/auth/logout`
@@ -1856,6 +1870,30 @@ fetch(url, {
     .then(json => console.log(json));
 ```
 
+> Example response (200):
+
+```json
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
+    "user": {
+        "id": 1,
+        "name": "Antoher Person",
+        "email": "rafi.aust1@live.com",
+        "email_verified_at": null,
+        "created_at": "2019-04-10 19:10:39",
+        "updated_at": "2019-04-10 19:10:39"
+    },
+    "token_type": "bearer",
+    "expires_in": 216000
+}
+```
+> Example response (401):
+
+```json
+{
+    "message": "The given data was invalid"
+}
+```
 
 ### HTTP Request
 `POST api/auth/refresh`
@@ -1890,6 +1928,25 @@ fetch(url, {
     .then(json => console.log(json));
 ```
 
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "name": "Antoher Person",
+    "email": "rafi.aust1@live.com",
+    "email_verified_at": null,
+    "created_at": "2019-04-10 19:10:39",
+    "updated_at": "2019-04-10 19:10:39"
+}
+```
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated"
+}
+```
 
 ### HTTP Request
 `POST api/auth/me`
@@ -1906,7 +1963,7 @@ fetch(url, {
 curl -X POST "http://robot.work/api/auth/register" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"name":"ZHhizDQyYv1BUH5S","email":"h1UWDoLXdEkc9FbW","password":"5uzjCLXF1cfanD2B","password_confirmation":"iHpXJvkrZA9mX9tR"}'
+    -d '{"name":"fM5RwYAGPD3ea3qJ","email":"bK0t2CG82ww9o5Nj","password":"6iJUq3x1wwkKqw5r","password_confirmation":"wmn4feaBteML6CwQ"}'
 
 ```
 
@@ -1920,10 +1977,10 @@ let headers = {
 }
 
 let body = {
-    "name": "ZHhizDQyYv1BUH5S",
-    "email": "h1UWDoLXdEkc9FbW",
-    "password": "5uzjCLXF1cfanD2B",
-    "password_confirmation": "iHpXJvkrZA9mX9tR"
+    "name": "fM5RwYAGPD3ea3qJ",
+    "email": "bK0t2CG82ww9o5Nj",
+    "password": "6iJUq3x1wwkKqw5r",
+    "password_confirmation": "wmn4feaBteML6CwQ"
 }
 
 fetch(url, {
@@ -1935,6 +1992,20 @@ fetch(url, {
     .then(json => console.log(json));
 ```
 
+> Example response (200):
+
+```json
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZ2lzdGVyIiwiaWF0Ij..."
+}
+```
+> Example response (422):
+
+```json
+{
+    "message": "The given data was invalid"
+}
+```
 
 ### HTTP Request
 `POST api/auth/register`
@@ -1965,7 +2036,7 @@ curl -X GET -G "http://robot.work/api/v1/robots" \
 const url = new URL("http://robot.work/api/v1/robots");
 
     let params = {
-            "id": "miQ63vYuMHhuRpCz",
+            "id": "FPNd02zdFGF8TvLu",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -2070,7 +2141,7 @@ curl -X GET -G "http://robot.work/api/v1/robot/{id}" \
 const url = new URL("http://robot.work/api/v1/robot/{id}");
 
     let params = {
-            "id": "kUcoo7YANBzonHRZ",
+            "id": "rmseTyvPUh0XwlKI",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -2154,7 +2225,7 @@ Parameter | Status | Description
 curl -X POST "http://robot.work/api/v1/robot" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"name":"Oio0MKPHggtuFrVF","speed":2572.2232294,"weight":43068377.843268216,"power":38}'
+    -d '{"name":"8gG4SlDQGfrzdca3","speed":211123664.92818844,"weight":96137321.2161979,"power":1}'
 
 ```
 
@@ -2168,10 +2239,10 @@ let headers = {
 }
 
 let body = {
-    "name": "Oio0MKPHggtuFrVF",
-    "speed": 2572.2232294,
-    "weight": 43068377.843268216,
-    "power": 38
+    "name": "8gG4SlDQGfrzdca3",
+    "speed": 211123664.92818844,
+    "weight": 96137321.2161979,
+    "power": 1
 }
 
 fetch(url, {
@@ -2249,7 +2320,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://robot.work/api/v1/robot/{id}" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"name":"I9If9WCGIKJQzioQ","speed":2057.660182269,"weight":317021.5640263,"power":7418278.50034548}'
+    -d '{"name":"ZJpRXNqBZWvvHoiJ","speed":141.5,"weight":11345,"power":2667884.9289319}'
 
 ```
 
@@ -2257,7 +2328,7 @@ curl -X PUT "http://robot.work/api/v1/robot/{id}" \
 const url = new URL("http://robot.work/api/v1/robot/{id}");
 
     let params = {
-            "id": "0adz2AUcnzUA9d0U",
+            "id": "TJffdYv1f2in70KE",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -2268,10 +2339,10 @@ let headers = {
 }
 
 let body = {
-    "name": "I9If9WCGIKJQzioQ",
-    "speed": 2057.660182269,
-    "weight": 317021.5640263,
-    "power": 7418278.50034548
+    "name": "ZJpRXNqBZWvvHoiJ",
+    "speed": 141.5,
+    "weight": 11345,
+    "power": 2667884.9289319
 }
 
 fetch(url, {
@@ -2434,7 +2505,7 @@ fetch(url, {
 curl -X POST "http://robot.work/api/v1/robot-bulk" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"file":"F3mzBE9Lx6dn0qez"}'
+    -d '{"file":"6aYo2ZhOJmM9WHdH"}'
 
 ```
 
@@ -2448,7 +2519,7 @@ let headers = {
 }
 
 let body = {
-    "file": "F3mzBE9Lx6dn0qez"
+    "file": "6aYo2ZhOJmM9WHdH"
 }
 
 fetch(url, {
@@ -2527,7 +2598,7 @@ curl -X GET -G "http://robot.work/api/v1/fight-robots" \
 const url = new URL("http://robot.work/api/v1/fight-robots");
 
     let params = {
-            "id": "ayWeGvO4WWpIAC3T",
+            "id": "fn2nvVJREl8TtoFo",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -2628,7 +2699,7 @@ Parameter | Status | Description
 curl -X POST "http://robot.work/api/v1/start-fight" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"contestant_robot_id":19,"opponent_robot_id":7}'
+    -d '{"contestant_robot_id":11,"opponent_robot_id":19}'
 
 ```
 
@@ -2642,8 +2713,8 @@ let headers = {
 }
 
 let body = {
-    "contestant_robot_id": 19,
-    "opponent_robot_id": 7
+    "contestant_robot_id": 11,
+    "opponent_robot_id": 19
 }
 
 fetch(url, {
