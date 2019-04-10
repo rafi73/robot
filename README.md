@@ -6,6 +6,7 @@
 
 ### Available Endpoints
 1. Guest registration system based on JWT
+
     | Name | Endpoint|
     |--------------|----------------------------------------|
     | Registration | http://robot.uh-oh.jp/api/auth/register|
@@ -17,6 +18,7 @@
 
 
 2. Users can manage their Robot own robots (Create, read Update, Delete)
+
     | Name | Endpoint|
     |--------------|----------------------------------------|
     | Create | http://robot.uh-oh.jp/api/v1/robot|
@@ -39,12 +41,14 @@
     | David | 34 | 35 | 23 |
 
 4. User can start fight by selecting one of his own and one other's Robot
+
     | Name | Endpoint|
     |--------------|----------------------------------------|
     | Robots for fight | http://robot.uh-oh.jp/api/v1/fight-robots|
     | Start Fight | http://robot.uh-oh.jp/api/v1/start-fight|
 
 5. The Top 10 and Latest 5 fight result is available at homepage
+
     | Name | Endpoint|
     |--------------|----------------------------------------|
     | Result  |http://robot.uh-oh.jp/api/v1/home|
