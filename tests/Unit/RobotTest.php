@@ -141,9 +141,9 @@ class RobotTest extends TestCase
         
         $ownRobots = factory(robot::class, 10)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id]);
         $otherRobots = factory(robot::class, 15)->create(['user_id' => $otherUser->id, 'created_by' => $otherUser->id, 'updated_by' => $otherUser->id]);
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/robots')->assertStatus(200);
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/fight-robots')->assertStatus(200);
 
-        $this->assertEquals(count($ownRobots), $this->user->robots()->count());
-        $this->assertEquals(count($otherRobots), $otherUser->robots()->count());
+        $this->assertEquals(count($ownRobots), count($response->json()['ownRobots']));
+        $this->assertEquals(count($otherRobots), count($response->json()['otherRobots']));
     }
 }

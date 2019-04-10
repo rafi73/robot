@@ -9,6 +9,7 @@ use App\Contracts\RepositoryInterface;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Exceptions\RobotService\RobotNotFoundException;
 use App\Exceptions\RobotService\RobotBulkStructureException;
 use App\Exceptions\RobotService\RobotOwnerMismatchedException;
@@ -20,21 +21,21 @@ class RobotService implements RepositoryInterface
     /**
      * Get all Robots.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return LengthAwarePaginator
      */
-    public function getAll() 
+    public function getAll() : LengthAwarePaginator
     {
         return Robot::paginate(10);
     }
 
     /**
-     * Create & store a new robot.
+     * Create & store a new robot
      *
-     * @param RobotRequest $request
+     * @param array $request
      *
      * @return static
      */
-    public function create($request) : Robot
+    public function create(array $request) : Robot
     {
         $user = Auth::user();
         $request['created_by'] = $request['updated_by'] = $request['user_id'] = Auth::user()->id;
@@ -42,13 +43,13 @@ class RobotService implements RepositoryInterface
     }
 
     /**
-     * Delete a Robot by id.
+     * Delete a Robot by id
      *
-     * @param $id
+     * @param int $id
      *
-     * @return int
+     * @return bool
      */
-    public function delete($id) : bool
+    public function delete(int $id) : bool
     {
         $robot = Robot::find($id);
         if(!$robot)
@@ -66,12 +67,12 @@ class RobotService implements RepositoryInterface
     /**
      * Update a Robot.
      *
-     * @param $request
-     * @param $id
+     * @param array $request
+     * @param int $id
      *
-     * @return mixed
+     * @return Robot
      */
-    public function update($request, $id) : Robot
+    public function update(array $request, int $id) : Robot
     {
         $robot = Robot::find($id);
         if(!$robot)
@@ -87,13 +88,13 @@ class RobotService implements RepositoryInterface
     }
 
     /**
-     * Find a Robot by id.
+     * Find a Robot by id
      *
-     * @param $id
+     * @param int $id
      *
-     * @return mixed
+     * @return Robot
      */
-    public function find($id) : Robot
+    public function find(int $id) : Robot
     {
         $robot = Robot::find($id);
         if(!$robot)
@@ -104,16 +105,16 @@ class RobotService implements RepositoryInterface
     }
 
     /**
-     * Create & store robots from CSV.
+     * Create & store robots from CSV
      *
-     * @param $request
+     * @param array $request
      *
      * @return bool
      */
-    public function createBulk($request) : bool
+    public function createBulk(array $request) : bool
     {
         $requiredStructure = ['name', 'power', 'speed', 'weight'];
-        $file = $request->file('file');
+        $file = $request['file'];
         $lines = explode("\n", file_get_contents($file));
         $head = str_getcsv(array_shift($lines));
         sort($head);
@@ -145,7 +146,7 @@ class RobotService implements RepositoryInterface
     }
 
     /**
-     * Getting own Robots.
+     * Getting own Robots
      *
      *
      * @return Illuminate\Database\Eloquent\Collection
@@ -156,8 +157,7 @@ class RobotService implements RepositoryInterface
     }
 
     /**
-     * Getting others Robots.
-     *
+     * Getting others Robots
      *
      * @return Illuminate\Database\Eloquent\Collection
      */

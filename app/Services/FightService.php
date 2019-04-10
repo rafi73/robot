@@ -148,7 +148,7 @@ class FightService
      *
      * @return int
      */
-    public function calculateFightResult($ownRobot, $otherRobot) : int
+    public function calculateFightResult(Robot $ownRobot, Robot $otherRobot) : int
     {
         $ownRobot->point = $otherRobot->point = 0;
         $ownRobot->power > $otherRobot->power ? $ownRobot->point = $ownRobot->power * 10 :  $otherRobot->point = $otherRobot->power * 10;

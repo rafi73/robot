@@ -12,11 +12,11 @@ interface RepositoryInterface
 {
     public function getAll();
 
-    public function find($id);
+    public function find(int $id);
 
-    public function create($request);
+    public function create(array $request);
 
-    public function update($request, $id);
+    public function update(array $request, int $id);
 
-    public function delete($id);
+    public function delete(int $id);
 }

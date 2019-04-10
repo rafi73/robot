@@ -49,1863 +49,30 @@
 <a href="http://robot.work/docs/collection.json">Get Postman Collection</a></p>
 <!-- END_INFO -->
 <h1>general</h1>
-<!-- START_4b90f657df4927ac7a249b99226ea7e1 -->
-<h2>Get the index of a given version.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/docs/search-index/{version}" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/docs/search-index/{version}");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (403):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "",
-    "exception": "Symfony\\Component\\HttpKernel\\Exception\\HttpException",
-    "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php",
-    "line": 985,
-    "trace": [
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php",
-            "line": 46,
-            "function": "abort",
-            "class": "Illuminate\\Foundation\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php",
-            "line": 66,
-            "function": "abort"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\binarytorch\\larecipe\\src\\Http\\Controllers\\SearchController.php",
-            "line": 53,
-            "function": "abort_if"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\binarytorch\\larecipe\\src\\Http\\Controllers\\SearchController.php",
-            "line": 34,
-            "function": "authorizeAccessSearch",
-            "class": "BinaryTorch\\LaRecipe\\Http\\Controllers\\SearchController",
-            "type": "-&gt;"
-        },
-        {
-            "function": "__invoke",
-            "class": "BinaryTorch\\LaRecipe\\Http\\Controllers\\SearchController",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php",
-            "line": 54,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php",
-            "line": 45,
-            "function": "callAction",
-            "class": "Illuminate\\Routing\\Controller",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
-            "line": 219,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\ControllerDispatcher",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
-            "line": 176,
-            "function": "runController",
-            "class": "Illuminate\\Routing\\Route",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 680,
-            "function": "run",
-            "class": "Illuminate\\Routing\\Route",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
-            "line": 41,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php",
-            "line": 75,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php",
-            "line": 49,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php",
-            "line": 56,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Session\\Middleware\\StartSession",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php",
-            "line": 37,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php",
-            "line": 66,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Cookie\\Middleware\\EncryptCookies",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 104,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 682,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 657,
-            "function": "runRouteWithinStack",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 623,
-            "function": "runRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 612,
-            "function": "dispatchToRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 176,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Foundation\\Http\\{closure}",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
-            "line": 57,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-            "line": 21,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-            "line": 21,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
-            "line": 27,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php",
-            "line": 62,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 104,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 151,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 116,
-            "function": "sendRequestThroughRouter",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 276,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 260,
-            "function": "callLaravelRoute",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 36,
-            "function": "makeApiCall",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseResolver.php",
-            "line": 49,
-            "function": "__invoke",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseResolver.php",
-            "line": 68,
-            "function": "resolve",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseResolver",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\Generator.php",
-            "line": 57,
-            "function": "getResponse",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseResolver",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Commands\\GenerateDocumentation.php",
-            "line": 201,
-            "function": "processRoute",
-            "class": "Mpociot\\ApiDoc\\Tools\\Generator",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Commands\\GenerateDocumentation.php",
-            "line": 59,
-            "function": "processRoutes",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "-&gt;"
-        },
-        {
-            "function": "handle",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 32,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 90,
-            "function": "Illuminate\\Container\\{closure}",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 34,
-            "function": "callBoundMethod",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
-            "line": 580,
-            "function": "call",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-            "line": 183,
-            "function": "call",
-            "class": "Illuminate\\Container\\Container",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Command\\Command.php",
-            "line": 255,
-            "function": "execute",
-            "class": "Illuminate\\Console\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-            "line": 170,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 908,
-            "function": "run",
-            "class": "Illuminate\\Console\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 269,
-            "function": "doRunCommand",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 145,
-            "function": "doRun",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
-            "line": 90,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
-            "line": 122,
-            "function": "run",
-            "class": "Illuminate\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\artisan",
-            "line": 37,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "-&gt;"
-        }
-    ]
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET docs/search-index/{version}</code></p>
-<!-- END_4b90f657df4927ac7a249b99226ea7e1 -->
-<!-- START_568f07577ee68f8b1116e97fd4a5d842 -->
-<h2>docs/styles/{style}</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/docs/styles/{style}" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/docs/styles/{style}");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (500):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Undefined offset: 1",
-    "exception": "ErrorException",
-    "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\binarytorch\\larecipe\\src\\Http\\Controllers\\StyleController.php",
-    "line": 18,
-    "trace": [
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\binarytorch\\larecipe\\src\\Http\\Controllers\\StyleController.php",
-            "line": 18,
-            "function": "handleError",
-            "class": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions",
-            "type": "-&gt;"
-        },
-        {
-            "function": "__invoke",
-            "class": "BinaryTorch\\LaRecipe\\Http\\Controllers\\StyleController",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php",
-            "line": 54,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php",
-            "line": 45,
-            "function": "callAction",
-            "class": "Illuminate\\Routing\\Controller",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
-            "line": 219,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\ControllerDispatcher",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
-            "line": 176,
-            "function": "runController",
-            "class": "Illuminate\\Routing\\Route",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 680,
-            "function": "run",
-            "class": "Illuminate\\Routing\\Route",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
-            "line": 41,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php",
-            "line": 75,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php",
-            "line": 49,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php",
-            "line": 56,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Session\\Middleware\\StartSession",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php",
-            "line": 37,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php",
-            "line": 66,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Cookie\\Middleware\\EncryptCookies",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 104,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 682,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 657,
-            "function": "runRouteWithinStack",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 623,
-            "function": "runRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 612,
-            "function": "dispatchToRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 176,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Foundation\\Http\\{closure}",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
-            "line": 57,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-            "line": 21,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-            "line": 21,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
-            "line": 27,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php",
-            "line": 62,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 104,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 151,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 116,
-            "function": "sendRequestThroughRouter",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 276,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 260,
-            "function": "callLaravelRoute",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 36,
-            "function": "makeApiCall",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseResolver.php",
-            "line": 49,
-            "function": "__invoke",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseResolver.php",
-            "line": 68,
-            "function": "resolve",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseResolver",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\Generator.php",
-            "line": 57,
-            "function": "getResponse",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseResolver",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Commands\\GenerateDocumentation.php",
-            "line": 201,
-            "function": "processRoute",
-            "class": "Mpociot\\ApiDoc\\Tools\\Generator",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Commands\\GenerateDocumentation.php",
-            "line": 59,
-            "function": "processRoutes",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "-&gt;"
-        },
-        {
-            "function": "handle",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 32,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 90,
-            "function": "Illuminate\\Container\\{closure}",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 34,
-            "function": "callBoundMethod",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
-            "line": 580,
-            "function": "call",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-            "line": 183,
-            "function": "call",
-            "class": "Illuminate\\Container\\Container",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Command\\Command.php",
-            "line": 255,
-            "function": "execute",
-            "class": "Illuminate\\Console\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-            "line": 170,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 908,
-            "function": "run",
-            "class": "Illuminate\\Console\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 269,
-            "function": "doRunCommand",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 145,
-            "function": "doRun",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
-            "line": 90,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
-            "line": 122,
-            "function": "run",
-            "class": "Illuminate\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\artisan",
-            "line": 37,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "-&gt;"
-        }
-    ]
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET docs/styles/{style}</code></p>
-<!-- END_568f07577ee68f8b1116e97fd4a5d842 -->
-<!-- START_7cdb95077f4d2842f8268003be0400e6 -->
-<h2>docs/scripts/{script}</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/docs/scripts/{script}" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/docs/scripts/{script}");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (500):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Undefined offset: 1",
-    "exception": "ErrorException",
-    "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\binarytorch\\larecipe\\src\\Http\\Controllers\\ScriptController.php",
-    "line": 18,
-    "trace": [
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\binarytorch\\larecipe\\src\\Http\\Controllers\\ScriptController.php",
-            "line": 18,
-            "function": "handleError",
-            "class": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions",
-            "type": "-&gt;"
-        },
-        {
-            "function": "__invoke",
-            "class": "BinaryTorch\\LaRecipe\\Http\\Controllers\\ScriptController",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php",
-            "line": 54,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php",
-            "line": 45,
-            "function": "callAction",
-            "class": "Illuminate\\Routing\\Controller",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
-            "line": 219,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\ControllerDispatcher",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
-            "line": 176,
-            "function": "runController",
-            "class": "Illuminate\\Routing\\Route",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 680,
-            "function": "run",
-            "class": "Illuminate\\Routing\\Route",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
-            "line": 41,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php",
-            "line": 75,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php",
-            "line": 49,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php",
-            "line": 56,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Session\\Middleware\\StartSession",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php",
-            "line": 37,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php",
-            "line": 66,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Cookie\\Middleware\\EncryptCookies",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 104,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 682,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 657,
-            "function": "runRouteWithinStack",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 623,
-            "function": "runRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 612,
-            "function": "dispatchToRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 176,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Foundation\\Http\\{closure}",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
-            "line": 57,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-            "line": 21,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-            "line": 21,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
-            "line": 27,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php",
-            "line": 62,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 163,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 104,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 151,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 116,
-            "function": "sendRequestThroughRouter",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 276,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 260,
-            "function": "callLaravelRoute",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseStrategies\\ResponseCallStrategy.php",
-            "line": 36,
-            "function": "makeApiCall",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseResolver.php",
-            "line": 49,
-            "function": "__invoke",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseStrategies\\ResponseCallStrategy",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\ResponseResolver.php",
-            "line": 68,
-            "function": "resolve",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseResolver",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Tools\\Generator.php",
-            "line": 57,
-            "function": "getResponse",
-            "class": "Mpociot\\ApiDoc\\Tools\\ResponseResolver",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Commands\\GenerateDocumentation.php",
-            "line": 201,
-            "function": "processRoute",
-            "class": "Mpociot\\ApiDoc\\Tools\\Generator",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Commands\\GenerateDocumentation.php",
-            "line": 59,
-            "function": "processRoutes",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "-&gt;"
-        },
-        {
-            "function": "handle",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 32,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 90,
-            "function": "Illuminate\\Container\\{closure}",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 34,
-            "function": "callBoundMethod",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
-            "line": 580,
-            "function": "call",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-            "line": 183,
-            "function": "call",
-            "class": "Illuminate\\Container\\Container",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Command\\Command.php",
-            "line": 255,
-            "function": "execute",
-            "class": "Illuminate\\Console\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-            "line": 170,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 908,
-            "function": "run",
-            "class": "Illuminate\\Console\\Command",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 269,
-            "function": "doRunCommand",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\symfony\\console\\Application.php",
-            "line": 145,
-            "function": "doRun",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
-            "line": 90,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
-            "line": 122,
-            "function": "run",
-            "class": "Illuminate\\Console\\Application",
-            "type": "-&gt;"
-        },
-        {
-            "file": "C:\\Bitnami\\wampstack-7.1.22-0\\apache2\\htdocs\\robot\\artisan",
-            "line": 37,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "-&gt;"
-        }
-    ]
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET docs/scripts/{script}</code></p>
-<!-- END_7cdb95077f4d2842f8268003be0400e6 -->
-<!-- START_b49197dda1e390d1c17aa2d177702247 -->
-<h2>Redirect the index page of docs to the default version.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/docs" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/docs");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (302):</p>
-</blockquote>
-<pre><code class="language-json">null</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET docs</code></p>
-<!-- END_b49197dda1e390d1c17aa2d177702247 -->
-<!-- START_9befedf0e2960c8902af7f03e63fbcb2 -->
-<h2>Show a documentation page.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/docs/{version}/{page?}" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/docs/{version}/{page?}");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (404):</p>
-</blockquote>
-<pre><code class="language-json">null</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET docs/{version}/{page?}</code></p>
-<!-- END_9befedf0e2960c8902af7f03e63fbcb2 -->
-<!-- START_a925a8d22b3615f12fca79456d286859 -->
-<h2>Get a JWT via given credentials.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/login" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/login");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<h3>HTTP Request</h3>
-<p><code>POST api/auth/login</code></p>
-<!-- END_a925a8d22b3615f12fca79456d286859 -->
-<!-- START_19ff1b6f8ce19d3c444e9b518e8f7160 -->
-<h2>Log the user out (Invalidate the token).</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/logout" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/logout");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Successfully logged out"
-}</code></pre>
-<blockquote>
-<p>Example response (422):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Unauthenticated"
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>POST api/auth/logout</code></p>
-<!-- END_19ff1b6f8ce19d3c444e9b518e8f7160 -->
-<!-- START_994af8f47e3039ba6d6d67c09dd9e415 -->
-<h2>Refresh a token.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/refresh" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/refresh");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
-    "user": {
-        "id": 1,
-        "name": "Antoher Person",
-        "email": "rafi.aust1@live.com",
-        "email_verified_at": null,
-        "created_at": "2019-04-10 19:10:39",
-        "updated_at": "2019-04-10 19:10:39"
-    },
-    "token_type": "bearer",
-    "expires_in": 216000
-}</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "The given data was invalid"
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>POST api/auth/refresh</code></p>
-<!-- END_994af8f47e3039ba6d6d67c09dd9e415 -->
-<!-- START_a47210337df3b4ba0df697c115ba0c1e -->
-<h2>Get the authenticated User.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/me" \
-    -H "Authorization: Bearer {token}"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/me");
-
-let headers = {
-    "Authorization": "Bearer {token}",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "id": 1,
-    "name": "Antoher Person",
-    "email": "rafi.aust1@live.com",
-    "email_verified_at": null,
-    "created_at": "2019-04-10 19:10:39",
-    "updated_at": "2019-04-10 19:10:39"
-}</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Unauthenticated"
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>POST api/auth/me</code></p>
-<!-- END_a47210337df3b4ba0df697c115ba0c1e -->
 <!-- START_2e1c96dcffcfe7e0eb58d6408f1d619e -->
 <h2>Register user</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/register" \
-    -H "Authorization: Bearer {token}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"fM5RwYAGPD3ea3qJ","email":"bK0t2CG82ww9o5Nj","password":"6iJUq3x1wwkKqw5r","password_confirmation":"wmn4feaBteML6CwQ"}'
+    -d '{"name":"DZ8BYQTIPFfEowsQ","email":"olg3tdc3ZXWYabKX","password":"MNd0B6U23LBdT7mi","password_confirmation":"janYeeS8MpmcJysJ"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/register");
 
 let headers = {
-    "Authorization": "Bearer {token}",
-    "Content-Type": "application/json",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
+    "Content-Type": "application/json",
 }
 
 let body = {
-    "name": "fM5RwYAGPD3ea3qJ",
-    "email": "bK0t2CG82ww9o5Nj",
-    "password": "6iJUq3x1wwkKqw5r",
-    "password_confirmation": "wmn4feaBteML6CwQ"
+    "name": "DZ8BYQTIPFfEowsQ",
+    "email": "olg3tdc3ZXWYabKX",
+    "password": "MNd0B6U23LBdT7mi",
+    "password_confirmation": "janYeeS8MpmcJysJ"
 }
 
 fetch(url, {
@@ -1967,6 +134,213 @@ fetch(url, {
 </tbody>
 </table>
 <!-- END_2e1c96dcffcfe7e0eb58d6408f1d619e -->
+<!-- START_a925a8d22b3615f12fca79456d286859 -->
+<h2>Get a JWT via given credentials</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/login" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{"email":"L3sOYpQU9gEDlW8d","password":"zyZuwqhTKNQuhy3d"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/login");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = {
+    "email": "L3sOYpQU9gEDlW8d",
+    "password": "zyZuwqhTKNQuhy3d"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
+    "user": {
+        "id": 1,
+        "name": "Antoher Person",
+        "email": "rafi.aust1@live.com",
+        "email_verified_at": null,
+        "created_at": "2019-04-10 19:10:39",
+        "updated_at": "2019-04-10 19:10:39"
+    },
+    "token_type": "bearer",
+    "expires_in": 216000
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The given data was invalid"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/auth/login</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>required</td>
+<td>The email of the User.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>required</td>
+<td>The password of the User.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_a925a8d22b3615f12fca79456d286859 -->
+<!-- START_19ff1b6f8ce19d3c444e9b518e8f7160 -->
+<h2>Log the user out (Invalidate the token).</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/logout" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/logout");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Successfully logged out"
+}</code></pre>
+<blockquote>
+<p>Example response (422):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/auth/logout</code></p>
+<!-- END_19ff1b6f8ce19d3c444e9b518e8f7160 -->
+<!-- START_994af8f47e3039ba6d6d67c09dd9e415 -->
+<h2>Refresh a token</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/refresh" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/refresh");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
+    "user": {
+        "id": 1,
+        "name": "Antoher Person",
+        "email": "rafi.aust1@live.com",
+        "email_verified_at": null,
+        "created_at": "2019-04-10 19:10:39",
+        "updated_at": "2019-04-10 19:10:39"
+    },
+    "token_type": "bearer",
+    "expires_in": 216000
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The given data was invalid"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/auth/refresh</code></p>
+<!-- END_994af8f47e3039ba6d6d67c09dd9e415 -->
+<!-- START_a47210337df3b4ba0df697c115ba0c1e -->
+<h2>Get the authenticated User</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/me" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/me");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "name": "Antoher Person",
+    "email": "rafi.aust1@live.com",
+    "email_verified_at": null,
+    "created_at": "2019-04-10 19:10:39",
+    "updated_at": "2019-04-10 19:10:39"
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/auth/me</code></p>
+<!-- END_a47210337df3b4ba0df697c115ba0c1e -->
 <!-- START_c90279e42064149b7989f5b48f490f09 -->
 <h2>Display a list of all Robots</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
@@ -1974,16 +348,12 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET -G "http://robot.work/api/v1/robots" \
-    -H "Authorization: Bearer {token}"</code></pre>
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robots");
 
-    let params = {
-            "id": "FPNd02zdFGF8TvLu",
-        };
-    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
-
 let headers = {
-    "Authorization": "Bearer {token}",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
     "Content-Type": "application/json",
 }
@@ -2052,23 +422,6 @@ fetch(url, {
 }</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/v1/robots</code></p>
-<h4>Query Parameters</h4>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Status</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>required</td>
-<td>Robot id</td>
-</tr>
-</tbody>
-</table>
 <!-- END_c90279e42064149b7989f5b48f490f09 -->
 <!-- START_ad87098cddc039c127433b7dc4d12e0f -->
 <h2>Display a Robot</h2>
@@ -2077,16 +430,17 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET -G "http://robot.work/api/v1/robot/{id}" \
-    -H "Authorization: Bearer {token}"</code></pre>
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot/{id}");
 
     let params = {
-            "id": "rmseTyvPUh0XwlKI",
+            "id": "7gDiJ9jH8kFLiue6",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
-    "Authorization": "Bearer {token}",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
     "Content-Type": "application/json",
 }
@@ -2162,23 +516,24 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST "http://robot.work/api/v1/robot" \
-    -H "Authorization: Bearer {token}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"8gG4SlDQGfrzdca3","speed":211123664.92818844,"weight":96137321.2161979,"power":1}'
+    -d '{"name":"sZ7pAqx9c351sBOD","speed":49304.71544,"weight":176816.9,"power":3.41949413}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot");
 
 let headers = {
-    "Authorization": "Bearer {token}",
-    "Content-Type": "application/json",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
+    "Content-Type": "application/json",
 }
 
 let body = {
-    "name": "8gG4SlDQGfrzdca3",
-    "speed": 211123664.92818844,
-    "weight": 96137321.2161979,
-    "power": 1
+    "name": "sZ7pAqx9c351sBOD",
+    "speed": 49304.71544,
+    "weight": 176816.9,
+    "power": 3.41949413
 }
 
 fetch(url, {
@@ -2271,28 +626,29 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT "http://robot.work/api/v1/robot/{id}" \
-    -H "Authorization: Bearer {token}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"ZJpRXNqBZWvvHoiJ","speed":141.5,"weight":11345,"power":2667884.9289319}'
+    -d '{"name":"JwgbX8tyQnYIGRiQ","speed":4,"weight":62329334.60794731,"power":40680369.6043}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot/{id}");
 
     let params = {
-            "id": "TJffdYv1f2in70KE",
+            "id": "bJx09ctr32PRp9Bo",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
-    "Authorization": "Bearer {token}",
-    "Content-Type": "application/json",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
+    "Content-Type": "application/json",
 }
 
 let body = {
-    "name": "ZJpRXNqBZWvvHoiJ",
-    "speed": 141.5,
-    "weight": 11345,
-    "power": 2667884.9289319
+    "name": "JwgbX8tyQnYIGRiQ",
+    "speed": 4,
+    "weight": 62329334.60794731,
+    "power": 40680369.6043
 }
 
 fetch(url, {
@@ -2408,11 +764,12 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE "http://robot.work/api/v1/robot/{id}" \
-    -H "Authorization: Bearer {token}"</code></pre>
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot/{id}");
 
 let headers = {
-    "Authorization": "Bearer {token}",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
     "Content-Type": "application/json",
 }
@@ -2465,20 +822,21 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST "http://robot.work/api/v1/robot-bulk" \
-    -H "Authorization: Bearer {token}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"file":"6aYo2ZhOJmM9WHdH"}'
+    -d '{"file":"qNnjK2WY4LTCwGV9"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot-bulk");
 
 let headers = {
-    "Authorization": "Bearer {token}",
-    "Content-Type": "application/json",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
+    "Content-Type": "application/json",
 }
 
 let body = {
-    "file": "6aYo2ZhOJmM9WHdH"
+    "file": "qNnjK2WY4LTCwGV9"
 }
 
 fetch(url, {
@@ -2551,16 +909,12 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET -G "http://robot.work/api/v1/fight-robots" \
-    -H "Authorization: Bearer {token}"</code></pre>
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/fight-robots");
 
-    let params = {
-            "id": "fn2nvVJREl8TtoFo",
-        };
-    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
-
 let headers = {
-    "Authorization": "Bearer {token}",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
     "Content-Type": "application/json",
 }
@@ -2630,23 +984,6 @@ fetch(url, {
 <pre><code class="language-json">{}</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/v1/fight-robots</code></p>
-<h4>Query Parameters</h4>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Status</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>required</td>
-<td>Robot id</td>
-</tr>
-</tbody>
-</table>
 <!-- END_f8e5c39679a782bfe5749a0955e78565 -->
 <!-- START_758ebc52a6fd73ab50881461212dd4b2 -->
 <h2>Start fight between self and other Robot</h2>
@@ -2655,21 +992,22 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST "http://robot.work/api/v1/start-fight" \
-    -H "Authorization: Bearer {token}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"contestant_robot_id":11,"opponent_robot_id":19}'
+    -d '{"contestant_robot_id":8,"opponent_robot_id":17}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/start-fight");
 
 let headers = {
-    "Authorization": "Bearer {token}",
-    "Content-Type": "application/json",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
+    "Content-Type": "application/json",
 }
 
 let body = {
-    "contestant_robot_id": 11,
-    "opponent_robot_id": 19
+    "contestant_robot_id": 8,
+    "opponent_robot_id": 17
 }
 
 fetch(url, {
@@ -2767,11 +1105,12 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET -G "http://robot.work/api/v1/home" \
-    -H "Authorization: Bearer {token}"</code></pre>
+    -H "Authorization: Bearer: {token}" \
+    -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/home");
 
 let headers = {
-    "Authorization": "Bearer {token}",
+    "Authorization": "Bearer: {token}",
     "Accept": "application/json",
     "Content-Type": "application/json",
 }

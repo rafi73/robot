@@ -31,10 +31,9 @@ class RobotController extends Controller
     /**
      * Display a list of all Robots
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      * 
      * @authenticated
-     * @queryParam id required Robot id
      * @response 200 {
      *  "data": [
      *   {
@@ -155,7 +154,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function show($id)
+    public function show(int $id)
     {
         $robot = $this->robotService->find($id);
         return new RobotResource($robot);
@@ -164,9 +163,10 @@ class RobotController extends Controller
     /**
      * Update a Robot
      * 
-     * @param Request $request
+     * @param RobotRequest $request
+     * @param int $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      * 
      * @authenticated
      * @queryParam id required Robot id
@@ -197,7 +197,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function update(RobotRequest $request, $id)
+    public function update(RobotRequest $request, int $id)
     {
         $robot = $this->robotService->update($request->all(), $id);
         return new RobotResource($robot);
@@ -206,9 +206,9 @@ class RobotController extends Controller
     /**
      * Delete a Robot
      * 
-     * @param type $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      * 
      * @authenticated
      * @response 204 null,
@@ -228,7 +228,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function delete($id)
+    public function delete(int $id)
     {
         if($this->robotService->delete($id))
         {
@@ -265,7 +265,7 @@ class RobotController extends Controller
      */
     public function storeBulk(RobotBulkRequest $request)
     {
-        if($this->robotService->createBulk($request))
+        if($this->robotService->createBulk($request->all()))
         {
             return response()->json([__('robot.message_csv_uploaded')], 200);
         }
@@ -277,7 +277,6 @@ class RobotController extends Controller
      * @return  Illuminate\Http\Resources
      * 
      * @authenticated
-     * @queryParam id required Robot id
      * @response 200 {
      *  "ownedRobots": [{
      *      "id": 17,
@@ -326,6 +325,6 @@ class RobotController extends Controller
     {
         $ownRobots = $this->robotService->getOwnRobots();
         $otherRobots = $this->robotService->getOtherRobots();
-        return response()->json(['ownedRobots' => RobotResource::collection($ownRobots), 'otherRobots' => RobotResource::collection($otherRobots)], 200);
+        return response()->json(['ownRobots' => RobotResource::collection($ownRobots), 'otherRobots' => RobotResource::collection($otherRobots)], 200);
     }
 }
