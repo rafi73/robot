@@ -20,12 +20,12 @@ class FightService
     /**
      * Start Robot fight.
      *
-     * @param $request
+     * @param array $request
      *
      * @throws RobotFightConflictException
      * @return Fight
      */
-    public function startFight($request) : Fight
+    public function startFight(array $request) : Fight
     {
         if($request['contestant_robot_id'] == $request['opponent_robot_id'])
         {
@@ -55,7 +55,7 @@ class FightService
         }
 
         $fight = NULL;
-        if($this->checkDailyOpponent($request['contestant_robot_id'], $request['opponent_robot_id']) && $this->checkDailyMaxAbility($request['contestant_robot_id'], $request['opponent_robot_id']))
+        if($this->checkDailyOpponent($request) && $this->checkDailyMaxAbility($request))
         {
             $request['created_by'] = $request['updated_by'] = $request['user_id'] = Auth::id();
             $winnerRobotId = $this->calculateFightResult($ownRobot, $otherRobot);
@@ -87,16 +87,15 @@ class FightService
     /**
      * Checking for daily fight status between contestant and opponent
      *
-     * @param int $contestantId
-     * @param int $opponentId
+     * @param array $robotIds
      *
      * @throws RobotFightConflictException
      * @return bool
      */
-    public function checkDailyOpponent(int $contestantId, int $opponentId) : bool
+    public function checkDailyOpponent(array $robotIds) : bool
     {
         $fightDetails = FightDetail::where('date', today()) 
-                                ->whereIn('robot_id' , [$contestantId, $opponentId])
+                                ->whereIn('robot_id' , $robotIds)
                                 ->groupBy('fight_id')
                                 ->selectRaw('COUNT(*) as duplicate')
                                 ->havingRaw('duplicate = 2')
@@ -112,16 +111,15 @@ class FightService
     /**
      * Checking for daily max fight status of a Robot
      *
-     * @param int $contestantId
-     * @param int $opponentId
+     * @param array $robotIds
      * 
      * @throws RobotFightConflictException
      * @return bool
      */
-    public function checkDailyMaxAbility(int $contestantId, int $opponentId) : bool
+    public function checkDailyMaxAbility(array $robotIds) : bool
     {
         $fightDetails = FightDetail::where('date', today())
-                                ->whereIn('robot_id' , [$contestantId, $opponentId])
+                                ->whereIn('robot_id' , $robotIds)
                                 ->groupBy('robot_id')
                                 ->selectRaw('COUNT(*) as fights, robot_id')
                                 ->havingRaw('fights >= 5')
