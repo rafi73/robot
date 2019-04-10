@@ -1,9 +1,10 @@
 # Robot Wars API
 
-#### Application is hosted on http://robot.uh-oh.jp , please check the following link for documentaion http://robot.uh-oh.jp/docs
+##### Application is hosted on http://robot.uh-oh.jp
+##### Detailed documentation is available @ http://robot.uh-oh.jp/docs 
+##### POSTMAN Collection is available @ http://robot.uh-oh.jp/docs/collection.json
 
-
-###Available Endpoints
+### Available Endpoints
 1. Guest registration system based on JWT
     | Name | Endpoint|
     |--------------|----------------------------------------|
@@ -55,4 +56,18 @@ For testing using POSTMAN application, please use the following Header settings:
 | ------ | ------ |
 | Content-Type | application/json |
 | Accept | application/json |
+
+### Endpoints tests are available. (development environment)
+```
+$ git clone https://github.com/rafi73/robot.git
+$ cd robot
+$ composer install
+$ cp .env.example .env
+$ php artisan key:generate
+$ php artisan jwt:secret
+$ mysql -u [USER] -p
+$ create database [DATABASE]
+$ php artisan migrate
+$ vendor/bin/phpunit
+```
 
