@@ -4,6 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @bodyParam name string required The name of the Robot.
+ * @bodyParam speed float required The speed of the Robot.
+ * @bodyParam weight float required The weight of the Robot.
+ * @bodyParam power float required The power of the Robot.
+ */
 class RobotRequest extends FormRequest
 {
     /**

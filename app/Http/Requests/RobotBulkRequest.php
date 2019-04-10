@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+/**
+ * @bodyParam file file required Import CSV of the Robots.
+ */
 class RobotBulkRequest extends FormRequest
 {
     /**

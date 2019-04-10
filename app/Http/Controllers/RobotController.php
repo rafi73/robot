@@ -29,7 +29,7 @@ class RobotController extends Controller
     }
 
     /**
-     * Display a list of all robots.
+     * Display a list of all Robots
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,11 +40,33 @@ class RobotController extends Controller
     }
 
     /**
-     * Create a new robot.
-     *
+     * Create a new Robot
+     * 
      * @param RobotRequest $request
      *
      * @return \Illuminate\Http\Resources\Json\JsonResource
+     * 
+     * @authenticated
+     * @response 201 {
+     *  "data": {
+     *     "id": 1,
+     *     "name": "CYOtmiDYgHqMGbvl",
+     *     "speed": "45",
+     *     "weight": "65",
+     *     "power": "678",
+     *     "user_id": 1
+     *  },
+     *  "version": "1.0.0"
+     * }
+     * @response 422 {
+     *    "message": "The given data was invalid"
+     * }
+     * @response 401 {
+     *    "message": "Token not provided"
+     * }
+     * @response 401 {
+     *    "message": "Token has Expired"
+     * }
      */
     public function store(RobotRequest $request)
     {
@@ -53,11 +75,32 @@ class RobotController extends Controller
     }
 
     /**
-     * Display an robot.
-     *
+     * Display a Robot
+     * 
      * @param int $id
      *
      * @return \Illuminate\Http\Resources\Json\JsonResource
+     * 
+     * @authenticated
+     * @queryParam id required Robot id
+     * 
+     * @response {
+     *  "id": 4,
+     *  "name": "Jessica Jones",
+     *  "roles": ["admin"]
+     * }
+     * @response 500 {
+     *  "message": "Robot not found with id"
+     * }
+     * @response 500 {
+     *    "message": "Robot owner mismatched, you are not allowed to modify this robot"
+     * }
+     * @response 401 {
+     *    "message": "Token not provided"
+     * }
+     * @response 401 {
+     *  "message": "Token has Expired"
+     * }
      */
     public function show($id)
     {
@@ -66,11 +109,37 @@ class RobotController extends Controller
     }
 
     /**
-     * Update an Robot.
-     *
+     * Update a Robot
+     * 
      * @param Request $request
      *
      * @return \Illuminate\Http\Response
+     * 
+     * @authenticated
+     * @queryParam id required Robot id
+     * @response 200 {
+     * "data": {
+     *     "id": 1,
+     *     "name": "CYOtmiDYgHqMGbvl",
+     *     "speed": "45",
+     *     "weight": "65",
+     *     "power": "678",
+     *     "user_id": 1
+     *  },
+     *  "version": "1.0.0"
+     * }
+     * @response 500 {
+     *    "message": "Robot not found with id"
+     * }
+     * @response 500 {
+     *    "message": "Robot owner mismatched, you are not allowed to modify this robot"
+     * }
+     * @response 401 {
+     *    "message": "Token not provided"
+     * }
+     * @response 401 {
+     *    "message": "Token has Expired"
+     * }
      */
     public function update(RobotRequest $request, $id)
     {
@@ -79,11 +148,26 @@ class RobotController extends Controller
     }
 
     /**
-     * Delete an Robot.
-     *
+     * Delete a Robot
+     * 
      * @param type $id
      *
      * @return \Illuminate\Http\Response
+     * 
+     * @authenticated
+     * @response 204 null,
+     * @response 500 {
+     *    "message": "Robot not found with id"
+     * }
+     * @response 500 {
+     *    "message": "Robot owner mismatched, you are not allowed to modify this robot"
+     * }
+     * @response 401 {
+     *    "message": "Token not provided"
+     * }
+     * @response 401 {
+     *    "message": "Token has Expired"
+     * }
      */
     public function delete($id)
     {
@@ -94,11 +178,28 @@ class RobotController extends Controller
     }
 
     /**
-     * Import Robots from CSV file.
-     *
+     * Import Robots from CSV file
+     * 
      * @param RobotBulkRequest $request
      *
      * @return \Illuminate\Http\Response
+     * 
+     * @authenticated
+     * @response 422 {
+     *    "message": "The given data was invalid"
+     * }
+     * @response 500 {
+     *    "message": "The structure of CSV file is not applicable to import"
+     * }
+     * @response 500 {
+     *    "message": "The data of CSV file is not applicable to import"
+     * }
+     * @response 401 {
+     *    "message": "Token not provided"
+     * }
+     * @response 401 {
+     *    "message": "Token has Expired"
+     * }
      */
     public function storeBulk(RobotBulkRequest $request)
     {
@@ -111,8 +212,50 @@ class RobotController extends Controller
     /**
      * Display list of self owned and others Robots accourding to User
      * 
-     *
      * @return  Illuminate\Http\Resources
+     * 
+     * @authenticated
+     * @queryParam id required Robot id
+     * @response 200 {
+     *  "ownedRobots": [{
+     *      "id": 17,
+     *      "name": "GOtmiDYgHqMGbvl",
+     *      "speed": 45,
+     *      "weight": 65,
+     *      "power": 678,
+     *      "user_id": 2
+     *   },
+     *   {
+     *       "id": 2,
+     *       "name": "ROtmiDYgHqMGbvl",
+     *       "speed": 45,
+     *       "weight": 65,
+     *       "power": 678,
+     *       "user_id": 2
+     *   }],
+     *  "otherRobots": [{
+     *       "id": 3,
+     *       "name": "NmiDYgHqMGbvl",
+     *       "speed": 45,
+     *       "weight": 65,
+     *       "power": 678,
+     *       "user_id": 1
+     *    },
+     *    {
+     *       "id": 16,
+     *       "name": "CYOtmiDYgHqMGbvl",
+     *       "speed": 45,
+     *       "weight": 65,
+     *       "power": 678,
+     *       "user_id": 1
+     *    }]
+     * }
+     * @response 401 {
+     *    "message": "Token not provided"
+     * }
+     * @response 401 {
+     *    "message": "Token has Expired"
+     * }
      */
     public function getFightRobots()
     {

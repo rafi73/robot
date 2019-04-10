@@ -4,6 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @bodyParam name string required The name of the User.
+ * @bodyParam email string required The email of the User.
+ * @bodyParam password string required The password of the User.
+ * @bodyParam password_confirmation string required The confirm password of the User.
+ */
 class RegisterRequest extends FormRequest
 {
     /**

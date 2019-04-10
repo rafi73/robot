@@ -4,6 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @bodyParam contestant_robot_id int required Contestant Robot id (Robot belongs to the current logged in User).
+ * @bodyParam opponent_robot_id int required Opponent Robot id (Robot belongs to the other User).
+ */
 class FightRequest extends FormRequest
 {
     /**
