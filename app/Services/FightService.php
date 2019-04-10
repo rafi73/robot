@@ -20,11 +20,12 @@ class FightService
     /**
      * Start Robot fight.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param $request
      *
-     * @return mixed
+     * @throws RobotFightConflictException
+     * @return Fight
      */
-    public function startFight($request)
+    public function startFight($request) : Fight
     {
         if($request['contestant_robot_id'] == $request['opponent_robot_id'])
         {
@@ -76,6 +77,7 @@ class FightService
             catch (Exception $exception) 
             {
                 DB::rollback();
+                throw new RobotFightConflictException($exception->getMessage());
             }
         }
 
@@ -89,7 +91,7 @@ class FightService
      * @param int $opponentId
      *
      * @throws RobotFightConflictException
-     * @return 
+     * @return bool
      */
     public function checkDailyOpponent(int $contestantId, int $opponentId) : bool
     {
@@ -110,7 +112,8 @@ class FightService
     /**
      * Checking for daily max fight status of a Robot
      *
-     * @param int $robotId
+     * @param int $contestantId
+     * @param int $opponentId
      * 
      * @throws RobotFightConflictException
      * @return bool

@@ -1906,7 +1906,7 @@ fetch(url, {
 curl -X POST "http://robot.work/api/auth/register" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"name":"xckooygQ0oYLZ5Ui","email":"LSpB6klNiP5EhH93","password":"3V9hx4v96mwwIuOM","password_confirmation":"4vaZBFguayOayFxC"}'
+    -d '{"name":"ZHhizDQyYv1BUH5S","email":"h1UWDoLXdEkc9FbW","password":"5uzjCLXF1cfanD2B","password_confirmation":"iHpXJvkrZA9mX9tR"}'
 
 ```
 
@@ -1920,10 +1920,10 @@ let headers = {
 }
 
 let body = {
-    "name": "xckooygQ0oYLZ5Ui",
-    "email": "LSpB6klNiP5EhH93",
-    "password": "3V9hx4v96mwwIuOM",
-    "password_confirmation": "4vaZBFguayOayFxC"
+    "name": "ZHhizDQyYv1BUH5S",
+    "email": "h1UWDoLXdEkc9FbW",
+    "password": "5uzjCLXF1cfanD2B",
+    "password_confirmation": "iHpXJvkrZA9mX9tR"
 }
 
 fetch(url, {
@@ -1965,7 +1965,7 @@ curl -X GET -G "http://robot.work/api/v1/robots" \
 const url = new URL("http://robot.work/api/v1/robots");
 
     let params = {
-            "id": "2wDHtkS64A86HQCJ",
+            "id": "miQ63vYuMHhuRpCz",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -2070,7 +2070,7 @@ curl -X GET -G "http://robot.work/api/v1/robot/{id}" \
 const url = new URL("http://robot.work/api/v1/robot/{id}");
 
     let params = {
-            "id": "B1GSxjHhbaDqdGHX",
+            "id": "kUcoo7YANBzonHRZ",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -2154,7 +2154,7 @@ Parameter | Status | Description
 curl -X POST "http://robot.work/api/v1/robot" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"name":"YVSs6JD0KGqX2KkG","speed":446830.4,"weight":1676.9,"power":2.256346}'
+    -d '{"name":"Oio0MKPHggtuFrVF","speed":2572.2232294,"weight":43068377.843268216,"power":38}'
 
 ```
 
@@ -2168,10 +2168,10 @@ let headers = {
 }
 
 let body = {
-    "name": "YVSs6JD0KGqX2KkG",
-    "speed": 446830.4,
-    "weight": 1676.9,
-    "power": 2.256346
+    "name": "Oio0MKPHggtuFrVF",
+    "speed": 2572.2232294,
+    "weight": 43068377.843268216,
+    "power": 38
 }
 
 fetch(url, {
@@ -2249,7 +2249,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://robot.work/api/v1/robot/{id}" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"name":"479u855TJMoVxy30","speed":57641541.5813357,"weight":577.0301501,"power":112496434.4}'
+    -d '{"name":"I9If9WCGIKJQzioQ","speed":2057.660182269,"weight":317021.5640263,"power":7418278.50034548}'
 
 ```
 
@@ -2257,7 +2257,7 @@ curl -X PUT "http://robot.work/api/v1/robot/{id}" \
 const url = new URL("http://robot.work/api/v1/robot/{id}");
 
     let params = {
-            "id": "0Mt4AF8xGBLW4Ely",
+            "id": "0adz2AUcnzUA9d0U",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -2268,10 +2268,10 @@ let headers = {
 }
 
 let body = {
-    "name": "479u855TJMoVxy30",
-    "speed": 57641541.5813357,
-    "weight": 577.0301501,
-    "power": 112496434.4
+    "name": "I9If9WCGIKJQzioQ",
+    "speed": 2057.660182269,
+    "weight": 317021.5640263,
+    "power": 7418278.50034548
 }
 
 fetch(url, {
@@ -2434,7 +2434,7 @@ fetch(url, {
 curl -X POST "http://robot.work/api/v1/robot-bulk" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"file":"fNuFKzP3FZVz2fwp"}'
+    -d '{"file":"F3mzBE9Lx6dn0qez"}'
 
 ```
 
@@ -2448,7 +2448,7 @@ let headers = {
 }
 
 let body = {
-    "file": "fNuFKzP3FZVz2fwp"
+    "file": "F3mzBE9Lx6dn0qez"
 }
 
 fetch(url, {
@@ -2527,7 +2527,7 @@ curl -X GET -G "http://robot.work/api/v1/fight-robots" \
 const url = new URL("http://robot.work/api/v1/fight-robots");
 
     let params = {
-            "id": "WVosLmXnqxxT4qYc",
+            "id": "ayWeGvO4WWpIAC3T",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -2628,7 +2628,7 @@ Parameter | Status | Description
 curl -X POST "http://robot.work/api/v1/start-fight" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"contestant_robot_id":13,"opponent_robot_id":11}'
+    -d '{"contestant_robot_id":19,"opponent_robot_id":7}'
 
 ```
 
@@ -2642,8 +2642,8 @@ let headers = {
 }
 
 let body = {
-    "contestant_robot_id": 13,
-    "opponent_robot_id": 11
+    "contestant_robot_id": 19,
+    "opponent_robot_id": 7
 }
 
 fetch(url, {
