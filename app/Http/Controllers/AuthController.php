@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -22,9 +23,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Get a JWT via given credentials
+     * Login and get JWT via given credentials
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @bodyParam email string required The email of the User.
      * @bodyParam password string required The password of the User.
@@ -46,7 +47,7 @@ class AuthController extends Controller
      *    "message": "The given data was invalid"
      * }
      */
-    public function login()
+    public function login() : Response
     {
         $credentials = request(['email', 'password']);
 
@@ -61,7 +62,7 @@ class AuthController extends Controller
     /**
      * Get the authenticated User
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @response 200 {
      *  "id": 1,
@@ -75,15 +76,15 @@ class AuthController extends Controller
      *    "message": "Unauthenticated"
      * }
      */
-    public function me()
+    public function me() : Response
     {
         return response()->json(auth('api')->user());
     }
 
     /**
-     * Log the user out (Invalidate the token).
+     * Log the user out (Invalidate the token)
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @response 200 {
      *  "message": "Successfully logged out"
@@ -92,7 +93,7 @@ class AuthController extends Controller
      *    "message": "Unauthenticated"
      * }
      */
-    public function logout()
+    public function logout() : Response
     {
         auth('api')->logout();
 
@@ -102,7 +103,7 @@ class AuthController extends Controller
     /**
      * Refresh a token
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @response 200 {
      *    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
@@ -121,7 +122,7 @@ class AuthController extends Controller
      *    "message": "The given data was invalid"
      * }
      */
-    public function refresh()
+    public function refresh() : Response
     {
         return $this->respondWithToken(auth()->refresh());
     }
@@ -131,9 +132,9 @@ class AuthController extends Controller
      *
      * @param  string $token
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken(string $token) : Response
     {
         return response()->json([
             'access_token' => $token,
@@ -149,10 +150,10 @@ class AuthController extends Controller
     }
 
     /**
-     * Register a User
+     * Register an User
      * @param RegisterRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @response 200 {
      *  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZ2lzdGVyIiwiaWF0Ij..."
@@ -161,7 +162,7 @@ class AuthController extends Controller
      *    "message": "The given data was invalid"
      * }
      */
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request) : Response
     {
         $user =  User::create([
             'name' => $request->input('name'),

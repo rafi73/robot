@@ -22,7 +22,7 @@ Welcome to the generated API reference.
 
 #general
 <!-- START_2e1c96dcffcfe7e0eb58d6408f1d619e -->
-## Register a User
+## Register an User
 
 > Example request:
 
@@ -31,7 +31,7 @@ curl -X POST "http://robot.uh-oh.jp/api/auth/register" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"JYvwKs4NH6m9nwrz","email":"pUQpxDNTBevXejhc","password":"DMwpcBlLPd6bIQqW","password_confirmation":"gzyvmXzdWbxKxMrr"}'
+    -d '{"name":"WjmY6XUjV9joJPio","email":"rYGroookFyCx1ILW","password":"7yUvuBLM0VYFcw5E","password_confirmation":"LhUIMHOB6p8ZJd1M"}'
 
 ```
 
@@ -45,10 +45,10 @@ let headers = {
 }
 
 let body = {
-    "name": "JYvwKs4NH6m9nwrz",
-    "email": "pUQpxDNTBevXejhc",
-    "password": "DMwpcBlLPd6bIQqW",
-    "password_confirmation": "gzyvmXzdWbxKxMrr"
+    "name": "WjmY6XUjV9joJPio",
+    "email": "rYGroookFyCx1ILW",
+    "password": "7yUvuBLM0VYFcw5E",
+    "password_confirmation": "LhUIMHOB6p8ZJd1M"
 }
 
 fetch(url, {
@@ -90,7 +90,7 @@ Parameter | Type | Status | Description
 <!-- END_2e1c96dcffcfe7e0eb58d6408f1d619e -->
 
 <!-- START_a925a8d22b3615f12fca79456d286859 -->
-## Get a JWT via given credentials
+## Login and get JWT via given credentials
 
 > Example request:
 
@@ -99,7 +99,7 @@ curl -X POST "http://robot.uh-oh.jp/api/auth/login" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"email":"KRuxZxFsHfzSUy3l","password":"LSRzNf7Hr14SRX1J"}'
+    -d '{"email":"7pczO2xgTl4n1ule","password":"hC3s6MaN7wymGFHT"}'
 
 ```
 
@@ -113,8 +113,8 @@ let headers = {
 }
 
 let body = {
-    "email": "KRuxZxFsHfzSUy3l",
-    "password": "LSRzNf7Hr14SRX1J"
+    "email": "7pczO2xgTl4n1ule",
+    "password": "hC3s6MaN7wymGFHT"
 }
 
 fetch(url, {
@@ -164,7 +164,7 @@ Parameter | Type | Status | Description
 <!-- END_a925a8d22b3615f12fca79456d286859 -->
 
 <!-- START_19ff1b6f8ce19d3c444e9b518e8f7160 -->
-## Log the user out (Invalidate the token).
+## Log the user out (Invalidate the token)
 
 > Example request:
 
@@ -437,7 +437,7 @@ curl -X GET -G "http://robot.uh-oh.jp/api/v1/robot/{id}" \
 const url = new URL("http://robot.uh-oh.jp/api/v1/robot/{id}");
 
     let params = {
-            "id": "W50cUIu7nTwkk0yT",
+            "id": "ATbwAM4efhmhIeVR",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -522,7 +522,7 @@ curl -X POST "http://robot.uh-oh.jp/api/v1/robot" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"l1fDezVsztkeOmCq","speed":27387.3369063,"weight":2557466.4367,"power":462896.505040884}'
+    -d '{"name":"9qJ1pXASJxIDlYDf","speed":5701.356465,"weight":3.937915915,"power":39.389189763}'
 
 ```
 
@@ -536,10 +536,10 @@ let headers = {
 }
 
 let body = {
-    "name": "l1fDezVsztkeOmCq",
-    "speed": 27387.3369063,
-    "weight": 2557466.4367,
-    "power": 462896.505040884
+    "name": "9qJ1pXASJxIDlYDf",
+    "speed": 5701.356465,
+    "weight": 3.937915915,
+    "power": 39.389189763
 }
 
 fetch(url, {
@@ -618,7 +618,7 @@ curl -X PUT "http://robot.uh-oh.jp/api/v1/robot/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"bJAbAtjqI2tEYgkL","speed":1534796.94,"weight":6953.381562,"power":82853.963542}'
+    -d '{"name":"zlLBBnIjPCUXHeIZ","speed":20.92,"weight":4239985.508726,"power":6676.615404504}'
 
 ```
 
@@ -626,7 +626,7 @@ curl -X PUT "http://robot.uh-oh.jp/api/v1/robot/{id}" \
 const url = new URL("http://robot.uh-oh.jp/api/v1/robot/{id}");
 
     let params = {
-            "id": "Msfdr9IuYNk38eVj",
+            "id": "WZgo8FpyTt1wGrQk",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -637,10 +637,10 @@ let headers = {
 }
 
 let body = {
-    "name": "bJAbAtjqI2tEYgkL",
-    "speed": 1534796.94,
-    "weight": 6953.381562,
-    "power": 82853.963542
+    "name": "zlLBBnIjPCUXHeIZ",
+    "speed": 20.92,
+    "weight": 4239985.508726,
+    "power": 6676.615404504
 }
 
 fetch(url, {
@@ -805,7 +805,7 @@ curl -X POST "http://robot.uh-oh.jp/api/v1/robot-bulk" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"file":"5oFXzJEjRSuyo762"}'
+    -d '{"file":"ZYqSPDdNnbOHlBGz"}'
 
 ```
 
@@ -819,7 +819,7 @@ let headers = {
 }
 
 let body = {
-    "file": "5oFXzJEjRSuyo762"
+    "file": "ZYqSPDdNnbOHlBGz"
 }
 
 fetch(url, {
@@ -996,7 +996,7 @@ curl -X POST "http://robot.uh-oh.jp/api/v1/start-fight" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"contestant_robot_id":3,"opponent_robot_id":9}'
+    -d '{"contestant_robot_id":1,"opponent_robot_id":16}'
 
 ```
 
@@ -1010,8 +1010,8 @@ let headers = {
 }
 
 let body = {
-    "contestant_robot_id": 3,
-    "opponent_robot_id": 9
+    "contestant_robot_id": 1,
+    "opponent_robot_id": 16
 }
 
 fetch(url, {

@@ -50,7 +50,7 @@
 <!-- END_INFO -->
 <h1>general</h1>
 <!-- START_2e1c96dcffcfe7e0eb58d6408f1d619e -->
-<h2>Register a User</h2>
+<h2>Register an User</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -58,7 +58,7 @@
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"JYvwKs4NH6m9nwrz","email":"pUQpxDNTBevXejhc","password":"DMwpcBlLPd6bIQqW","password_confirmation":"gzyvmXzdWbxKxMrr"}'
+    -d '{"name":"WjmY6XUjV9joJPio","email":"rYGroookFyCx1ILW","password":"7yUvuBLM0VYFcw5E","password_confirmation":"LhUIMHOB6p8ZJd1M"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.uh-oh.jp/api/auth/register");
 
@@ -69,10 +69,10 @@ let headers = {
 }
 
 let body = {
-    "name": "JYvwKs4NH6m9nwrz",
-    "email": "pUQpxDNTBevXejhc",
-    "password": "DMwpcBlLPd6bIQqW",
-    "password_confirmation": "gzyvmXzdWbxKxMrr"
+    "name": "WjmY6XUjV9joJPio",
+    "email": "rYGroookFyCx1ILW",
+    "password": "7yUvuBLM0VYFcw5E",
+    "password_confirmation": "LhUIMHOB6p8ZJd1M"
 }
 
 fetch(url, {
@@ -135,7 +135,7 @@ fetch(url, {
 </table>
 <!-- END_2e1c96dcffcfe7e0eb58d6408f1d619e -->
 <!-- START_a925a8d22b3615f12fca79456d286859 -->
-<h2>Get a JWT via given credentials</h2>
+<h2>Login and get JWT via given credentials</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -143,7 +143,7 @@ fetch(url, {
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"email":"KRuxZxFsHfzSUy3l","password":"LSRzNf7Hr14SRX1J"}'
+    -d '{"email":"7pczO2xgTl4n1ule","password":"hC3s6MaN7wymGFHT"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.uh-oh.jp/api/auth/login");
 
@@ -154,8 +154,8 @@ let headers = {
 }
 
 let body = {
-    "email": "KRuxZxFsHfzSUy3l",
-    "password": "LSRzNf7Hr14SRX1J"
+    "email": "7pczO2xgTl4n1ule",
+    "password": "hC3s6MaN7wymGFHT"
 }
 
 fetch(url, {
@@ -216,7 +216,7 @@ fetch(url, {
 </table>
 <!-- END_a925a8d22b3615f12fca79456d286859 -->
 <!-- START_19ff1b6f8ce19d3c444e9b518e8f7160 -->
-<h2>Log the user out (Invalidate the token).</h2>
+<h2>Log the user out (Invalidate the token)</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -435,7 +435,7 @@ fetch(url, {
 <pre><code class="language-javascript">const url = new URL("http://robot.uh-oh.jp/api/v1/robot/{id}");
 
     let params = {
-            "id": "W50cUIu7nTwkk0yT",
+            "id": "ATbwAM4efhmhIeVR",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -519,7 +519,7 @@ fetch(url, {
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"l1fDezVsztkeOmCq","speed":27387.3369063,"weight":2557466.4367,"power":462896.505040884}'
+    -d '{"name":"9qJ1pXASJxIDlYDf","speed":5701.356465,"weight":3.937915915,"power":39.389189763}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.uh-oh.jp/api/v1/robot");
 
@@ -530,10 +530,10 @@ let headers = {
 }
 
 let body = {
-    "name": "l1fDezVsztkeOmCq",
-    "speed": 27387.3369063,
-    "weight": 2557466.4367,
-    "power": 462896.505040884
+    "name": "9qJ1pXASJxIDlYDf",
+    "speed": 5701.356465,
+    "weight": 3.937915915,
+    "power": 39.389189763
 }
 
 fetch(url, {
@@ -629,12 +629,12 @@ fetch(url, {
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"bJAbAtjqI2tEYgkL","speed":1534796.94,"weight":6953.381562,"power":82853.963542}'
+    -d '{"name":"zlLBBnIjPCUXHeIZ","speed":20.92,"weight":4239985.508726,"power":6676.615404504}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.uh-oh.jp/api/v1/robot/{id}");
 
     let params = {
-            "id": "Msfdr9IuYNk38eVj",
+            "id": "WZgo8FpyTt1wGrQk",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -645,10 +645,10 @@ let headers = {
 }
 
 let body = {
-    "name": "bJAbAtjqI2tEYgkL",
-    "speed": 1534796.94,
-    "weight": 6953.381562,
-    "power": 82853.963542
+    "name": "zlLBBnIjPCUXHeIZ",
+    "speed": 20.92,
+    "weight": 4239985.508726,
+    "power": 6676.615404504
 }
 
 fetch(url, {
@@ -825,7 +825,7 @@ fetch(url, {
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"file":"5oFXzJEjRSuyo762"}'
+    -d '{"file":"ZYqSPDdNnbOHlBGz"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.uh-oh.jp/api/v1/robot-bulk");
 
@@ -836,7 +836,7 @@ let headers = {
 }
 
 let body = {
-    "file": "5oFXzJEjRSuyo762"
+    "file": "ZYqSPDdNnbOHlBGz"
 }
 
 fetch(url, {
@@ -999,7 +999,7 @@ fetch(url, {
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"contestant_robot_id":3,"opponent_robot_id":9}'
+    -d '{"contestant_robot_id":1,"opponent_robot_id":16}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://robot.uh-oh.jp/api/v1/start-fight");
 
@@ -1010,8 +1010,8 @@ let headers = {
 }
 
 let body = {
-    "contestant_robot_id": 3,
-    "opponent_robot_id": 9
+    "contestant_robot_id": 1,
+    "opponent_robot_id": 16
 }
 
 fetch(url, {
