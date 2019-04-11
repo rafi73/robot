@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
 use App\Exceptions\RobotService\RobotNotFoundException;
 use App\Exceptions\FightService\RobotFightConflictException;
+use App\Contracts\FightInterface;
+use App\Helpers\FightValidationManager;
+use App\Helpers\FightRobotsStatus;
+use App\Helpers\FightRobotsOwnerStatus;
+use App\Helpers\FightStatusDailyOpponentLimit;
+use App\Helpers\FightStatusDailyLimit;
 
 
 class FightService
@@ -27,38 +33,16 @@ class FightService
      */
     public function startFight(array $request) : Fight
     {
-        if($request['contestant_robot_id'] == $request['opponent_robot_id'])
-        {
-            throw new RobotFightConflictException(__('robot.message_robot_duplicate'));
-        }
+        $fight = null;
+        $manager = new FightValidationManager();
 
-        $ownRobot = Robot::find($request['contestant_robot_id']);
-        if(!$ownRobot)
-        {
-            throw new RobotNotFoundException(__('robot.message_robot_not_found', [ 'robotId' => $request['contestant_robot_id']]));
-        }
-
-        $otherRobot = Robot::find($request['opponent_robot_id']);
-        if(!$otherRobot)
-        {
-            throw new RobotNotFoundException(__('robot.message_robot_not_found', [ 'robotId' => $request['opponent_robot_id']]));
-        }
-
-        if($ownRobot->user_id != Auth::id() && $otherRobot->user_id != Auth::id())
-        {
-            throw new RobotFightConflictException(__('robot.message_wrong_robots'));
-        }
-
-        if($ownRobot->user_id == $otherRobot->user_id)
-        {
-            throw new RobotFightConflictException(__('robot.message_robot_same_owner'));
-        }
-
-        $fight = NULL;
-        if($this->checkDailyOpponent($request) && $this->checkDailyMaxAbility($request))
+        if( $manager->check(new FightRobotsStatus($request)) &&
+            $manager->check(new FightRobotsOwnerStatus($request)) &&
+            $manager->check(new FightStatusDailyOpponentLimit($request)) &&
+            $manager->check(new FightStatusDailyLimit($request)))
         {
             $request['created_by'] = $request['updated_by'] = $request['user_id'] = Auth::id();
-            $winnerRobotId = $this->calculateFightResult($ownRobot, $otherRobot);
+            $winnerRobotId = $this->calculateFightResult($request);
             
             DB::beginTransaction();
             try 
@@ -80,62 +64,7 @@ class FightService
                 throw new RobotFightConflictException($exception->getMessage());
             }
         }
-
         return $fight;
-    }
-
-    /**
-     * Checking for daily fight status between contestant and opponent
-     *
-     * @param array $robotIds
-     *
-     * @throws RobotFightConflictException
-     * @return bool
-     */
-    public function checkDailyOpponent(array $robotIds) : bool
-    {
-        $fightDetails = FightDetail::where('date', today()) 
-                                ->whereIn('robot_id' , $robotIds)
-                                ->groupBy('fight_id')
-                                ->selectRaw('COUNT(*) as duplicate')
-                                ->havingRaw('duplicate = 2')
-                                ->exists();
-        if($fightDetails)
-        {
-            throw new RobotFightConflictException(__('robot.message_robot_daily_fight_limit'));
-        }
-
-        return true;
-    }
-
-    /**
-     * Checking for daily max fight status of a Robot
-     *
-     * @param array $robotIds
-     * 
-     * @throws RobotFightConflictException
-     * @return bool
-     */
-    public function checkDailyMaxAbility(array $robotIds) : bool
-    {
-        $fightDetails = FightDetail::where('date', today())
-                                ->whereIn('robot_id' , $robotIds)
-                                ->groupBy('robot_id')
-                                ->selectRaw('COUNT(*) as fights, robot_id')
-                                ->havingRaw('fights >= 5')
-                                ->get();
-
-        if(count($fightDetails) == 1)
-        {
-            throw new RobotFightConflictException(__('robot.message_robot_daily_fight_limit_other', [ 'robotId' => $fightDetails[0]['robot_id']]));
-        }
-            
-        if(count($fightDetails) > 1)
-        {
-            throw new RobotFightConflictException(__('robot.message_robot_daily_fight_limit_both'));
-        }
-
-        return true;
     }
 
     /**
@@ -146,8 +75,20 @@ class FightService
      *
      * @return int
      */
-    public function calculateFightResult(Robot $ownRobot, Robot $otherRobot) : int
+    public function calculateFightResult(array $request) : int
     {
+        $ownRobot = Robot::find($request['contestant_robot_id']);
+        if (!$ownRobot)
+        {
+            throw new RobotNotFoundException(__('robot.message_robot_not_found', [ 'robotId' => $this->robotIds['contestant_robot_id']]));
+        }
+
+        $otherRobot = Robot::find($request['opponent_robot_id']);
+        if (!$otherRobot)
+        {
+            throw new RobotNotFoundException(__('robot.message_robot_not_found', [ 'robotId' => $this->robotIds['opponent_robot_id']]));
+        }
+
         $ownRobot->point = $otherRobot->point = 0;
         $ownRobot->power > $otherRobot->power ? $ownRobot->point = $ownRobot->power * 10 :  $otherRobot->point = $otherRobot->power * 10;
         $ownRobot->speed > $otherRobot->speed ? $ownRobot->point = $ownRobot->speed * 7 : $otherRobot->point = $otherRobot->speed * 7;

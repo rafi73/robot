@@ -6,6 +6,7 @@ use Hash;
 use JWTAuth;
 use App\User;
 use Illuminate\Http\Request;
+use App\Services\AuthService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,12 +14,20 @@ use Symfony\Component\HttpFoundation\Response;
 class AuthController extends Controller
 {
     /**
+     * The robot Service instance.
+     *
+     * @var AuthService
+     */
+    protected $authService;
+    
+    /**
      * Create a new AuthController instance
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AuthService $authService = null)
     {
+        $this->authService = $authService;
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
@@ -31,7 +40,7 @@ class AuthController extends Controller
      * @bodyParam password string required The password of the User.
      * 
      * @response 200 {
-     *    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
+     *    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQi...",
      *  "user": {
      *  "id": 1,
      *   "name": "Antoher Person",
@@ -106,7 +115,7 @@ class AuthController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @response 200 {
-     *    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
+     *    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGF1dGhcL3JlZnJlc2giLCJp...",
      *  "user": {
      *  "id": 1,
      *   "name": "Antoher Person",
@@ -164,13 +173,7 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request) : Response
     {
-        $user =  User::create([
-            'name' => $request->input('name'),
-            'email' => strtolower($request->input('email')),
-            'password' => Hash::make($request->input('password')),
-        ]);
-
-        $token = JWTAuth::fromUser($user);
-        return response()->json(compact('token'));
+        $token = $this->authService->register($request->all());
+        return response()->json(['token' => $token], 201);
     }
 }

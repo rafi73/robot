@@ -21,7 +21,7 @@ class AuthTest extends TestCase
             'password_confirmation' => 'secret1234',
         ];
         $response = $this->json('POST', '/api/auth/register', $data);
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         $this->assertArrayHasKey('token', $response->json());
         User::where('email','test@gmail.com')->delete();
     }
