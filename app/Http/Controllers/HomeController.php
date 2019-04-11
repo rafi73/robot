@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\HomeService;
 use App\Http\Resources\TopFightResource;
 use App\Http\Resources\LatestFightResource;
-
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
 {
@@ -30,7 +30,7 @@ class HomeController extends Controller
     /**
      * Display Home Data
      *
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @response 200 {
      *  "latest": [
@@ -57,7 +57,7 @@ class HomeController extends Controller
      *  ]
      * }
      */
-    public function getHomeData()
+    public function getHomeData() : Response
     {
         return response()->json(['latest' => LatestFightResource::collection($this->homeService->getLatestFightResult()), 
                                     'top' => TopFightResource::collection($this->homeService->getTopRobots())], 200);

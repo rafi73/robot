@@ -7,6 +7,10 @@ use App\Services\RobotService;
 use App\Http\Requests\RobotRequest;
 use App\Http\Resources\RobotResource;
 use App\Http\Requests\RobotBulkRequest;
+use Illuminate\Routing\ResponseFactory;
+use Illuminate\Database\Eloquent\Collection;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 
 class RobotController extends Controller
@@ -31,7 +35,7 @@ class RobotController extends Controller
     /**
      * Display a list of all Robots
      *
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
      * 
      * @authenticated
      * @response 200 {
@@ -79,7 +83,7 @@ class RobotController extends Controller
      *    "message": "User not found"
      * }
      */
-    public function index()
+    public function index() : ResourceCollection
     {
         $robots = $this->robotService->getAll();
         return RobotResource::collection($robots);
@@ -90,7 +94,7 @@ class RobotController extends Controller
      * 
      * @param RobotRequest $request
      *
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return \App\Http\Resources\RobotResource
      * 
      * @authenticated
      * @response 201 {
@@ -117,7 +121,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function store(RobotRequest $request)
+    public function store(RobotRequest $request) : RobotResource
     {
         $robot = $this->robotService->create($request->all()); 
         return new RobotResource($robot);
@@ -128,7 +132,7 @@ class RobotController extends Controller
      * 
      * @param int $id
      *
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return \App\Http\Resources\RobotResource
      * 
      * @authenticated
      * @queryParam id required Robot id
@@ -154,7 +158,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function show(int $id)
+    public function show(int $id) : RobotResource
     {
         $robot = $this->robotService->find($id);
         return new RobotResource($robot);
@@ -164,9 +168,9 @@ class RobotController extends Controller
      * Update a Robot
      * 
      * @param RobotRequest $request
-     * @param int $request
+     * @param int $id
      *
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return \App\Http\Resources\RobotResource
      * 
      * @authenticated
      * @queryParam id required Robot id
@@ -197,7 +201,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function update(RobotRequest $request, int $id)
+    public function update(RobotRequest $request, int $id) : RobotResource
     {
         $robot = $this->robotService->update($request->all(), $id);
         return new RobotResource($robot);
@@ -208,7 +212,7 @@ class RobotController extends Controller
      * 
      * @param int $id
      *
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @authenticated
      * @response 204 null,
@@ -228,7 +232,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function delete(int $id)
+    public function delete(int $id) : Response
     {
         if($this->robotService->delete($id))
         {
@@ -241,7 +245,7 @@ class RobotController extends Controller
      * 
      * @param RobotBulkRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      * 
      * @authenticated
      * @response 200 {
@@ -266,7 +270,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function storeBulk(RobotBulkRequest $request)
+    public function storeBulk(RobotBulkRequest $request) : Response
     {
         if($this->robotService->createBulk($request->all()))
         {
@@ -277,7 +281,7 @@ class RobotController extends Controller
     /**
      * Display list of self owned and others Robots accourding to User
      * 
-     * @return  Illuminate\Http\Resources
+     * @return  \Symfony\Component\HttpFoundation\Response
      * 
      * @authenticated
      * @response 200 {
@@ -324,7 +328,7 @@ class RobotController extends Controller
      *    "message": ""User not found"
      * }
      */
-    public function getFightRobots()
+    public function getFightRobots() : Response
     {
         $ownRobots = $this->robotService->getOwnRobots();
         $otherRobots = $this->robotService->getOtherRobots();

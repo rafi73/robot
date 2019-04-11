@@ -34,7 +34,7 @@ class FightController extends Controller
      *
      * @param FightRequest $request
      *
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return \App\Http\Resources\FightResource
      * 
      * @authenticated
      * @response 201 {
@@ -74,7 +74,7 @@ class FightController extends Controller
      *    "message": "Token has Expired"
      * }
      */
-    public function startFight(FightRequest $request)
+    public function startFight(FightRequest $request) : FightResource
     {   
         $robotsForFight = $this->fightService->startFight($request->all());
         return new FightResource($robotsForFight);

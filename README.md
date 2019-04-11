@@ -35,11 +35,6 @@
     |--------------|----------------------------------------|
     | Import CSV | http://robot.uh-oh.jp/api/v1/robot-bulk|
 
-    In postman Simply  use the `form-data` and fill up the key as `file` and you will see a option `text/file` as value. Please choose       `file` and `browse` your desired `csv` file. Postman should looks like the following:
-    
-    | KEY | VALUE |
-    | ------ | ------ |
-    | file | robot.csv |
     ##### Following CSV structure is needed for the action
 
     | Name | Weight | Power | Speed |
