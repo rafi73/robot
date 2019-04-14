@@ -10,8 +10,7 @@ class FightValidationManager
      * Start Robot fight.
      *
      * @param FightInterface $robotIds
-     *
-     * @throws RobotFightConflictException
+     * @throws \App\Exceptions\FightService\RobotFightConflictException
      * @return bool
      */
     public function check(FightInterface $fightInterface)

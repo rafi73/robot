@@ -47,7 +47,7 @@ class FightTest extends TestCase
 
         # Checking for same Robot should not fight to itself 
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/v1/start-fight', ['contestant_robot_id' => $ownRobot->id, 'opponent_robot_id' => $ownRobot->id]);
-        $response->assertStatus(500);
+        $response->assertStatus(409);
         
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/v1/start-fight', ['contestant_robot_id' => $ownRobot->id, 'opponent_robot_id' => $otherRobot->id]);
         $response->assertStatus(201);
@@ -55,7 +55,7 @@ class FightTest extends TestCase
 
         # Checking for 2 Robots should not fight twice a day 
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/v1/start-fight', ['contestant_robot_id' => $ownRobot->id, 'opponent_robot_id' => $otherRobot->id]);
-        $response->assertStatus(500);
+        $response->assertStatus(409);
 
         Fight::query()->truncate();
         FightDetail::query()->truncate();
@@ -76,6 +76,6 @@ class FightTest extends TestCase
 
         $ownRobot = factory(Robot::class)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id]);
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/v1/start-fight', ['contestant_robot_id' => $ownRobot->id, 'opponent_robot_id' => $otherRobot->id]);
-        $response->assertStatus(500);
+        $response->assertStatus(409);
     }
 }

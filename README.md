@@ -4,6 +4,7 @@
 ##### Detailed documentation is available @ http://robot.uh-oh.jp/docs 
 ##### POSTMAN Collection is available @ http://robot.uh-oh.jp/docs/collection.json
 
+PSR standard coding
 
 ###### * To use, Open Postman > File > Import > Import From Link > use "http://robot.uh-oh.jp/docs/collection.json" > Import
 

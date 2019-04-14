@@ -15,8 +15,8 @@ class TopFightResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'fights' => $this->fights,
-            'wins' => $this->wins,
+            'fights' => (int) $this->fights,
+            'wins' => (int) $this->wins,
             'looses' => ($this->fights - $this->wins),
             'robot_name' => $this->robot->name
         ];

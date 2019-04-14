@@ -11,9 +11,10 @@ use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Exceptions\RobotService\RobotNotFoundException;
+use App\Exceptions\RobotService\RobotBulkDataErrorException;
 use App\Exceptions\RobotService\RobotBulkStructureException;
 use App\Exceptions\RobotService\RobotOwnerMismatchedException;
-use App\Exceptions\RobotService\RobotBulkDataErrorException;
+
 
 
 class RobotService implements RepositoryInterface
@@ -21,7 +22,7 @@ class RobotService implements RepositoryInterface
     /**
      * Get all Robots.
      *
-     * @return LengthAwarePaginator
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getAll() : LengthAwarePaginator
     {
@@ -32,8 +33,7 @@ class RobotService implements RepositoryInterface
      * Create & store a new robot
      *
      * @param array $request
-     *
-     * @return static
+     * @return \App\Robot
      */
     public function create(array $request) : Robot
     {
@@ -46,7 +46,6 @@ class RobotService implements RepositoryInterface
      * Delete a Robot by id
      *
      * @param int $id
-     *
      * @return bool
      */
     public function delete(int $id) : bool
@@ -69,8 +68,7 @@ class RobotService implements RepositoryInterface
      *
      * @param array $request
      * @param int $id
-     *
-     * @return Robot
+     * @return \App\Robot
      */
     public function update(array $request, int $id) : Robot
     {
@@ -91,8 +89,7 @@ class RobotService implements RepositoryInterface
      * Find a Robot by id
      *
      * @param int $id
-     *
-     * @return Robot
+     * @return \App\Robot
      */
     public function find(int $id) : Robot
     {
@@ -108,7 +105,6 @@ class RobotService implements RepositoryInterface
      * Create & store robots from CSV
      *
      * @param array $request
-     *
      * @return bool
      */
     public function createBulk(array $request) : bool
@@ -147,7 +143,6 @@ class RobotService implements RepositoryInterface
 
     /**
      * Getting own Robots
-     *
      *
      * @return Illuminate\Database\Eloquent\Collection
      */

@@ -16,7 +16,7 @@ toc_footers:
 # Info
 
 Welcome to the generated API reference.
-[Get Postman Collection](http://robot.uh-oh.jp/docs/collection.json)
+[Get Postman Collection](http://robot.work/docs/collection.json)
 
 <!-- END_INFO -->
 
@@ -27,16 +27,16 @@ Welcome to the generated API reference.
 > Example request:
 
 ```bash
-curl -X POST "http://robot.uh-oh.jp/api/auth/register" \
+curl -X POST "http://robot.work/api/auth/register" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"WjmY6XUjV9joJPio","email":"rYGroookFyCx1ILW","password":"7yUvuBLM0VYFcw5E","password_confirmation":"LhUIMHOB6p8ZJd1M"}'
+    -d '{"name":"iEztM2QkZU3Wdewd","email":"ObZDZiIKqNnDd0SQ","password":"XhE27B02Y2kCaNb5","password_confirmation":"E7kbsYYqDcfeC20J"}'
 
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/auth/register");
+const url = new URL("http://robot.work/api/auth/register");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -45,10 +45,10 @@ let headers = {
 }
 
 let body = {
-    "name": "WjmY6XUjV9joJPio",
-    "email": "rYGroookFyCx1ILW",
-    "password": "7yUvuBLM0VYFcw5E",
-    "password_confirmation": "LhUIMHOB6p8ZJd1M"
+    "name": "iEztM2QkZU3Wdewd",
+    "email": "ObZDZiIKqNnDd0SQ",
+    "password": "XhE27B02Y2kCaNb5",
+    "password_confirmation": "E7kbsYYqDcfeC20J"
 }
 
 fetch(url, {
@@ -95,16 +95,16 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X POST "http://robot.uh-oh.jp/api/auth/login" \
+curl -X POST "http://robot.work/api/auth/login" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"email":"7pczO2xgTl4n1ule","password":"hC3s6MaN7wymGFHT"}'
+    -d '{"email":"oKStroE7L8jxaXw1","password":"U7LXSN0lVgsbltl7"}'
 
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/auth/login");
+const url = new URL("http://robot.work/api/auth/login");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -113,8 +113,8 @@ let headers = {
 }
 
 let body = {
-    "email": "7pczO2xgTl4n1ule",
-    "password": "hC3s6MaN7wymGFHT"
+    "email": "oKStroE7L8jxaXw1",
+    "password": "U7LXSN0lVgsbltl7"
 }
 
 fetch(url, {
@@ -130,7 +130,7 @@ fetch(url, {
 
 ```json
 {
-    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQi...",
     "user": {
         "id": 1,
         "name": "Antoher Person",
@@ -169,13 +169,13 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X POST "http://robot.uh-oh.jp/api/auth/logout" \
+curl -X POST "http://robot.work/api/auth/logout" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/auth/logout");
+const url = new URL("http://robot.work/api/auth/logout");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -218,13 +218,13 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X POST "http://robot.uh-oh.jp/api/auth/refresh" \
+curl -X POST "http://robot.work/api/auth/refresh" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/auth/refresh");
+const url = new URL("http://robot.work/api/auth/refresh");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -244,7 +244,7 @@ fetch(url, {
 
 ```json
 {
-    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGlcL2F1dGhcL3JlZnJlc2giLCJpYXQiOjE1NTQ4ODc1MDQsImV4cCI6MTU1NTEwNzM5NywibmJmIjoxNTU0ODkxMzk3LCJqdGkiOiJaTDdOeVluQ1VUbG5NeTNVIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.pWusYGQ32O0fzX1C0c-ZlqugFbA291-wi1DJyzx18BM",
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yb2JvdC53b3JrXC9hcGF1dGhcL3JlZnJlc2giLCJp...",
     "user": {
         "id": 1,
         "name": "Antoher Person",
@@ -277,13 +277,13 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X POST "http://robot.uh-oh.jp/api/auth/me" \
+curl -X POST "http://robot.work/api/auth/me" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/auth/me");
+const url = new URL("http://robot.work/api/auth/me");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -332,13 +332,13 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X GET -G "http://robot.uh-oh.jp/api/v1/robots" \
+curl -X GET -G "http://robot.work/api/v1/robots" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/robots");
+const url = new URL("http://robot.work/api/v1/robots");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -428,16 +428,16 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X GET -G "http://robot.uh-oh.jp/api/v1/robot/{id}" \
+curl -X GET -G "http://robot.work/api/v1/robot/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/robot/{id}");
+const url = new URL("http://robot.work/api/v1/robot/{id}");
 
     let params = {
-            "id": "ATbwAM4efhmhIeVR",
+            "id": "QKxvBSpY8MfVgATD",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -518,16 +518,16 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X POST "http://robot.uh-oh.jp/api/v1/robot" \
+curl -X POST "http://robot.work/api/v1/robot" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"9qJ1pXASJxIDlYDf","speed":5701.356465,"weight":3.937915915,"power":39.389189763}'
+    -d '{"name":"CtSd7IaNfr13HCN2","speed":43265632.49497,"weight":138999.176,"power":26278.870098}'
 
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/robot");
+const url = new URL("http://robot.work/api/v1/robot");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -536,10 +536,10 @@ let headers = {
 }
 
 let body = {
-    "name": "9qJ1pXASJxIDlYDf",
-    "speed": 5701.356465,
-    "weight": 3.937915915,
-    "power": 39.389189763
+    "name": "CtSd7IaNfr13HCN2",
+    "speed": 43265632.49497,
+    "weight": 138999.176,
+    "power": 26278.870098
 }
 
 fetch(url, {
@@ -614,19 +614,19 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X PUT "http://robot.uh-oh.jp/api/v1/robot/{id}" \
+curl -X PUT "http://robot.work/api/v1/robot/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"zlLBBnIjPCUXHeIZ","speed":20.92,"weight":4239985.508726,"power":6676.615404504}'
+    -d '{"name":"sZ5Vf34Wl1MUeORa","speed":187321.01653083,"weight":206.594810477,"power":317936.37348288}'
 
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/robot/{id}");
+const url = new URL("http://robot.work/api/v1/robot/{id}");
 
     let params = {
-            "id": "WZgo8FpyTt1wGrQk",
+            "id": "cX9KGBTeuCDQqiJr",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -637,10 +637,10 @@ let headers = {
 }
 
 let body = {
-    "name": "zlLBBnIjPCUXHeIZ",
-    "speed": 20.92,
-    "weight": 4239985.508726,
-    "power": 6676.615404504
+    "name": "sZ5Vf34Wl1MUeORa",
+    "speed": 187321.01653083,
+    "weight": 206.594810477,
+    "power": 317936.37348288
 }
 
 fetch(url, {
@@ -727,13 +727,13 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X DELETE "http://robot.uh-oh.jp/api/v1/robot/{id}" \
+curl -X DELETE "http://robot.work/api/v1/robot/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/robot/{id}");
+const url = new URL("http://robot.work/api/v1/robot/{id}");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -801,16 +801,16 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X POST "http://robot.uh-oh.jp/api/v1/robot-bulk" \
+curl -X POST "http://robot.work/api/v1/robot-bulk" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"file":"ZYqSPDdNnbOHlBGz"}'
+    -d '{"file":"qscQho7zCuGXe8FK"}'
 
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/robot-bulk");
+const url = new URL("http://robot.work/api/v1/robot-bulk");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -819,7 +819,7 @@ let headers = {
 }
 
 let body = {
-    "file": "ZYqSPDdNnbOHlBGz"
+    "file": "qscQho7zCuGXe8FK"
 }
 
 fetch(url, {
@@ -895,13 +895,13 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://robot.uh-oh.jp/api/v1/fight-robots" \
+curl -X GET -G "http://robot.work/api/v1/fight-robots" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/fight-robots");
+const url = new URL("http://robot.work/api/v1/fight-robots");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -992,16 +992,16 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X POST "http://robot.uh-oh.jp/api/v1/start-fight" \
+curl -X POST "http://robot.work/api/v1/start-fight" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"contestant_robot_id":1,"opponent_robot_id":16}'
+    -d '{"contestant_robot_id":18,"opponent_robot_id":5}'
 
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/start-fight");
+const url = new URL("http://robot.work/api/v1/start-fight");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -1010,8 +1010,8 @@ let headers = {
 }
 
 let body = {
-    "contestant_robot_id": 1,
-    "opponent_robot_id": 16
+    "contestant_robot_id": 18,
+    "opponent_robot_id": 5
 }
 
 fetch(url, {
@@ -1102,13 +1102,13 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://robot.uh-oh.jp/api/v1/home" \
+curl -X GET -G "http://robot.work/api/v1/home" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"
 ```
 
 ```javascript
-const url = new URL("http://robot.uh-oh.jp/api/v1/home");
+const url = new URL("http://robot.work/api/v1/home");
 
 let headers = {
     "Authorization": "Bearer: {token}",

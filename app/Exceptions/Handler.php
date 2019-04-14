@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,11 +49,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        
-        if ($request->ajax() || $request->wantsJson()) 
+        if($exception instanceof ValidationException && $request->wantsJson() )
+        {
+            return response()->json([ 'error' => $exception->errors()],  422);
+        }
+        if ($request->wantsJson()) 
         {
             //return response()->json([ 'error' => $exception], 422);
-            //return response()->json([ 'error' => $exception->getMessage()], $exception->getCode());
+            return response()->json([ 'error' => $exception->getMessage()], $exception->getCode());
         }
         return parent::render($request, $exception);
     }

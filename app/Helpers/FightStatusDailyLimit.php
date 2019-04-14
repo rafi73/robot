@@ -29,8 +29,7 @@ class FightStatusDailyLimit implements FightInterface
      * Start Robot fight.
      *
      * @param array $robotIds
-     *
-     * @throws RobotFightConflictException
+     * @throws \App\Exceptions\FightService\RobotFightConflictException
      * @return bool
      */
     public function validate() : bool

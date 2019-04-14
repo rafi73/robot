@@ -9,17 +9,17 @@ use App\Fight;
 use Carbon\Carbon;
 use App\FightDetail;
 use Illuminate\Http\Request;
+use App\Contracts\FightInterface;
+use App\Helpers\FightRobotsStatus;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\FightStatusDailyLimit;
+use App\Helpers\FightValidationManager;
+use App\Helpers\FightRobotsOwnerStatus;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Collection;
+use App\Helpers\FightStatusDailyOpponentLimit;
 use App\Exceptions\RobotService\RobotNotFoundException;
 use App\Exceptions\FightService\RobotFightConflictException;
-use App\Contracts\FightInterface;
-use App\Helpers\FightValidationManager;
-use App\Helpers\FightRobotsStatus;
-use App\Helpers\FightRobotsOwnerStatus;
-use App\Helpers\FightStatusDailyOpponentLimit;
-use App\Helpers\FightStatusDailyLimit;
-
 
 class FightService
 {
@@ -27,9 +27,8 @@ class FightService
      * Start Robot fight.
      *
      * @param array $request
-     *
-     * @throws RobotFightConflictException
-     * @return Fight
+     * @throws \App\Exceptions\FightService\RobotFightConflictException
+     * @return \App\Fight
      */
     public function startFight(array $request) : Fight
     {
@@ -61,6 +60,11 @@ class FightService
             catch (Exception $exception) 
             {
                 DB::rollback();
+                $message = 'General system error!, please contact us if the problem persist';
+                if($exception instanceof QueryException)
+                {
+                    $message = 'Temporary issue with database service, please contact us if the problem persist';
+                }
                 throw new RobotFightConflictException($exception->getMessage());
             }
         }
@@ -70,9 +74,7 @@ class FightService
     /**
      * Calculate the fight result based on Robot resource
      *
-     * @param Robot $ownRobot
-     * @param Robot $otherRobot
-     *
+     * @param array $request
      * @return int
      */
     public function calculateFightResult(array $request) : int
@@ -89,11 +91,13 @@ class FightService
             throw new RobotNotFoundException(__('robot.message_robot_not_found', [ 'robotId' => $this->robotIds['opponent_robot_id']]));
         }
 
-        $ownRobot->point = $otherRobot->point = 0;
-        $ownRobot->power > $otherRobot->power ? $ownRobot->point = $ownRobot->power * 10 :  $otherRobot->point = $otherRobot->power * 10;
-        $ownRobot->speed > $otherRobot->speed ? $ownRobot->point = $ownRobot->speed * 7 : $otherRobot->point = $otherRobot->speed * 7;
-        $ownRobot->weight > $otherRobot->weight ? $ownRobot->point-- : $otherRobot->point--;
+        // $ownRobot->point = $otherRobot->point = 0;
+        // $ownRobot->power > $otherRobot->power ? $ownRobot->point = $ownRobot->power * 10 :  $otherRobot->point = $otherRobot->power * 10;
+        // $ownRobot->speed > $otherRobot->speed ? $ownRobot->point += $ownRobot->speed * 7 : $otherRobot->point += $otherRobot->speed * 7;
+        // $ownRobot->weight > $otherRobot->weight ? $ownRobot->point-- : $otherRobot->point--;
 
-        return $ownRobot->point > $otherRobot->point ? $ownRobot->id : $otherRobot->id;
+         return abs($ownRobot->point - $otherRobot->point) < 20 ? (rand(0, 1) ? $ownRobot->id : $otherRobot->id) : ($ownRobot->point > $otherRobot->point ? $ownRobot->id : $otherRobot->id);
+
+        //$ownRobot->point - $otherRobot->point 
     }
 }

@@ -59,7 +59,11 @@ class HomeController extends Controller
      */
     public function getHomeData() : Response
     {
-        return response()->json(['latest' => LatestFightResource::collection($this->homeService->getLatestFightResult()), 
-                                    'top' => TopFightResource::collection($this->homeService->getTopRobots())], 200);
+        return response()->json(
+            [
+                'latest' => LatestFightResource::collection($this->homeService->getLatestFightResult()), 
+                'top' => TopFightResource::collection($this->homeService->getTopRobots())
+            ], 200
+        );
     }
 }

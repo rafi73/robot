@@ -31,7 +31,6 @@ class FightRobotsOwnerStatus implements FightInterface
      * Start Robot fight.
      *
      * @param array $robotIds
-     *
      * @throws \App\Exceptions\FightService\RobotFightConflictException;
      * @return bool
      */

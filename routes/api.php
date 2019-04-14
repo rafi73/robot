@@ -22,10 +22,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
    
 });
 
-
-
 Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function ($router) {
-    
     # 1.1 robot routes
     Route::get('robots', 'RobotController@index');
     Route::get('robot/{id}', 'RobotController@show');
@@ -38,7 +35,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function ($router) 
     # 1.2 fight routes
     Route::post('start-fight', 'FightController@startFight');
 });
-
 
 Route::group(['prefix' => 'v1'], function ($router) {
     # 1.3 home routes
