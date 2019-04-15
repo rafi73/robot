@@ -15,6 +15,7 @@ echo -e "\n--- Adding required repositories ---\n"
 echo "deb https://deb.nodesource.com/node_8.x trusty main" > /etc/apt/sources.list.d/nodesource.list
 wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5072E1F5
 
 # Add PHP and nginx repositories
 add-apt-repository ppa:nginx/stable
@@ -41,7 +42,10 @@ dpkg -i mysql-apt-config_0.8.3-1_all.deb  > /dev/null
 
 apt-get update
 
-apt-get -y install mysql-server augeas-tools
+sudo apt-get dist-upgrade
+sudo dpkg --configure -a
+
+apt-get --force-yes -y install mysql-server augeas-tools
 
 # mysql server configuration
 augtool set /etc/mysql/my.cnf/target[3]/character-set-server utf8
@@ -54,7 +58,7 @@ mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'loc
 
 # install packages
 
-apt-get install -y libpcre3 acl git nginx nodejs redis-server supervisor build-essential php7.2-fpm php7.2-cli php7.2-curl php7.2-gd php7.2-intl php7.2-readline php7.2-mysql php7.2-json php7.2-mbstring php7.2-soap php7.2-xml php7.2-zip xvfb
+apt-get install --force-yes -y libpcre3 acl git nginx nodejs redis-server supervisor build-essential php7.2-fpm php7.2-cli php7.2-curl php7.2-gd php7.2-intl php7.2-readline php7.2-mysql php7.2-json php7.2-mbstring php7.2-soap php7.2-xml php7.2-zip xvfb
 # install composer
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
