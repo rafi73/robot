@@ -7,7 +7,7 @@ php:
 - 7.2
 
 before_script:
-- cp .env.testing .env
+- cp .env.travis .env
 - composer install --no-interaction
 - php artisan key:generate
 - php artisan jwt:secret --force
