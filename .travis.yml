@@ -9,9 +9,12 @@ php:
 before_script:
 - cp .env.travis .env
 - mysql -u root -e 'create database robot;'
+- composer self-update
 - composer install --no-interaction
 - php artisan key:generate
 - php artisan jwt:secret --force
+- sudo chgrp -R www-data storage bootstrap/cache
+- sudo chmod -R ug+rwx storage bootstrap/cache
 - php artisan migrate --seed
 
 script:

@@ -121,7 +121,7 @@ class RobotTest extends TestCase
      */
     public function test_can_upload_robots_csv_file()
     {
-        $filePath = storage_path('app/robot.csv');
+        $filePath = storage_path('robot.csv');
         $token = $this->authenticate();
         $this->withHeaders(['Authorization' => 'Bearer ' . $token])
                         ->postJson('/api/v1/robot-bulk', ['file' => new UploadedFile($filePath, basename($filePath), null, null, null, true)])
