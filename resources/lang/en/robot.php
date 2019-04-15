@@ -33,4 +33,7 @@ return [
     'message_robot_same_owner' => 'Wrong Input!, Robots belong to same owner can not fight',
     'message_robot_not_found' => 'Wrong Input!, Robot not found with id :robotId',
     'message_wrong_robots' => 'Wrong Input!, You dont own any of these Robots',
+    'message_not_your_robot' => 'The selected robot as contastant is not yours',
+    'message_general' => 'General system error!, please contact us if the problem persist',
+    'message_database_service' => 'Temporary issue with database service, please contact us if the problem persist'
 ];

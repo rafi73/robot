@@ -35,8 +35,8 @@ class FightService
         $fight = null;
         $manager = new FightValidationManager();
 
-        if( $manager->check(new FightRobotsStatus($request)) &&
-            $manager->check(new FightRobotsOwnerStatus($request)) &&
+        if( $manager->check(new FightRobotsOwnerStatus($request)) &&
+            $manager->check(new FightRobotsStatus($request)) &&
             $manager->check(new FightStatusDailyOpponentLimit($request)) &&
             $manager->check(new FightStatusDailyLimit($request)))
         {
@@ -60,12 +60,12 @@ class FightService
             catch (Exception $exception) 
             {
                 DB::rollback();
-                $message = 'General system error!, please contact us if the problem persist';
+                $message = __('robot.message_general');
                 if($exception instanceof QueryException)
                 {
-                    $message = 'Temporary issue with database service, please contact us if the problem persist';
+                    $message = __('robot.message_database_service');
                 }
-                throw new RobotFightConflictException($exception->getMessage());
+                throw new RobotFightConflictException($message);
             }
         }
         return $fight;
@@ -75,6 +75,7 @@ class FightService
      * Calculate the fight result based on Robot resource
      *
      * @param array $request
+     * @throws \App\Exceptions\RobotService\RobotNotFoundException
      * @return int
      */
     public function calculateFightResult(array $request) : int
@@ -91,13 +92,7 @@ class FightService
             throw new RobotNotFoundException(__('robot.message_robot_not_found', [ 'robotId' => $this->robotIds['opponent_robot_id']]));
         }
 
-        // $ownRobot->point = $otherRobot->point = 0;
-        // $ownRobot->power > $otherRobot->power ? $ownRobot->point = $ownRobot->power * 10 :  $otherRobot->point = $otherRobot->power * 10;
-        // $ownRobot->speed > $otherRobot->speed ? $ownRobot->point += $ownRobot->speed * 7 : $otherRobot->point += $otherRobot->speed * 7;
-        // $ownRobot->weight > $otherRobot->weight ? $ownRobot->point-- : $otherRobot->point--;
-
-         return abs($ownRobot->point - $otherRobot->point) < 20 ? (rand(0, 1) ? $ownRobot->id : $otherRobot->id) : ($ownRobot->point > $otherRobot->point ? $ownRobot->id : $otherRobot->id);
-
-        //$ownRobot->point - $otherRobot->point 
+        return abs($ownRobot->point - $otherRobot->point) < 20 ? (rand(0, 1) ? $ownRobot->id : $otherRobot->id) : 
+                    ($ownRobot->point > $otherRobot->point ? $ownRobot->id : $otherRobot->id);
     }
 }

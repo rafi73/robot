@@ -7,6 +7,7 @@ use App\Contracts\FightInterface;
 use Illuminate\Support\Facades\Auth;
 use App\Exceptions\RobotService\RobotNotFoundException;
 use App\Exceptions\FightService\RobotFightConflictException;
+use App\Exceptions\RobotService\RobotOwnerMismatchedException;
 
 class FightRobotsOwnerStatus implements FightInterface
 {
@@ -40,6 +41,11 @@ class FightRobotsOwnerStatus implements FightInterface
         if (!$ownRobot)
         {
             throw new RobotNotFoundException(__('robot.message_robot_not_found', [ 'robotId' => $this->robotIds['contestant_robot_id']]));
+        }
+
+        if($ownRobot->user_id != Auth::id())
+        {
+            throw new RobotOwnerMismatchedException(__('robot.message_not_your_robot'));
         }
 
         $otherRobot = Robot::find($this->robotIds['opponent_robot_id']);

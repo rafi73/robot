@@ -42,7 +42,7 @@ class AuthTest extends TestCase
             'password' => 'secret1234',
         ]);
         $response->assertStatus(200);
-        $this->assertArrayHasKey('access_token',$response->json());
+        $this->assertArrayHasKey('token',$response->json());
         User::where('email','test@gmail.com')->delete();
     }
 
@@ -63,22 +63,22 @@ class AuthTest extends TestCase
         ]);
         $response->assertStatus(200);
 
-        $token = json_decode($response->getContent(), true)['access_token'];
+        $token = json_decode($response->getContent(), true)['token'];
         $this->refreshApplication();
         $selfQueryResponse =  $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/auth/me');
         $selfQueryResponse->assertStatus(200);
 
-        // Refresh token
+        # Refresh token
         $this->refreshApplication();
         $tokenRefreshResponse = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/auth/refresh');
 
         $tokenRefreshResponse->assertStatus(200);
 
-        // Logout
+        # Logout
         $logoutResponse = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/auth/logout');
         $logoutResponse->assertStatus(200);
 
-        // Now you cannot query yourself
+        # Now you cannot query yourself
         $this->refreshApplication();
         $loggedOutTestQuery =$this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/auth/me');
         $loggedOutTestQuery->assertStatus(401);

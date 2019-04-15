@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use Cache;
 use App\Fight;
 use App\FightDetail;
 use Illuminate\Database\Eloquent\Collection;
-use Cache;
+
 
 class HomeService
 {

@@ -58,14 +58,8 @@ class AuthController extends Controller
      */
     public function login() : Response
     {
-        $credentials = request(['email', 'password']);
-
-        if (! $token = auth('api')->attempt($credentials)) 
-        {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        return $this->respondWithToken($token);
+        $token = $this->authService->login(request(['email', 'password']));
+        return response()->json(['token' => $token], 200);
     }
 
     /**
@@ -87,7 +81,7 @@ class AuthController extends Controller
      */
     public function me() : Response
     {
-        return response()->json(auth('api')->user());
+        return response()->json($this->authService->me());
     }
 
     /**
@@ -104,9 +98,8 @@ class AuthController extends Controller
      */
     public function logout() : Response
     {
-        auth('api')->logout();
-
-        return response()->json(['message' => 'Successfully logged out']);
+        $this->authService->logout();
+        return response()->json();
     }
 
     /**
@@ -133,30 +126,31 @@ class AuthController extends Controller
      */
     public function refresh() : Response
     {
-        return $this->respondWithToken(auth()->refresh());
+        return response()->json($this->authService->refresh());
     }
 
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    protected function respondWithToken(string $token) : Response
-    {
-        return response()->json([
-            'access_token' => $token,
-            'user' => $this->guard()->user(),
-            'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
-        ]);
-    }
+    // /**
+    //  * Get the token array structure.
+    //  *
+    //  * @param  string $token
+    //  *
+    //  * @return \Symfony\Component\HttpFoundation\Response
+    //  */
+    // protected function respondWithToken(string $token) : Response
+    // {
+    //     return response()->json([
+    //         'access_token' => $token,
+    //         'user' => $this->guard()->user(),
+    //         'token_type' => 'bearer',
+    //         'expires_in' => auth('api')->factory()->getTTL() * 60
+    //     ]);
+    // }
 
-    public function guard()
-    {
-        return Auth::Guard('api');
-    }
+    // public function guard()
+    // {
+    //     $test = Auth::Guard('api');
+    //     return Auth::Guard('api');
+    // }
 
     /**
      * Register an User

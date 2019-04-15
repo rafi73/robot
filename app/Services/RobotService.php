@@ -46,6 +46,8 @@ class RobotService implements RepositoryInterface
      * Delete a Robot by id
      *
      * @param int $id
+     * @throws \App\Exceptions\RobotService\RobotNotFoundException
+     * @throws \App\Exceptions\RobotService\RobotOwnerMismatchedException
      * @return bool
      */
     public function delete(int $id) : bool
@@ -68,6 +70,8 @@ class RobotService implements RepositoryInterface
      *
      * @param array $request
      * @param int $id
+     * @throws \App\Exceptions\RobotService\RobotNotFoundException
+     * @throws \App\Exceptions\RobotService\RobotOwnerMismatchedException
      * @return \App\Robot
      */
     public function update(array $request, int $id) : Robot
@@ -89,6 +93,7 @@ class RobotService implements RepositoryInterface
      * Find a Robot by id
      *
      * @param int $id
+     * @throws \App\Exceptions\RobotService\RobotNotFoundException
      * @return \App\Robot
      */
     public function find(int $id) : Robot
@@ -105,6 +110,8 @@ class RobotService implements RepositoryInterface
      * Create & store robots from CSV
      *
      * @param array $request
+     * @throws \App\Exceptions\RobotService\RobotBulkStructureException
+     * @throws \App\Exceptions\RobotService\RobotBulkDataErrorException
      * @return bool
      */
     public function createBulk(array $request) : bool
