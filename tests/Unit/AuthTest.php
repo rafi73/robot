@@ -71,16 +71,16 @@ class AuthTest extends TestCase
         # Refresh token
         $this->refreshApplication();
         $tokenRefreshResponse = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/auth/refresh');
-
         $tokenRefreshResponse->assertStatus(200);
+        $this->refreshApplication();
+        $newToken = json_decode($tokenRefreshResponse->getContent(), true)['token'];
 
         # Logout
-        $logoutResponse = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/auth/logout');
+        $logoutResponse = $this->withHeaders(['Authorization' => 'Bearer ' . $newToken])->json('POST', '/api/auth/logout');
         $logoutResponse->assertStatus(200);
 
         # Now you cannot query yourself
-        $this->refreshApplication();
-        $loggedOutTestQuery =$this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/auth/me');
+        $loggedOutTestQuery =$this->withHeaders(['Authorization' => 'Bearer ' . $newToken])->json('POST', '/api/auth/me');
         $loggedOutTestQuery->assertStatus(401);
     }
 }

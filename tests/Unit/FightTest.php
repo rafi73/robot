@@ -36,7 +36,7 @@ class FightTest extends TestCase
      * @test
      * Test Fight with other Robot 
      */
-    public function test_can_get_fight_robots()
+    public function test_can_start_fight()
     {
         $token = $this->authenticate();
 

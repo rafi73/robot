@@ -59,7 +59,7 @@ class AuthController extends Controller
     public function login() : Response
     {
         $token = $this->authService->login(request(['email', 'password']));
-        return response()->json(['token' => $token], 200);
+        return response()->json($token, 200);
     }
 
     /**
@@ -128,29 +128,6 @@ class AuthController extends Controller
     {
         return response()->json($this->authService->refresh());
     }
-
-    // /**
-    //  * Get the token array structure.
-    //  *
-    //  * @param  string $token
-    //  *
-    //  * @return \Symfony\Component\HttpFoundation\Response
-    //  */
-    // protected function respondWithToken(string $token) : Response
-    // {
-    //     return response()->json([
-    //         'access_token' => $token,
-    //         'user' => $this->guard()->user(),
-    //         'token_type' => 'bearer',
-    //         'expires_in' => auth('api')->factory()->getTTL() * 60
-    //     ]);
-    // }
-
-    // public function guard()
-    // {
-    //     $test = Auth::Guard('api');
-    //     return Auth::Guard('api');
-    // }
 
     /**
      * Register an User

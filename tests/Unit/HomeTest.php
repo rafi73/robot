@@ -38,7 +38,7 @@ class HomeTest extends TestCase
      * Test Latest 5 Fights
      * Test Top 10 Fights
      */
-    public function test_can_get_fight_robots()
+    public function test_can_get_fight_result()
     {
         $numberOfRecord = 10;
         $token = $this->authenticate();
