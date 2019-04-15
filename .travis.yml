@@ -1,0 +1,17 @@
+language: php
+
+services:
+- mysql
+
+php:
+- 7.2
+
+before_script:
+- cp .env.testing .env
+- composer install --no-interaction
+- php artisan key:generate
+- php artisan jwt:secret --force
+- php artisan migrate --seed
+
+script:
+- vendor/bin/phpunit

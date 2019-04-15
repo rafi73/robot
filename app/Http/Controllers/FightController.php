@@ -61,7 +61,10 @@ class FightController extends Controller
      * @response 422 {
      *    "message": "The given data was invalid"
      * }
-     * @response 500 {
+     * @response 409 {
+     *    "message": "The selected robot as contastant is not yours"
+     * }
+     * @response 404 {
      *    "message": "Wrong Input!, Robot not found with id 20"
      * }
      * @response 500 {

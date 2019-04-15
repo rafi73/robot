@@ -4,9 +4,18 @@
 ##### Detailed documentation is available @ http://robot.uh-oh.jp/docs 
 ##### POSTMAN Collection is available @ http://robot.uh-oh.jp/docs/collection.json
 
-PSR standard coding
+
 
 ###### * To use, Open Postman > File > Import > Import From Link > use "http://robot.uh-oh.jp/docs/collection.json" > Import
+
+### Postman Setting
+For testing using POSTMAN application, please use the following Header settings: 
+
+| KEY | VALUE |
+| ------ | ------ |
+| Authorization | {token} |
+| Content-Type | application/json |
+| Accept | application/json |
 
 ### Available Endpoints
 1. Guest registration system based on JWT
@@ -59,13 +68,7 @@ PSR standard coding
     | Result  |http://robot.uh-oh.jp/api/v1/home|
 
 
-### Postman Setting
-For testing using POSTMAN application, please use the following Header settings: 
 
-| KEY | VALUE |
-| ------ | ------ |
-| Content-Type | application/json |
-| Accept | application/json |
 
 ### Endpoints tests are available. (development environment)
 ```
@@ -81,3 +84,14 @@ $ exit
 $ vendor/bin/phpunit
 ```
 
+### Others
+1. PSR Standard coding
+2. Cache in file for Homepage query 
+3. Indexed robot & fight id for faster query
+4. Robots fight rules are implemented in separed classes in ```App\Helpers``` so that it's easy to add new rules (Followed OCP)
+5. Fight result calculation is implemented in Robot model. It's simply,
+    - Robot power * 10 (+)
+    - Robot speed * 7  (+)
+    - Robot weight     (-)
+
+    If the point is less than 20, one of the robots will win randomly. Otherwise the result will be dicided by max point.
