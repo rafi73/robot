@@ -95,3 +95,4 @@ $ vendor/bin/phpunit
     - Robot weight     (-)
 
     If the point is less than 20, one of the robots will win randomly. Otherwise the result will be dicided by max point.
+6. Travis build - https://travis-ci.org/rafi73/robot/builds/520563272
