@@ -48,8 +48,18 @@ class FightService
             {
                 $fight = Fight::create($request);
                 $fightDetail = [
-                    ['fight_id' => $fight->id, 'robot_id' => $request['contestant_robot_id'], 'result' => $request['contestant_robot_id'] == $winnerRobotId ? 1 : 0, 'date' => today()],
-                    ['fight_id' => $fight->id, 'robot_id' => $request['opponent_robot_id'], 'result' => $request['opponent_robot_id'] == $winnerRobotId ? 1 : 0, 'date' => today()]
+                    [
+                        'fight_id' => $fight->id, 
+                        'robot_id' => $request['contestant_robot_id'], 
+                        'result' => $request['contestant_robot_id'] == $winnerRobotId ? 1 : 0, 
+                        'date' => today()
+                    ],
+                    [
+                        'fight_id' => $fight->id, 
+                        'robot_id' => $request['opponent_robot_id'], 
+                        'result' => $request['opponent_robot_id'] == $winnerRobotId ? 1 : 0, 
+                        'date' => today()
+                    ]
                 ];
                 
                 FightDetail::insert($fightDetail);
