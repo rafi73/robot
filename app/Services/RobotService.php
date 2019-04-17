@@ -131,10 +131,10 @@ class RobotService implements RepositoryInterface
         for ($i = 0; $i < count($lines); $i++) 
         { 
             if(!strlen($lines[$i])) continue;
-            $check = array_combine($head, str_getcsv($lines[$i]));
-            $check['created_by'] = $check['updated_by'] = $check['user_id'] = Auth::id();
-            $check['created_at'] = $check['updated_at'] = now();
-            $robots[] = $check;
+            $robot = array_combine($head, str_getcsv($lines[$i]));
+            $robot['created_by'] = $robot['updated_by'] = $robot['user_id'] = Auth::id();
+            $robot['created_at'] = $robot['updated_at'] = now();
+            $robots[] = $robot;
         }
         
         try 
