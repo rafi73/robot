@@ -1,1 +1,307 @@
-{"variables":[],"info":{"name":"Laravel API","_postman_id":"602dd5c4-6860-4636-8e35-466288bb6702","description":"","schema":"https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"},"item":[{"name":"general","description":"","item":[{"name":"Register an User","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/auth\/register","method":"POST","body":{"mode":"formdata","formdata":[{"key":"name","value":"f0UTPFqHTMW1yZXA","type":"text","enabled":true},{"key":"email","value":"ii5qJEkTKwbUyK4N","type":"text","enabled":true},{"key":"password","value":"SwC1uh3LkwEObYVB","type":"text","enabled":true},{"key":"password_confirmation","value":"R0zP4gSxQqI1PFNw","type":"text","enabled":true}]},"description":"","response":[]}},{"name":"Login and get JWT via given credentials","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/auth\/login","method":"POST","body":{"mode":"formdata","formdata":[{"key":"email","value":"YO2GrCFbvpzqZkMu","type":"text","enabled":true},{"key":"password","value":"AnCnU9VgcX5kRNiz","type":"text","enabled":true}]},"description":"","response":[]}},{"name":"Log the user out (Invalidate the token)","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/auth\/logout","method":"POST","body":{"mode":"formdata","formdata":[]},"description":"","response":[]}},{"name":"Refresh a token","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/auth\/refresh","method":"POST","body":{"mode":"formdata","formdata":[]},"description":"","response":[]}},{"name":"Get the authenticated User","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/auth\/me","method":"POST","body":{"mode":"formdata","formdata":[]},"description":"","response":[]}},{"name":"Display a list of all Robots","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/robots","method":"GET","body":{"mode":"formdata","formdata":[]},"description":"","response":[]}},{"name":"Display a Robot","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/robots\/{id}","method":"GET","body":{"mode":"formdata","formdata":[]},"description":"","response":[]}},{"name":"Create a new Robot","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/robots","method":"POST","body":{"mode":"formdata","formdata":[{"key":"name","value":"NAsLiGKQA7llLfDm","type":"text","enabled":true},{"key":"speed","value":129,"type":"text","enabled":true},{"key":"weight","value":32.7825238,"type":"text","enabled":true},{"key":"power","value":0,"type":"text","enabled":true}]},"description":"","response":[]}},{"name":"Update a Robot","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/robots\/{id}","method":"PUT","body":{"mode":"urlencoded","urlencoded":[{"key":"name","value":"5YmueLF7ddWjKywQ","type":"text","enabled":true},{"key":"speed","value":246616544.734,"type":"text","enabled":true},{"key":"weight","value":250335.7,"type":"text","enabled":true},{"key":"power","value":118834,"type":"text","enabled":true}]},"description":"","response":[]}},{"name":"Delete a Robot","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/robots\/{id}","method":"DELETE","body":{"mode":"formdata","formdata":[]},"description":"","response":[]}},{"name":"Import Robots from CSV file","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/robot-bulk","method":"POST","body":{"mode":"formdata","formdata":[{"key":"file","value":"IFUm83gUj6X0tcxp","type":"text","enabled":true}]},"description":"","response":[]}},{"name":"Display list of self owned and others Robots accourding to User","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/fight-robots","method":"GET","body":{"mode":"formdata","formdata":[]},"description":"","response":[]}},{"name":"Start fight between self and other Robot","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/start-fight","method":"POST","body":{"mode":"formdata","formdata":[{"key":"contestant_robot_id","value":3,"type":"text","enabled":true},{"key":"opponent_robot_id","value":15,"type":"text","enabled":true}]},"description":"","response":[]}},{"name":"Display Home Data","request":{"url":"http:\/\/robot.uh-oh.jp\/api\/v1\/home","method":"GET","body":{"mode":"formdata","formdata":[]},"description":"","response":[]}}]}]}
+{
+    "variables": [],
+    "info": {
+        "name": "Laravel API",
+        "_postman_id": "602dd5c4-6860-4636-8e35-466288bb6702",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "general",
+            "description": "",
+            "item": [
+                {
+                    "name": "Register an User",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/auth\/register",
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "f0UTPFqHTMW1yZXA",
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "ii5qJEkTKwbUyK4N",
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "SwC1uh3LkwEObYVB",
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "password_confirmation",
+                                    "value": "R0zP4gSxQqI1PFNw",
+                                    "type": "text",
+                                    "enabled": true
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Login and get JWT via given credentials",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/auth\/login",
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "email",
+                                    "value": "YO2GrCFbvpzqZkMu",
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "AnCnU9VgcX5kRNiz",
+                                    "type": "text",
+                                    "enabled": true
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Log the user out (Invalidate the token)",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/auth\/logout",
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Refresh a token",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/auth\/refresh",
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get the authenticated User",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/auth\/me",
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Display a list of all Robots",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/robots",
+                        "method": "GET",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Display a Robot",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/robots\/{id}",
+                        "method": "GET",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Create a new Robot",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/robots",
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "NAsLiGKQA7llLfDm",
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "speed",
+                                    "value": 129,
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "weight",
+                                    "value": 32.7825238,
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "power",
+                                    "value": 0,
+                                    "type": "text",
+                                    "enabled": true
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Update a Robot",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/robots\/{id}",
+                        "method": "PUT",
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "name",
+                                    "value": "5YmueLF7ddWjKywQ",
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "speed",
+                                    "value": 246616544.734,
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "weight",
+                                    "value": 250335.7,
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "power",
+                                    "value": 118834,
+                                    "type": "text",
+                                    "enabled": true
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Delete a Robot",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/robots\/{id}",
+                        "method": "DELETE",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Import Robots from CSV file",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/robot-bulk",
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file",
+                                    "value": "IFUm83gUj6X0tcxp",
+                                    "type": "text",
+                                    "enabled": true
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Display list of self owned and others Robots accourding to User",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/fight-robots",
+                        "method": "GET",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Start fight between self and other Robot",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/start-fight",
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "contestant_robot_id",
+                                    "value": 3,
+                                    "type": "text",
+                                    "enabled": true
+                                },
+                                {
+                                    "key": "opponent_robot_id",
+                                    "value": 15,
+                                    "type": "text",
+                                    "enabled": true
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Display Home Data",
+                    "request": {
+                        "url": "http:\/\/robot.uh-oh.jp\/api\/v1\/home",
+                        "method": "GET",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        }
+    ]
+}

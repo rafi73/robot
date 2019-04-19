@@ -34,10 +34,10 @@ For testing using POSTMAN application, please use the following Header settings:
 
     | Name | Endpoint|
     |--------------|----------------------------------------|
-    | Create | http://robot.uh-oh.jp/api/v1/robot|
-    | Read        | http://robot.uh-oh.jp/api/v1/robot/{id}|
-    | Update       | http://robot.uh-oh.jp/api/v1/robot/{id}|
-    | Delete | http://robot.uh-oh.jp/api/v1/robot/{id}|
+    | Create | http://robot.uh-oh.jp/api/v1/robots|
+    | Read        | http://robot.uh-oh.jp/api/v1/robots/{id}|
+    | Update       | http://robot.uh-oh.jp/api/v1/robots/{id}|
+    | Delete | http://robot.uh-oh.jp/api/v1/robots/{id}|
 
 3. User can add rotots can be added through CSV file
 
