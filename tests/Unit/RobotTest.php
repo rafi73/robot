@@ -49,7 +49,7 @@ class RobotTest extends TestCase
         $token = $this->authenticate();
         $robot = factory(Robot::class)->make(['user_id' => $this->user->id])->toArray();
 
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/v1/robot', $robot);
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('POST', '/api/v1/robots', $robot);
         $response->assertStatus(201);
 
         $count = $this->user->robots()->count();
@@ -67,7 +67,7 @@ class RobotTest extends TestCase
 
         $nameToUpdate = $this->faker->name;
         $robot['name'] = $nameToUpdate;
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('PUT', '/api/v1/robot/' . $robot['id'] , $robot);
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('PUT', '/api/v1/robots/' . $robot['id'] , $robot);
 
         $response->assertStatus(200);
         $this->assertEquals($nameToUpdate, $this->user->robots()->first()->name);
@@ -81,7 +81,7 @@ class RobotTest extends TestCase
     {
         $token =  $this->authenticate();
         $robot = factory(robot::class)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id])->toArray();
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/robot/' . $robot['id']);
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('GET', '/api/v1/robots/' . $robot['id']);
 
         $response->assertStatus(200);
         $this->assertEquals($robot['name'], $response->json()['data']['name']);
@@ -95,7 +95,7 @@ class RobotTest extends TestCase
     {
         $token = $this->authenticate();
         $robot = factory(robot::class)->create(['user_id' => $this->user->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id])->toArray();
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('DELETE', '/api/v1/robot/' . $robot['id']);
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->json('DELETE', '/api/v1/robots/' . $robot['id']);
 
         $response->assertStatus(204);
         $this->assertEquals(0, $this->user->robots()->count());
