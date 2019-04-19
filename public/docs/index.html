@@ -46,7 +46,7 @@
           <!-- START_INFO -->
 <h1>Info</h1>
 <p>Welcome to the generated API reference.
-<a href="http://robot.work/docs/collection.json">Get Postman Collection</a></p>
+<a href="http://localhost/docs/collection.json">Get Postman Collection</a></p>
 <!-- END_INFO -->
 <h1>general</h1>
 <!-- START_2e1c96dcffcfe7e0eb58d6408f1d619e -->
@@ -54,13 +54,13 @@
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/register" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/auth/register" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"iEztM2QkZU3Wdewd","email":"ObZDZiIKqNnDd0SQ","password":"XhE27B02Y2kCaNb5","password_confirmation":"E7kbsYYqDcfeC20J"}'
+    -d '{"name":"fMEMxVktnCYiqF1e","email":"aaZBgJ8zUEnXPbQz","password":"6yp7eaBJ0ggBKfKC","password_confirmation":"h7WzzbuzPhIIXPSp"}'
 </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/register");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/auth/register");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -69,10 +69,10 @@ let headers = {
 }
 
 let body = {
-    "name": "iEztM2QkZU3Wdewd",
-    "email": "ObZDZiIKqNnDd0SQ",
-    "password": "XhE27B02Y2kCaNb5",
-    "password_confirmation": "E7kbsYYqDcfeC20J"
+    "name": "fMEMxVktnCYiqF1e",
+    "email": "aaZBgJ8zUEnXPbQz",
+    "password": "6yp7eaBJ0ggBKfKC",
+    "password_confirmation": "h7WzzbuzPhIIXPSp"
 }
 
 fetch(url, {
@@ -139,13 +139,13 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/login" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/auth/login" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"email":"oKStroE7L8jxaXw1","password":"U7LXSN0lVgsbltl7"}'
+    -d '{"email":"FIche2Pmx29IdglS","password":"Wa7gtPGMfprxCqqp"}'
 </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/login");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/auth/login");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -154,8 +154,8 @@ let headers = {
 }
 
 let body = {
-    "email": "oKStroE7L8jxaXw1",
-    "password": "U7LXSN0lVgsbltl7"
+    "email": "FIche2Pmx29IdglS",
+    "password": "Wa7gtPGMfprxCqqp"
 }
 
 fetch(url, {
@@ -220,10 +220,10 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/logout" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/auth/logout" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/logout");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/auth/logout");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -257,10 +257,10 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/refresh" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/auth/refresh" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/refresh");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/auth/refresh");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -304,10 +304,10 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/auth/me" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/auth/me" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/auth/me");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/auth/me");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -347,10 +347,10 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/api/v1/robots" \
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/v1/robots" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robots");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/robots");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -423,19 +423,19 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>GET api/v1/robots</code></p>
 <!-- END_c90279e42064149b7989f5b48f490f09 -->
-<!-- START_ad87098cddc039c127433b7dc4d12e0f -->
+<!-- START_f3a5e820590a4ccfd29b7547cf025972 -->
 <h2>Display a Robot</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/api/v1/robot/{id}" \
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/v1/robots/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot/{id}");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/robots/{id}");
 
     let params = {
-            "id": "QKxvBSpY8MfVgATD",
+            "id": "2ZKJIEPlNNO38Clb",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -490,7 +490,7 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{}</code></pre>
 <h3>HTTP Request</h3>
-<p><code>GET api/v1/robot/{id}</code></p>
+<p><code>GET api/v1/robots/{id}</code></p>
 <h4>Query Parameters</h4>
 <table>
 <thead>
@@ -508,20 +508,20 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_ad87098cddc039c127433b7dc4d12e0f -->
-<!-- START_dfeb770204a62b87027afeba2b8fdbf8 -->
+<!-- END_f3a5e820590a4ccfd29b7547cf025972 -->
+<!-- START_198010ba6c32b5cbea796e9f9618a653 -->
 <h2>Create a new Robot</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/v1/robot" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/v1/robots" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"CtSd7IaNfr13HCN2","speed":43265632.49497,"weight":138999.176,"power":26278.870098}'
+    -d '{"name":"PESlZpOGG9D3TzY2","speed":6.2032091,"weight":15729,"power":7.87}'
 </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/robots");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -530,10 +530,10 @@ let headers = {
 }
 
 let body = {
-    "name": "CtSd7IaNfr13HCN2",
-    "speed": 43265632.49497,
-    "weight": 138999.176,
-    "power": 26278.870098
+    "name": "PESlZpOGG9D3TzY2",
+    "speed": 6.2032091,
+    "weight": 15729,
+    "power": 7.87
 }
 
 fetch(url, {
@@ -580,7 +580,7 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{}</code></pre>
 <h3>HTTP Request</h3>
-<p><code>POST api/v1/robot</code></p>
+<p><code>POST api/v1/robots</code></p>
 <h4>Body Parameters</h4>
 <table>
 <thead>
@@ -618,23 +618,23 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_dfeb770204a62b87027afeba2b8fdbf8 -->
-<!-- START_65a74e83b92a3d95486a69d84cb14970 -->
+<!-- END_198010ba6c32b5cbea796e9f9618a653 -->
+<!-- START_8afbd04c359a7007c0c62f23d0244d25 -->
 <h2>Update a Robot</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X PUT "http://robot.work/api/v1/robot/{id}" \
+<pre><code class="language-bash">curl -X PUT "http://localhost/api/v1/robots/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"name":"sZ5Vf34Wl1MUeORa","speed":187321.01653083,"weight":206.594810477,"power":317936.37348288}'
+    -d '{"name":"ioV17vEms1LHU0s3","speed":393,"weight":0.37016,"power":0}'
 </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot/{id}");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/robots/{id}");
 
     let params = {
-            "id": "cX9KGBTeuCDQqiJr",
+            "id": "XeTI9neIDaZiPQjz",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -645,10 +645,10 @@ let headers = {
 }
 
 let body = {
-    "name": "sZ5Vf34Wl1MUeORa",
-    "speed": 187321.01653083,
-    "weight": 206.594810477,
-    "power": 317936.37348288
+    "name": "ioV17vEms1LHU0s3",
+    "speed": 393,
+    "weight": 0.37016,
+    "power": 0
 }
 
 fetch(url, {
@@ -701,7 +701,7 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{}</code></pre>
 <h3>HTTP Request</h3>
-<p><code>PUT api/v1/robot/{id}</code></p>
+<p><code>PUT api/v1/robots/{id}</code></p>
 <h4>Body Parameters</h4>
 <table>
 <thead>
@@ -756,17 +756,17 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_65a74e83b92a3d95486a69d84cb14970 -->
-<!-- START_8e0f1618c2f1ad7130ecb3cbff80c90c -->
+<!-- END_8afbd04c359a7007c0c62f23d0244d25 -->
+<!-- START_33ef5fad39c2117462a9deb4f5400eb1 -->
 <h2>Delete a Robot</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X DELETE "http://robot.work/api/v1/robot/{id}" \
+<pre><code class="language-bash">curl -X DELETE "http://localhost/api/v1/robots/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot/{id}");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/robots/{id}");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -813,21 +813,21 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{}</code></pre>
 <h3>HTTP Request</h3>
-<p><code>DELETE api/v1/robot/{id}</code></p>
-<!-- END_8e0f1618c2f1ad7130ecb3cbff80c90c -->
+<p><code>DELETE api/v1/robots/{id}</code></p>
+<!-- END_33ef5fad39c2117462a9deb4f5400eb1 -->
 <!-- START_4b749bd7372fd460f6d6bc1a03a46494 -->
 <h2>Import Robots from CSV file</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/v1/robot-bulk" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/v1/robot-bulk" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"file":"qscQho7zCuGXe8FK"}'
+    -d '{"file":"hudtXIRIWEBOV17E"}'
 </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/robot-bulk");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/robot-bulk");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -836,7 +836,7 @@ let headers = {
 }
 
 let body = {
-    "file": "qscQho7zCuGXe8FK"
+    "file": "hudtXIRIWEBOV17E"
 }
 
 fetch(url, {
@@ -912,10 +912,10 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/api/v1/fight-robots" \
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/v1/fight-robots" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/fight-robots");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/fight-robots");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -995,13 +995,13 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://robot.work/api/v1/start-fight" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/v1/start-fight" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"contestant_robot_id":18,"opponent_robot_id":5}'
+    -d '{"contestant_robot_id":3,"opponent_robot_id":12}'
 </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/start-fight");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/start-fight");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -1010,8 +1010,8 @@ let headers = {
 }
 
 let body = {
-    "contestant_robot_id": 18,
-    "opponent_robot_id": 5
+    "contestant_robot_id": 3,
+    "opponent_robot_id": 12
 }
 
 fetch(url, {
@@ -1052,7 +1052,13 @@ fetch(url, {
     "message": "The given data was invalid"
 }</code></pre>
 <blockquote>
-<p>Example response (500):</p>
+<p>Example response (409):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The selected robot as contastant is not yours"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
 </blockquote>
 <pre><code class="language-json">{
     "message": "Wrong Input!, Robot not found with id 20"
@@ -1108,10 +1114,10 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://robot.work/api/v1/home" \
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/v1/home" \
     -H "Authorization: Bearer: {token}" \
     -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL("http://robot.work/api/v1/home");
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/v1/home");
 
 let headers = {
     "Authorization": "Bearer: {token}",

@@ -25,10 +25,10 @@ Route::group(['prefix' => 'auth'], function ($router) {
 Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function ($router) {
     # 1.1 robot routes
     Route::get('robots', 'RobotController@index');
-    Route::get('robot/{id}', 'RobotController@show');
-    Route::post('robot', 'RobotController@store');
-    Route::put('robot/{id}', 'RobotController@update');
-    Route::delete('robot/{id}', 'RobotController@delete');
+    Route::get('robots/{id}', 'RobotController@show');
+    Route::post('robots', 'RobotController@store');
+    Route::put('robots/{id}', 'RobotController@update');
+    Route::delete('robots/{id}', 'RobotController@delete');
     Route::post('robot-bulk', 'RobotController@storeBulk');
     Route::get('fight-robots', 'RobotController@getFightRobots');
 

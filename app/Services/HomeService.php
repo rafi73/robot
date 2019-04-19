@@ -18,7 +18,10 @@ class HomeService
     public function getLatestFightResult(): Collection
     {
         return Cache::remember('latest_fights', 120, function(){
-            return Fight::with('fightDetail.robot')->latest()->take(5)->get();
+            return Fight::with('fightDetail.robot')
+                ->latest()
+                ->take(5)
+                ->get();
         });
     }
 
