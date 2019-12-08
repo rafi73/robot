@@ -10,6 +10,7 @@ node('master') {
             sh "composer install"
             sh "cp .env.example .env"
             sh "mysql -u root -p root123 -e 'create database robot;'"
+            sh "mysql -uroot -proot123 -e 'GRANT ALL PRIVILEGES ON robot.* TO root@localhost IDENTIFIED BY "root123"';"
             sh "php artisan key:generate"
             sh "php artisan jwt:secret"
             sh "php artisan migrate --seed"
