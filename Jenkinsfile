@@ -9,7 +9,7 @@ node('master') {
             // Install dependencies, create a new .env file and generate a new key, just for testing
             sh "composer install"
             sh "cp .env.example .env"
-            sh "mysql -u root -p root123 -e 'create database robot;'"
+            sh "mysql -uroot -proot123 -e 'create database robot;'"
             sh "mysql -uroot -proot123 -e 'GRANT ALL PRIVILEGES ON robot.* TO root@localhost IDENTIFIED BY "root123"';"
             sh "php artisan key:generate"
             sh "php artisan jwt:secret"
