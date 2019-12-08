@@ -9,6 +9,7 @@ node('master') {
             // Install dependencies, create a new .env file and generate a new key, just for testing
             sh "composer install"
             sh "cp .env.ci .env"
+            sh "mysql -u root -e 'create database robot;'"
             sh "php artisan key:generate"
             sh "php artisan jwt:secret"
             sh "php artisan migrate --seed"
